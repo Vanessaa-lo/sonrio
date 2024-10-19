@@ -5,17 +5,17 @@
     box-sizing: border-box;
 }
 
-/* Estilo para el cuerpo del documento */
+html, body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
 body {
     font-family: 'Arial', sans-serif;
     background-color: var(--background-color); /* Dinámico para el modo claro/oscuro */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
     transition: background-color 0.3s ease, color 0.3s ease;
+    flex-grow: 1;
 }
 
 /* Botón para alternar entre modo claro y oscuro */
@@ -33,60 +33,112 @@ body {
 .btn-mode i {
     color: var(--icon-color);
 }
+/*-------------------------------------------------------*/
+/* ------------Footer ---------------------------------- */
+/*-------------------------------------------------------*/
+footer {
+    background-color: #FFB6C1;
+    width: 100%;
+    padding: 20px 0;
+    text-align: center;
+    border-top: 5px solid #FF69B4;
+    flex-shrink: 0; /* Para que el footer siempre esté en la parte inferior */
+}
 
-/* Wrapper del login */
-.login-wrapper {
+footer p {
+    color: #333333;
+    font-size: 16px;
+    font-family: 'Comic Sans MS', sans-serif;
+}
+
+.footer-social-icons {
     display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.footer-social-icons a {
+    color: #FFD700;
+    font-size: 24px;
+    transition: color 0.3s ease;
+}
+
+.footer-social-icons a:hover {
+    color: #FF69B4;
+}
+
+/* ---------- Modo Claro y Oscuro ---------- */
+body.light-mode {
+    --background-color: #FDF5E6;
+    --text-color: #333333;
+    --button-color: #FFB6C1;
+    --heading-color: #FF69B4;
+    --border-color: #ADD8E6;
+    --icon-color: #FFD700;
+    --input-bg-color: #FFF5F8;
+}
+
+body.dark-mode {
+    --background-color: #1C1C1C;
+    --text-color: #EAEAEA;
+    --button-color: #FFB6C1;
+    --heading-color: #FF69B4;
+    --border-color: #87CEFA;
+    --icon-color: #FFD700;
+    --input-bg-color: #2C2C2C;
+}
+
+/*-------------------------------------------------------*/
+/* ---------- Estilos para la página de Login ---------- */
+/*-------------------------------------------------------*/
+.login-page .login-wrapper {
+    display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
-    width: 80%; /* Anchura para pantallas grandes */
-    max-width: 1000px;
+    flex-grow: 1; /* Para que ocupe todo el espacio disponible */
     background-color: white;
     border-radius: 25px;
     box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    position: relative;
+    width: 80%;
+    max-width: 1000px;
+    margin: auto; /* Centrar el contenedor del formulario */
     padding: 50px;
-    margin-top: 10%;
 }
 
-/* Contenedor del formulario */
-.login-container {
+.login-page .login-container {
     width: 50%;
     padding-right: 30px;
 }
 
-/* Título y texto dentro del contenedor */
-.login-container h2 {
-    font-size: 28px;
+.login-page .login-container h2 {
     color: var(--heading-color);
+    font-size: 28px;
     margin-bottom: 15px;
 }
 
-.login-container p {
+.login-page .login-container p {
     color: var(--text-color);
     margin-bottom: 30px;
     font-size: 16px;
 }
 
-/* Estilo de los campos */
-.input-group {
+.login-page .input-group {
     margin-bottom: 20px;
     text-align: left;
 }
 
-label {
+.login-page label {
     display: block;
     margin-bottom: 5px;
     color: var(--text-color);
     font-size: 14px;
 }
 
-.input-icon {
+.login-page .input-icon {
     position: relative;
 }
 
-.input-icon i {
+.login-page .input-icon i {
     position: absolute;
     left: 10px;
     top: 50%;
@@ -94,7 +146,7 @@ label {
     color: var(--border-color);
 }
 
-input[type="text"], input[type="password"] {
+.login-page input[type="text"], .login-page input[type="password"] {
     width: 100%;
     padding: 12px 40px;
     border: 2px solid var(--border-color);
@@ -105,7 +157,7 @@ input[type="text"], input[type="password"] {
     outline: none;
 }
 
-button.btn {
+.login-page button.btn {
     background-color: var(--button-color);
     color: white;
     padding: 12px 0;
@@ -117,135 +169,32 @@ button.btn {
     transition: background-color 0.3s ease;
 }
 
-button.btn:hover {
+.login-page button.btn:hover {
     background-color: var(--heading-color);
 }
 
-.forgot-password {
+.login-page .forgot-password {
     margin-top: 15px;
 }
 
-.forgot-password a {
+.login-page .forgot-password a {
     color: var(--heading-color);
     font-size: 14px;
     text-decoration: none;
 }
 
-.forgot-password a:hover {
+.login-page .forgot-password a:hover {
     text-decoration: underline;
 }
 
-/* Imagen decorativa */
-.login-image {
+.login-page .login-image {
     width: 50%;
-    position: relative;
 }
 
-.login-image img {
+.login-page .login-image img {
     width: 90%;
     border-radius: 50%;
     object-fit: cover;
     box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
 }
 
-/* Footer que cubre todo el ancho de la pantalla */
-footer {
-    background-color: #FFB6C1; /* Fondo rosa pastel */
-    width: 100%; /* Ancho completo del footer */
-    padding: 20px 0; /* Espaciado arriba y abajo */
-    text-align: center; /* Alinear texto en el centro */
-    border-top: 5px solid #FF69B4; /* Borde superior rosa intenso */
-    position: relative; /* Relativo para ajustes futuros si es necesario */
-}
-
-/* Contenedor del contenido del footer */
-.footer-container {
-    max-width: 1200px; /* Tamaño máximo del contenido del footer */
-    margin: 0 auto; /* Centrar el contenido horizontalmente */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Estilo del texto en el footer */
-footer p {
-    color: #333333; /* Texto gris oscuro */
-    font-size: 16px;
-    margin-bottom: 10px;
-    font-family: 'Comic Sans MS', sans-serif; /* Fuente cute */
-}
-
-/* Estilo para el contenedor de iconos sociales */
-.footer-social-icons {
-    display: flex; /* Hacer que los iconos estén en una línea */
-    justify-content: center; /* Centrar los iconos horizontalmente */
-    gap: 20px; /* Espacio entre los iconos */
-}
-
-/* Estilo para los iconos sociales */
-.footer-social-icons a {
-    text-decoration: none;
-    color: #FFD700; /* Iconos de color amarillo pastel */
-    font-size: 24px; /* Tamaño de los iconos */
-    transition: color 0.3s ease;
-}
-
-/* Cambiar el color de los iconos cuando el usuario pasa el ratón */
-.footer-social-icons a:hover {
-    color: #FF69B4; /* Cambiar a rosa intenso cuando se hace hover */
-}
-
-/* Asegurar que el footer esté siempre en la parte inferior */
-html, body {
-    height: 100%;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-footer {
-    flex-shrink: 0;
-}
-
-/* Modo Claro */
-body.light-mode {
-    --background-color: #FDF5E6;
-    --text-color: #333333;
-    --button-color: #FFB6C1;
-    --heading-color: #FF69B4;
-    --border-color: #ADD8E6;
-    --icon-color: #FFD700;
-    --input-bg-color: #FFF5F8;
-}
-
-/* Modo Oscuro */
-body.dark-mode {
-    --background-color: #1C1C1C;
-    --text-color: #EAEAEA;
-    --button-color: #FFB6C1;
-    --heading-color: #FF69B4;
-    --border-color: #87CEFA;
-    --icon-color: #FFD700;
-    --input-bg-color: #2C2C2C;
-}
-
-/* Estilo responsivo */
-@media screen and (max-width: 768px) {
-    .login-wrapper {
-        flex-direction: column;
-        padding: 30px;
-    }
-
-    .login-container {
-        width: 100%;
-        padding-right: 0;
-    }
-
-    .login-image {
-        display: none; /* Ocultar la imagen en pantallas pequeñas */
-    }
-}
