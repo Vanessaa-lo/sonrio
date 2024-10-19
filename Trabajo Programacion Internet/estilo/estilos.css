@@ -1,0 +1,210 @@
+/* Estilos generales aplicables a ambos modos */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--heading-color);
+}
+
+p, a, li, span {
+    color: var(--text-color);
+}
+
+button {
+    background-color: var(--button-color);
+    color: var(--text-color);
+    padding: 10px 20px;
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: var(--heading-color);
+    color: #fff;
+}
+
+a {
+    text-decoration: none;
+    color: var(--button-color);
+}
+
+.border-element {
+    border: 2px solid var(--border-color);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.icon {
+    color: var(--icon-color);
+}
+
+/* Ajustes de layout para elementos decorativos */
+.decorative-element {
+    background-color: var(--icon-color);
+    padding: 10px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+}
+
+/* Estilos específicos del Modo Claro */
+:root {
+    --background-color: #FDF5E6; /* Fondo principal */
+    --text-color: #333333; /* Texto principal */
+    --button-color: #FFB6C1; /* Botones */
+    --heading-color: #FF69B4; /* Títulos */
+    --border-color: #ADD8E6; /* Bordes */
+    --icon-color: #FFD700; /* Iconos */
+}
+
+body.light-mode {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+/* Estilos específicos del Modo Oscuro */
+body.dark-mode {
+    --background-color: #1C1C1C; /* Fondo principal oscuro */
+    --text-color: #EAEAEA; /* Texto principal claro */
+    --button-color: #FFB6C1; /* Botones */
+    --heading-color: #FF69B4; /* Títulos */
+    --border-color: #87CEFA; /* Bordes */
+    --icon-color: #FFD700; /* Iconos */
+    
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+/* Botones de cambiar el modo */
+#toggle-mode {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: var(--button-color);
+    border: none;
+    padding: 10px 20px;
+    color: var(--text-color);
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+#toggle-mode:hover {
+    background-color: var(--heading-color);
+    color: #fff;
+}
+
+/* Formularios */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+form label {
+    font-weight: bold;
+}
+
+form input[type="text"], form input[type="password"] {
+    padding: 10px;
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+form button {
+    background-color: var(--button-color);
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    color: var(--text-color);
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: var(--heading-color);
+    color: #fff;
+}
+
+/* Tarjetas de productos */
+.product-card {
+    background-color: var(--background-color);
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+}
+
+.product-card img {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+.product-card h3 {
+    color: var(--heading-color);
+}
+
+.product-card p {
+    color: var(--text-color);
+}
+
+.product-card button {
+    background-color: var(--button-color);
+    color: var(--text-color);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.product-card button:hover {
+    background-color: var(--heading-color);
+    color: #fff;
+}
+
+/* Pie de página */
+footer {
+    background-color: var(--background-color);
+    padding: 20px;
+    text-align: center;
+    border-top: 2px solid var(--border-color);
+}
+
+footer p {
+    color: var(--text-color);
+}
+
+.icon-link {
+    color: var(--icon-color);
+    font-size: 20px;
+    margin: 0 10px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.icon-link:hover {
+    color: var(--heading-color);
+}
