@@ -13,7 +13,8 @@ html, body {
 
 body {
     font-family: 'Arial', sans-serif;
-    background-color: var(--background-color); /* Dinámico para el modo claro/oscuro */
+    background-color: var(--background-color);
+    color: var(--text-color);
     transition: background-color 0.3s ease, color 0.3s ease;
     flex-grow: 1;
 }
@@ -32,39 +33,6 @@ body {
 
 .btn-mode i {
     color: var(--icon-color);
-}
-/*-------------------------------------------------------*/
-/* ------------Footer ---------------------------------- */
-/*-------------------------------------------------------*/
-footer {
-    background-color: #FFB6C1;
-    width: 100%;
-    padding: 20px 0;
-    text-align: center;
-    border-top: 5px solid #FF69B4;
-    flex-shrink: 0; /* Para que el footer siempre esté en la parte inferior */
-}
-
-footer p {
-    color: #333333;
-    font-size: 16px;
-    font-family: 'Comic Sans MS', sans-serif;
-}
-
-.footer-social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-.footer-social-icons a {
-    color: #FFD700;
-    font-size: 24px;
-    transition: color 0.3s ease;
-}
-
-.footer-social-icons a:hover {
-    color: #FF69B4;
 }
 
 /* ---------- Modo Claro y Oscuro ---------- */
@@ -88,20 +56,18 @@ body.dark-mode {
     --input-bg-color: #2C2C2C;
 }
 
-/*-------------------------------------------------------*/
 /* ---------- Estilos para la página de Login ---------- */
-/*-------------------------------------------------------*/
 .login-page .login-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-grow: 1; /* Para que ocupe todo el espacio disponible */
+    flex-grow: 1;
     background-color: white;
     border-radius: 25px;
     box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
     width: 80%;
     max-width: 1000px;
-    margin: auto; /* Centrar el contenedor del formulario */
+    margin: auto;
     padding: 50px;
 }
 
@@ -198,3 +164,140 @@ body.dark-mode {
     box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
 }
 
+/* ---------- Estilos para el Panel de Administración ---------- */
+.admin-wrapper {
+    display: flex;
+    height: 100%;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: var(--button-color);
+    padding: 20px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar h2 {
+    color: var(--heading-color);
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar ul li {
+    margin-bottom: 15px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: color 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+    color: var(--heading-color);
+}
+
+.admin-content {
+    flex-grow: 1;
+    padding: 40px;
+}
+
+.admin-content h2 {
+    color: var(--heading-color);
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.admin-section {
+    margin-top: 30px;
+}
+
+.admin-section h3 {
+    color: var(--heading-color);
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.btn {
+    background-color: var(--button-color);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: var(--heading-color);
+}
+
+.table-container {
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+table thead {
+    background-color: var(--border-color);
+}
+
+table th, table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 2px solid var(--border-color);
+    color: var(--text-color);
+}
+
+/* Iconos */
+.sidebar ul li a i {
+    color: var(--icon-color);
+}
+
+.admin-section .btn {
+    margin-bottom: 20px;
+}
+
+/* Footer */
+footer {
+    background-color: var(--button-color);
+    width: 100%;
+    padding: 20px 0;
+    text-align: center;
+    border-top: 5px solid var(--heading-color);
+    flex-shrink: 0;
+}
+
+footer p {
+    color: var(--text-color);
+    font-size: 16px;
+}
+
+.footer-social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.footer-social-icons a {
+    color: var(--icon-color);
+    font-size: 24px;
+    transition: color 0.3s ease;
+}
+
+.footer-social-icons a:hover {
+    color: var(--heading-color);
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../assets/imagenes/icon.ico" type="image/x-icon">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="../estilo/estilos.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body class="admin-page light-mode">
+    <!-- Botón para alternar entre modo claro y oscuro -->
+    <button id="toggle-mode" class="btn-mode">
+        <i class="fas fa-sun"></i>
+    </button>
+
+    <!-- Contenedor principal -->
+    <div class="admin-wrapper">
+        <!-- Barra lateral de navegación -->
+        <nav class="sidebar">
+            <h2>Panel de Administración</h2>
+            <ul>
+                <li><a href="#" id="productos"><i class="fas fa-box"></i> Productos</a></li>
+                <li><a href="#" id="pedidos"><i class="fas fa-shopping-cart"></i> Pedidos</a></li>
+                <li><a href="#" id="usuarios"><i class="fas fa-users"></i> Usuarios</a></li>
+                <li><a href="#" id="reportes"><i class="fas fa-chart-bar"></i> Reportes</a></li>
+                <li><a href="#" id="ajustes"><i class="fas fa-cog"></i> Ajustes</a></li>
+            </ul>
+        </nav>
+
+        <!-- Contenido principal -->
+        <main class="admin-content">
+            <h2>Bienvenido al Panel de Administración</h2>
+            <p>Aquí puedes gestionar todos los aspectos de tu tienda online.</p>
+            <!-- Ejemplo de sección de productos -->
+            <section id="productos-section" class="admin-section">
+                <h3>Gestionar Productos</h3>
+                <button class="btn">Agregar Nuevo Producto</button>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Precio</th>
+                                <th>Categoría</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Ejemplo de fila de producto -->
+                            <tr>
+                                <td>1</td>
+                                <td>Producto Ejemplo</td>
+                                <td>$100.00</td>
+                                <td>Categoría 1</td>
+                                <td>
+                                    <button class="btn">Editar</button>
+                                    <button class="btn">Eliminar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Script para alternar modo claro/oscuro -->
+    <script>
+        const toggleButton = document.getElementById('toggle-mode');
+        const body = document.body;
+
+        toggleButton.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            body.classList.toggle('light-mode');
+            if (body.classList.contains('dark-mode')) {
+                toggleButton.innerHTML = '<i class="fas fa-moon"></i>';
+            } else {
+                toggleButton.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+        });
+    </script>
+</body>
+</html>
