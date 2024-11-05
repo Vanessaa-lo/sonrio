@@ -1,11 +1,13 @@
 /* Reset básico */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -19,7 +21,9 @@ body {
     flex-grow: 1;
 }
 
+
 /* Botón para alternar entre modo claro y oscuro */
+
 .btn-mode {
     position: absolute;
     top: 20px;
@@ -35,7 +39,9 @@ body {
     color: var(--icon-color);
 }
 
-/* ---------- Modo Claro y Oscuro ---------- */
+
+/* Modo Claro y Oscuro */
+
 body.light-mode {
     --background-color: #FDF5E6;
     --text-color: #333333;
@@ -56,7 +62,9 @@ body.dark-mode {
     --input-bg-color: #2C2C2C;
 }
 
-/* ---------- Estilos para la página de Login ---------- */
+
+/* Página de Login */
+
 .login-page .login-wrapper {
     display: flex;
     justify-content: center;
@@ -112,7 +120,8 @@ body.dark-mode {
     color: var(--border-color);
 }
 
-.login-page input[type="text"], .login-page input[type="password"] {
+.login-page input[type="text"],
+.login-page input[type="password"] {
     width: 100%;
     padding: 12px 40px;
     border: 2px solid var(--border-color);
@@ -155,6 +164,7 @@ body.dark-mode {
 
 .login-page .login-image {
     width: 50%;
+    text-align: center;
 }
 
 .login-page .login-image img {
@@ -164,140 +174,64 @@ body.dark-mode {
     box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
 }
 
-/* ---------- Estilos para el Panel de Administración ---------- */
-.admin-wrapper {
-    display: flex;
-    height: 100%;
+
+/* Estilos Responsivos */
+
+@media (max-width: 768px) {
+    /* Cambia la disposición a una sola columna */
+    .login-page .login-wrapper {
+        flex-direction: column;
+        padding: 20px;
+    }
+    /* Ajusta el contenedor del login */
+    .login-page .login-container,
+    .login-page .login-image {
+        width: 100%;
+        padding: 0;
+        text-align: center;
+    }
+    .login-page .login-container h2 {
+        font-size: 24px;
+    }
+    .login-page .login-container p {
+        font-size: 14px;
+    }
+    /* Reduce el tamaño de los inputs y botones */
+    .login-page input[type="text"],
+    .login-page input[type="password"] {
+        padding: 10px;
+    }
+    .login-page button.btn {
+        padding: 10px 0;
+        font-size: 14px;
+    }
 }
 
-.sidebar {
-    width: 250px;
-    background-color: var(--button-color);
-    padding: 20px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+@media (max-width: 480px) {
+    /* Ajusta más el contenedor */
+    .login-page .login-wrapper {
+        width: 90%;
+    }
+    .login-page .login-container h2 {
+        font-size: 20px;
+    }
+    .login-page .login-container p {
+        font-size: 12px;
+    }
+    .btn-mode {
+        font-size: 20px;
+        top: 10px;
+        right: 10px;
+    }
 }
 
-.sidebar h2 {
-    color: var(--heading-color);
-    margin-bottom: 20px;
-    font-size: 24px;
-}
 
-.sidebar ul {
-    list-style: none;
-}
+/* Estilos para Footer Responsivo */
 
-.sidebar ul li {
-    margin-bottom: 15px;
-}
-
-.sidebar ul li a {
-    text-decoration: none;
-    color: var(--text-color);
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    transition: color 0.3s ease;
-}
-
-.sidebar ul li a:hover {
-    color: var(--heading-color);
-}
-
-.admin-content {
-    flex-grow: 1;
-    padding: 40px;
-}
-
-.admin-content h2 {
-    color: var(--heading-color);
-    font-size: 28px;
-    margin-bottom: 20px;
-}
-
-.admin-section {
-    margin-top: 30px;
-}
-
-.admin-section h3 {
-    color: var(--heading-color);
-    font-size: 24px;
-    margin-bottom: 15px;
-}
-
-.btn {
-    background-color: var(--button-color);
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-.btn:hover {
-    background-color: var(--heading-color);
-}
-
-.table-container {
-    margin-top: 20px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-table thead {
-    background-color: var(--border-color);
-}
-
-table th, table td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: 2px solid var(--border-color);
-    color: var(--text-color);
-}
-
-/* Iconos */
-.sidebar ul li a i {
-    color: var(--icon-color);
-}
-
-.admin-section .btn {
-    margin-bottom: 20px;
-}
-
-/* Footer */
 footer {
-    background-color: var(--button-color);
-    width: 100%;
-    padding: 20px 0;
-    text-align: center;
-    border-top: 5px solid var(--heading-color);
-    flex-shrink: 0;
-}
-
-footer p {
-    color: var(--text-color);
-    font-size: 16px;
-}
-
-.footer-social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
+    padding: 15px;
 }
 
 .footer-social-icons a {
-    color: var(--icon-color);
-    font-size: 24px;
-    transition: color 0.3s ease;
-}
-
-.footer-social-icons a:hover {
-    color: var(--heading-color);
+    font-size: 20px;
 }

@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../assets/imagenes/icon.ico" type="image/x-icon">
     <title>Login</title>
     <link rel="stylesheet" href="../estilo/estilos.css">
-     <!-- Incluir iconos de FontAwesome para los iconos de usuario, contraseña, sol y luna -->
-     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- Incluir iconos de FontAwesome para los iconos de usuario, contraseña, sol y luna -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
+
 <body class="login-page light-mode">
     <!-- Botón para alternar entre modo claro y oscuro -->
     <button id="toggle-mode" class="btn-mode">
@@ -34,7 +36,11 @@
                         <input type="password" id="password" name="password" placeholder="Ingresa tu contraseña" required>
                     </div>
                 </div>
-                <button type="submit" class="btn">Ingresar</button>
+                <a href="home.html">
+                    <button type="submit" class="btn" onclick="window.location.href='admin.html'">Ingresar</button>
+
+                </a>
+
                 <div class="forgot-password">
                     <a href="#">Olvidé mi contraseña</a>
                 </div>
@@ -73,4 +79,5 @@
         });
     </script>
 </body>
+
 </html>
