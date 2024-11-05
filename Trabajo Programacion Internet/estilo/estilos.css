@@ -1,24 +1,112 @@
-/* Reset básico */
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Quicksand:wght@300..700&display=swap');
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+
+/* Colores Pastel y Fuente Redondeada */
+
 html,
 body {
     height: 100%;
     display: flex;
     flex-direction: column;
+    font-family: 'Quicksand', sans-serif;
+    background-image: url("Fondo Horizontal.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #FFFFFF;
 }
 
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: var(--background-color);
-    color: var(--text-color);
-    transition: background-color 0.3s ease, color 0.3s ease;
-    flex-grow: 1;
+
+/* Estilo Kawaii para Botones */
+
+.login-page button.btn {
+    background-color: #e4b6ff;
+    color: white;
+    padding: 14px 0;
+    width: 100%;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s;
+    box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.2);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.login-page button.btn:hover {
+    background-color: #f09dd4;
+    transform: scale(1.05);
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+
+/* Estilo Kawaii para Inputs */
+
+.login-page input[type="text"],
+.login-page input[type="password"] {
+    width: 100%;
+    padding: 15px 45px;
+    border: 2px solid #b9a6fc;
+    border-radius: 20px;
+    background-color: #cccff8e1;
+    color: black;
+    font-size: 18px;
+    outline: none;
+    box-shadow: inset 0px 4px 8px rgba(98, 156, 231, 0.411);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-page input[type="text"]:focus,
+.login-page input[type="password"]:focus {
+    border-color: #ffffff;
+    box-shadow: 0px 0px 8px rgba(255, 105, 180, 0.5);
+}
+
+
+/* Fondo y Borde Kawaii en Contenedor Principal */
+
+.login-page .login-wrapper {
+    background-color: #a155e934;
+    border-radius: 25px;
+    border: 5px solid #fdfdfd;
+    box-shadow: 0px 10px 25px rgba(14, 0, 2, 0.37);
+    padding: 50px;
+}
+
+
+/* Estilo Kawaii para Textos y Etiquetas */
+
+.login-page .login-container h2 {
+    font-size: 60px;
+    color: #fcf8f8;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 1px 2px 3px rgba(108, 9, 133, 0.925);
+}
+
+.login-page label {
+    font-size: 18px;
+    font-weight: bold;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.login-wrapper p {
+    font-weight: bold;
+    font-size: 20px;
+    text-shadow: 1px 1px 3px rgba(108, 9, 133, 0.925);
+    margin-left: 60px;
 }
 
 
@@ -30,36 +118,31 @@ body {
     right: 20px;
     background-color: transparent;
     border: none;
-    font-size: 24px;
+    font-size: 28px;
     cursor: pointer;
+    color: #FF69B4;
     transition: color 0.3s ease;
 }
 
-.btn-mode i {
-    color: var(--icon-color);
+.forgot-password {
+    margin-top: 20px;
 }
 
 
-/* Modo Claro y Oscuro */
+/* Estilo Kawaii para Links */
 
-body.light-mode {
-    --background-color: #FDF5E6;
-    --text-color: #333333;
-    --button-color: #FFB6C1;
-    --heading-color: #FF69B4;
-    --border-color: #ADD8E6;
-    --icon-color: #FFD700;
-    --input-bg-color: #FFF5F8;
+.forgot-password a {
+    font-size: 20px;
+    text-decoration: none;
+    color: #decefa;
+    text-shadow: 1px 1px 2px rgba(108, 9, 133, 0.753);
+    transition: color 0.3s ease;
+    font-weight: bold;
+    margin-left: 80px;
 }
 
-body.dark-mode {
-    --background-color: #1C1C1C;
-    --text-color: #EAEAEA;
-    --button-color: #FFB6C1;
-    --heading-color: #FF69B4;
-    --border-color: #87CEFA;
-    --icon-color: #FFD700;
-    --input-bg-color: #2C2C2C;
+.forgot-password a:hover {
+    color: #f88cd8;
 }
 
 
@@ -69,14 +152,11 @@ body.dark-mode {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-grow: 1;
-    background-color: white;
-    border-radius: 25px;
-    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
     width: 80%;
     max-width: 1000px;
     margin: auto;
     padding: 50px;
+    margin-top: 40px;
 }
 
 .login-page .login-container {
@@ -84,106 +164,32 @@ body.dark-mode {
     padding-right: 30px;
 }
 
-.login-page .login-container h2 {
-    color: var(--heading-color);
-    font-size: 28px;
-    margin-bottom: 15px;
-}
-
 .login-page .login-container p {
-    color: var(--text-color);
     margin-bottom: 30px;
-    font-size: 16px;
+    font-size: 18px;
+    color: #FFFFFF;
 }
 
-.login-page .input-group {
-    margin-bottom: 20px;
-    text-align: left;
-}
 
-.login-page label {
-    display: block;
-    margin-bottom: 5px;
-    color: var(--text-color);
-    font-size: 14px;
-}
+/* Footer Kawaii */
 
-.login-page .input-icon {
-    position: relative;
-}
-
-.login-page .input-icon i {
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--border-color);
-}
-
-.login-page input[type="text"],
-.login-page input[type="password"] {
-    width: 100%;
-    padding: 12px 40px;
-    border: 2px solid var(--border-color);
-    border-radius: 10px;
-    background-color: var(--input-bg-color);
-    color: var(--text-color);
-    font-size: 16px;
-    outline: none;
-}
-
-.login-page button.btn {
-    background-color: var(--button-color);
-    color: white;
-    padding: 12px 0;
-    width: 100%;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-.login-page button.btn:hover {
-    background-color: var(--heading-color);
-}
-
-.login-page .forgot-password {
-    margin-top: 15px;
-}
-
-.login-page .forgot-password a {
-    color: var(--heading-color);
-    font-size: 14px;
-    text-decoration: none;
-}
-
-.login-page .forgot-password a:hover {
-    text-decoration: underline;
-}
-
-.login-page .login-image {
-    width: 50%;
+footer {
+    background-color: #FFB6C1;
+    padding: 20px;
     text-align: center;
-}
-
-.login-page .login-image img {
-    width: 90%;
-    border-radius: 50%;
-    object-fit: cover;
-    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
+    color: #FFFFFF;
+    font-size: 18px;
+    border-top: 5px solid #FF69B4;
 }
 
 
 /* Estilos Responsivos */
 
 @media (max-width: 768px) {
-    /* Cambia la disposición a una sola columna */
     .login-page .login-wrapper {
         flex-direction: column;
         padding: 20px;
     }
-    /* Ajusta el contenedor del login */
     .login-page .login-container,
     .login-page .login-image {
         width: 100%;
@@ -191,47 +197,136 @@ body.dark-mode {
         text-align: center;
     }
     .login-page .login-container h2 {
-        font-size: 24px;
+        font-size: 32px;
     }
     .login-page .login-container p {
-        font-size: 14px;
+        font-size: 16px;
     }
-    /* Reduce el tamaño de los inputs y botones */
     .login-page input[type="text"],
     .login-page input[type="password"] {
-        padding: 10px;
+        padding: 12px;
     }
     .login-page button.btn {
-        padding: 10px 0;
-        font-size: 14px;
+        padding: 12px 0;
+        font-size: 18px;
+        margin-bottom: 10px;
     }
 }
 
 @media (max-width: 480px) {
-    /* Ajusta más el contenedor */
     .login-page .login-wrapper {
         width: 90%;
     }
     .login-page .login-container h2 {
-        font-size: 20px;
+        font-size: 28px;
     }
     .login-page .login-container p {
-        font-size: 12px;
+        font-size: 14px;
     }
     .btn-mode {
-        font-size: 20px;
+        font-size: 24px;
         top: 10px;
         right: 10px;
     }
 }
 
-
-/* Estilos para Footer Responsivo */
-
-footer {
-    padding: 15px;
+.navbar {
+    background-color: rgba(255, 182, 193, 0.8);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 15px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.footer-social-icons a {
+.navbar a {
+    color: #FFFFFF;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    font-size: 18px;
+}
+
+.navbar a:hover {
+    color: #FF69B4;
+}
+
+
+/* Contenedor de productos */
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+    justify-content: center;
+    margin-top: 20px;
+    width: 80%;
+    max-width: 1200px;
+}
+
+.product-card {
+    background-color: rgba(255, 240, 245, 0.9);
+    border: 2px solid #FFB6C1;
+    border-radius: 20px;
+    margin: 15px;
+    width: 200px;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+}
+
+.product-card h3 {
     font-size: 20px;
+    color: #FF69B4;
+    margin: 10px 0;
+}
+
+.product-card p {
+    color: #888;
+    margin: 5px 0;
+}
+
+.product-card button {
+    background-color: #FFB6C1;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s;
+    box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.2);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.product-card button:hover {
+    background-color: #FF69B4;
+    transform: scale(1.05);
+}
+
+
+/* Footer */
+
+footer {
+    background-color: #FFB6C1;
+    padding: 20px;
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 18px;
+    width: 100%;
+    border-top: 3px solid #FF69B4;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
 }

@@ -1,13 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Tienda Kawaii</title>
+    <link href="../estilo/estilos.css" rel="stylesheet">
+
+    <style>
+        /* Navbar */
+    </style>
 </head>
 
 <body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="#home">Inicio</a>
+        <a href="#productos">Productos</a>
+        <a href="#carrito">Carrito</a>
+    </div>
+
+    <!-- Contenedor de productos -->
+    <div class="container" id="productos">
+        <div class="product-card">
+            <img src="https://via.placeholder.com/150" alt="Producto 1">
+            <h3>Producto 1</h3>
+            <p>$10.00</p>
+            <button onclick="agregarAlCarrito('Producto 1')">Agregar al carrito</button>
+        </div>
+        <div class="product-card">
+            <img src="https://via.placeholder.com/150" alt="Producto 2">
+            <h3>Producto 2</h3>
+            <p>$15.00</p>
+            <button onclick="agregarAlCarrito('Producto 2')">Agregar al carrito</button>
+        </div>
+        <div class="product-card">
+            <img src="https://via.placeholder.com/150" alt="Producto 3">
+            <h3>Producto 3</h3>
+            <p>$20.00</p>
+            <button onclick="agregarAlCarrito('Producto 3')">Agregar al carrito</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        © 2024 Tienda Kawaii - Todos los derechos reservados
+    </footer>
+
+    <script>
+        // Manejo del carrito de compras
+        function agregarAlCarrito(nombreProducto) {
+            alert(nombreProducto + " ha sido agregado al carrito.");
+            // Lógica adicional para el carrito se puede implementar aquí
+        }
+    </script>
 
 </body>
 
