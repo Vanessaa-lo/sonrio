@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../../assets/imagenes/icon.ico" type="image/x-icon">
+    <title>Producto 1 - Tienda Online</title>
+    <link rel="stylesheet" href="../../estilo/estilos.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body class="product-page light-mode">
+    <!-- Botón para alternar entre modo claro y oscuro -->
+    <button class="btn-mode" onclick="toggleMode()">
+        <i class="fas fa-adjust"></i>
+    </button>
+
+    <!-- Contenedor principal del producto -->
+    <header class="header">
+        <div class="top-bar">
+            <div class="logo">
+                <img src="../../assets/imagenes/logo.png" alt="Logo Tienda Online">
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Buscar productos...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+            <div class="user-cart">
+                <a href="../login.html" class="user-link"><i class="fas fa-user"></i> Iniciar Sesión</a>
+                <a href="../carrito.html" class="cart-link"><i class="fas fa-shopping-cart"></i> Carrito</a>
+            </div>
+        </div>
+    </header>
+
+    <nav class="nav-bar">
+        <ul>
+            <li><a href="../home.html">Inicio</a></li>
+            <li><a href="../productos.html">Productos</a></li>
+            <li><a href="#">Ofertas</a></li>
+            <li><a href="#">Novedades</a></li>
+            <li><a href="#">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <main class="content">
+        <div class="product-details">
+            <div class="product-gallery">
+                <img src="../../assets/imagenes/product1.jpg" alt="Producto 1" class="main-image">
+                <div class="thumbnail-gallery">
+                    <img src="../../assets/imagenes/product1.jpg" alt="Producto 1">
+                    <img src="../../assets/imagenes/product1_alt1.jpg" alt="Producto 1 - Variación">
+                    <img src="../../assets/imagenes/product1_alt2.jpg" alt="Producto 1 - Variación">
+                </div>
+            </div>
+            <div class="product-info">
+                <h1>Producto 1</h1>
+                <p class="price">$999.99</p>
+                <p class="description">Este es un producto increíble con características excepcionales y una calidad insuperable. Aprovecha ahora y consigue el tuyo.</p>
+                <div class="variations">
+                    <label for="variations">Variaciones:</label>
+                    <select id="variations">
+                        <option value="default">Selecciona una variación</option>
+                        <option value="color1">Color 1</option>
+                        <option value="color2">Color 2</option>
+                    </select>
+                </div>
+                <button class="btn add-to-cart">Añadir al Carrito</button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 Tienda Online - Todos los derechos reservados</p>
+        <div class="footer-social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+
+    <script src="../../estilo/funciones.js"></script>
+</body>
+</html>
