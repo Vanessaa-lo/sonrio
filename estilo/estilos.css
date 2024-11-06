@@ -238,20 +238,41 @@ footer {
     justify-content: right;
     padding: 15px 0;
     box-shadow: 0 4px 7px rgba(88, 10, 112, 0.205);
-    padding-right: 20px;
+    padding-right: 40px;
     border-bottom: 5px solid #ffffff;
-    border-top: 5px solid #ffffff;
+    max-height: 90px;
+}
+
+.logosonrio {
+    width: 230px;
+    height: 80px;
+    margin-left: -800px;
+    margin-top: -5px;
 }
 
 .navbar a {
     color: rgb(255, 255, 255);
-    text-shadow: 1px 2px 3px hsla(288, 87%, 28%, 0.651);
     padding: 10px 20px;
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease;
     font-size: 20px;
+    margin-left: 4px;
+    text-shadow: 1px 1px 2px rgb(64, 7, 87);
 }
+
+#logo-productos {
+    margin-left: -200px;
+}
+
+.cont-a {
+    margin-top: 10px;
+    margin-right: 200px;
+}
+
+#navbar-productos {}
+
+#navbar-productos a {}
 
 .navbar a:hover {
     color: #FF69B4;
@@ -353,4 +374,70 @@ footer {
     width: 100%;
     border-top: 6px solid #ffffff;
     box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.search-bar {
+    position: relative;
+    display: inline-block;
+    margin-right: 50px;
+    margin-top: 5px;
+}
+
+.search-bar input[type="text"] {
+    padding: 8px 10px;
+    border: 2px solid #dcaff1;
+    border-radius: 20px;
+    padding-left: 35px;
+    margin-left: 40px;
+    font-size: 16px;
+    color: #d672fd;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+
+/* Color del placeholder */
+
+.search-bar input[type="text"]::placeholder {
+    color: #f3b9ff;
+    opacity: 0.8;
+    font-style: italic;
+}
+
+
+/* Icono de búsqueda */
+
+.search-bar i {
+    position: absolute;
+    left: 10px;
+    top: 35%;
+    transform: translateY(-50%);
+    color: #fafafa;
+    font-size: 22px;
+    transition: color 0.3s ease;
+}
+
+
+/* Hover efecto kawaii */
+
+.search-bar input[type="text"]:hover {
+    background-color: #ffe6fa;
+    border-color: #f3b9ff;
+}
+
+
+/* Efecto de foco */
+
+.search-bar input[type="text"]:focus {
+    background-color: #ffe6fa;
+    border-color: #f3b9ff;
+    box-shadow: 0 0 8px #f3b9ff;
+}
+
+
+/* Animación de color al pasar el mouse sobre el icono */
+
+.search-bar i:hover {
+    color: #8b32a7;
+    border-color: #ffffff;
 }

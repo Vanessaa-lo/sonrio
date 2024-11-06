@@ -1,1 +1,143 @@
-# Vistas relacionadas con productos
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="../estilo/estilos.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+
+<body>
+    <!-- Navbar -->
+    <div class="navbar" id="navbar-productos">
+        <div class="logosonrio">
+            <img src="../estilo/imagenes/LOGO.png" class="logosonrio" id="logo-productos"></div>
+        <div class="cont-a">
+            <a href="home.html"><i class="fas fa-home"></i>  Inicio</a>
+            <a href="productos.html"><i class="fas fa-box"></i>  Productos</a>
+            <a href="carrito.html"><i class="fas fa-shopping-cart"></i>  Carrito</a>
+        </div>
+        <!-- Buscador -->
+        <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Buscar productos...">
+        </div>
+    </div>
+
+
+
+    <div class="container" id="productos">
+        <div class="cards">
+            <div class="product-card">
+
+                <img src="..\estilo\imagenes\pngwing.com (1).png" alt="Producto 1">
+                <h3>Devil My melody</h3>
+                <p>$10.00</p>
+                <button onclick="agregarAlCarrito('Producto 1')">Agregar al carrito</button>
+            </div>
+            <div class="product-card">
+                <img src="..\estilo\imagenes\pngwing.com (2).png" alt="Producto 2">
+                <h3>Producto 2</h3>
+                <p>$15.00</p>
+                <button onclick="agregarAlCarrito('Producto 2')">Agregar al carrito</button>
+            </div>
+            <div class="product-card">
+                <img src="..\estilo\imagenes\pngwing.com.png" alt="Producto 3">
+                <h3>Producto 3</h3>
+                <p>$20.00</p>
+                <button onclick="agregarAlCarrito('Producto 3')">Agregar al carrito</button>
+            </div>
+            <div class="product-card">
+                <img src="..\estilo\imagenes\pngwing.com (5).png" alt="Producto 2">
+                <h3>Producto 2</h3>
+                <p>$15.00</p>
+                <button onclick="agregarAlCarrito('Producto 2')">Agregar al carrito</button>
+            </div>
+            <div class="product-card">
+                <img src="..\estilo\imagenes\pngwing.com (3).png" alt="Producto 3">
+                <h3>Producto 3</h3>
+                <p>$20.00</p>
+                <button onclick="agregarAlCarrito('Producto 3')">Agregar al carrito</button>
+            </div>
+            <div class="product-card">
+                <img src="..\estilo\imagenes\pngwing.com (4).png" alt="Producto 2">
+                <h3>Producto 2</h3>
+                <p>$15.00</p>
+                <button onclick="agregarAlCarrito('Producto 2')">Agregar al carrito</button>
+            </div>
+            <div class="product-card">
+                <img src="..\estilo\imagenes\pngwing.com (6).png" alt="Producto 3">
+                <h3>Producto 3</h3>
+                <p>$20.00</p>
+                <button onclick="agregarAlCarrito('Producto 3')">Agregar al carrito</button>
+            </div>
+            <div class="product-card">
+                <img src="..\estilo\imagenes\pngwing.com (7).png" alt="Producto 2">
+                <h3>Producto 2</h3>
+                <p>$15.00</p>
+                <button onclick="agregarAlCarrito('Producto 2')">Agregar al carrito</button>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/150" alt="Producto 3">
+                <h3>Producto 3</h3>
+                <p>$20.00</p>
+                <button onclick="agregarAlCarrito('Producto 3')">Agregar al carrito</button>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/150" alt="Producto 3">
+                <h3>Producto 3</h3>
+                <p>$20.00</p>
+                <button onclick="agregarAlCarrito('Producto 3')">Agregar al carrito</button>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/150" alt="Producto 2">
+                <h3>Producto 2</h3>
+                <p>$15.00</p>
+                <button onclick="agregarAlCarrito('Producto 2')">Agregar al carrito</button>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/150" alt="Producto 3">
+                <h3>Producto 3</h3>
+                <p>$20.00</p>
+                <button onclick="agregarAlCarrito('Producto 3')">Agregar al carrito</button>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+
+
+    <footer>
+        © 2024 Tienda Sonrio - Todos los derechos reservados
+    </footer>
+
+
+    <script>
+        // Manejo del carrito de compras
+        function agregarAlCarrito(nombreProducto) {
+            alert(nombreProducto + " ha sido agregado al carrito.");
+            // Lógica adicional para el carrito se puede implementar aquí
+        }
+    </script>
+
+
+
+
+
+
+
+
+</body>
+
+
+
+
+
+</html>
