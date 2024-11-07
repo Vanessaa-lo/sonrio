@@ -649,7 +649,7 @@
                             }
 
                             .item-quantity button:hover {
-                                background-color: #d9a0e0; /* Lila más fuerte */
+                                background-color: #9380f1; /* Lila más fuerte */
                             }
 
                             .item-quantity input {
@@ -675,7 +675,7 @@
                             }
 
                             .remove-item:hover {
-                                background-color: #ff9cbf; /* Rosa más fuerte */
+                                background-color: #e86693; /* Rosa más fuerte */
                             }
 
                             /* Resumen de la compra */
