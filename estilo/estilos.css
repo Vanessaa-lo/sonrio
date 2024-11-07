@@ -1,0 +1,433 @@
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Quicksand:wght@300..700&display=swap');
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    /* Colores Pastel y Fuente Redondeada */
+    
+    html,
+    body {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        font-family: 'Quicksand', sans-serif;
+        background-image: url("Fondo Horizontal.jpeg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        color: #FFFFFF;
+        margin: 0;
+    }
+    /* Estilo Kawaii para Botones */
+    
+    .login-page button.btn {
+        background-color: #e4b6ff;
+        color: white;
+        padding: 14px 0;
+        width: 100%;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 20px;
+        font-weight: bold;
+        transition: background-color 0.3s ease, transform 0.2s;
+        box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.2);
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    }
+    
+    .login-page button.btn:hover {
+        background-color: #f09dd4;
+        transform: scale(1.05);
+    }
+    
+    .input-group {
+        margin-bottom: 15px;
+    }
+    /* Estilo Kawaii para Inputs */
+    
+    .login-page input[type="text"],
+    .login-page input[type="password"] {
+        width: 100%;
+        padding: 15px 45px;
+        border: 2px solid #b9a6fc;
+        border-radius: 20px;
+        background-color: #cccff8e1;
+        color: black;
+        font-size: 18px;
+        outline: none;
+        box-shadow: inset 0px 4px 8px rgba(98, 156, 231, 0.411);
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .login-page input[type="text"]:focus,
+    .login-page input[type="password"]:focus {
+        border-color: #ffffff;
+        box-shadow: 0px 0px 8px rgba(255, 105, 180, 0.5);
+    }
+    /* Fondo y Borde Kawaii en Contenedor Principal */
+    
+    .login-page .login-wrapper {
+        background-color: #a155e934;
+        border-radius: 25px;
+        border: 5px solid #fdfdfd;
+        box-shadow: 0px 10px 25px rgba(14, 0, 2, 0.37);
+        padding: 50px;
+    }
+    /* Estilo Kawaii para Textos y Etiquetas */
+    
+    .login-page .login-container h2 {
+        font-size: 60px;
+        color: #fcf8f8;
+        font-weight: bold;
+        margin-bottom: 20px;
+        text-shadow: 1px 2px 3px rgba(108, 9, 133, 0.925);
+    }
+    
+    .login-page label {
+        font-size: 18px;
+        font-weight: bold;
+        color: #FFFFFF;
+        margin-bottom: 10px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+    
+    .login-wrapper p {
+        font-weight: bold;
+        font-size: 20px;
+        text-shadow: 1px 1px 3px rgba(108, 9, 133, 0.925);
+        margin-left: 60px;
+    }
+    /* Botón para alternar entre modo claro y oscuro */
+    
+    .btn-mode {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background-color: transparent;
+        border: none;
+        font-size: 28px;
+        cursor: pointer;
+        color: #FF69B4;
+        transition: color 0.3s ease;
+    }
+    
+    .forgot-password {
+        margin-top: 20px;
+    }
+    /* Estilo Kawaii para Links */
+    
+    .forgot-password a {
+        font-size: 20px;
+        text-decoration: none;
+        color: #decefa;
+        text-shadow: 1px 1px 2px rgba(108, 9, 133, 0.753);
+        transition: color 0.3s ease;
+        font-weight: bold;
+        margin-left: 80px;
+    }
+    
+    .forgot-password a:hover {
+        color: #f88cd8;
+    }
+    /* Página de Login */
+    
+    .login-page .login-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 80%;
+        max-width: 1000px;
+        margin: auto;
+        padding: 50px;
+        margin-top: 40px;
+    }
+    
+    .login-page .login-container {
+        width: 50%;
+        padding-right: 30px;
+    }
+    
+    .login-page .login-container p {
+        margin-bottom: 30px;
+        font-size: 18px;
+        color: #FFFFFF;
+    }
+    /* Footer Kawaii */
+    
+    footer {
+        background-color: #FFB6C1;
+        padding: 20px;
+        text-align: center;
+        color: #FFFFFF;
+        font-size: 18px;
+        border-top: 5px solid #FF69B4;
+    }
+    /* Estilos Responsivos */
+    
+    @media (max-width: 768px) {
+        .login-page .login-wrapper {
+            flex-direction: column;
+            padding: 20px;
+        }
+        .login-page .login-container,
+        .login-page .login-image {
+            width: 100%;
+            padding: 0;
+            text-align: center;
+        }
+        .login-page .login-container h2 {
+            font-size: 32px;
+        }
+        .login-page .login-container p {
+            font-size: 16px;
+        }
+        .login-page input[type="text"],
+        .login-page input[type="password"] {
+            padding: 12px;
+        }
+        .login-page button.btn {
+            padding: 12px 0;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .login-page .login-wrapper {
+            width: 90%;
+        }
+        .login-page .login-container h2 {
+            font-size: 28px;
+        }
+        .login-page .login-container p {
+            font-size: 14px;
+        }
+        .btn-mode {
+            font-size: 24px;
+            top: 10px;
+            right: 10px;
+        }
+    }
+    
+    .navbar {
+        background-color: #a255e941;
+        width: 100%;
+        display: flex;
+        justify-content: right;
+        padding: 15px 0;
+        box-shadow: 0 4px 7px rgba(88, 10, 112, 0.205);
+        padding-right: 40px;
+        border-bottom: 5px solid #ffffff;
+        max-height: 90px;
+    }
+    
+    .logosonrio {
+        width: 230px;
+        height: 60px;
+        margin-left: -800px;
+        margin-top: -2px;
+    }
+    
+    .navbar a {
+        color: rgb(255, 255, 255);
+        padding: 10px 20px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s ease;
+        font-size: 20px;
+        margin-left: 4px;
+        text-shadow: 1px 1px 2px rgb(64, 7, 87);
+    }
+    
+    #logo-productos {
+        margin-left: -200px;
+    }
+    
+    .cont-a {
+        margin-top: 10px;
+        margin-right: 200px;
+    }
+    
+    #navbar-productos {}
+    
+    #navbar-productos a {}
+    
+    .navbar a:hover {
+        color: #FF69B4;
+    }
+    /* Contenedor de productos */
+    
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        /* Permite que los elementos pasen a la siguiente línea si no caben */
+        justify-content: center;
+        /* Centra las tarjetas horizontalmente */
+        padding: 20px;
+        margin-top: 20px;
+        width: 100%;
+        max-width: 1500px;
+    }
+    /* Tarjetas de producto */
+    
+    .product-card {
+        background-color: white;
+        border: 5px solid rgb(232, 253, 200);
+        border-radius: 20px;
+        margin-left: 50px;
+        margin-right: 50px;
+        margin-top: 40px;
+        width: 230px;
+        /* Tamaño fijo para las tarjetas */
+        text-align: center;
+        padding: 20px;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.404);
+        transition: transform 0.2s;
+    }
+    
+    .cards {
+        width: 1500px;
+        display: flex;
+        flex-wrap: wrap;
+        /* Permite que los elementos pasen a la siguiente línea si no caben */
+        justify-content: center;
+    }
+    
+    .product-card:hover {
+        transform: scale(1.05);
+    }
+    
+    .product-card img {
+        width: 150px;
+        height: 150px;
+        border-radius: 15px;
+        filter: drop-shadow(.8);
+    }
+    
+    .product-card h3 {
+        font-size: 23px;
+        color: rgba(0, 0, 0, 0.63);
+        font-weight: bold;
+        margin: 10px 0;
+    }
+    
+    .product-card p {
+        color: #000000da;
+        margin: 5px 0;
+    }
+    
+    .product-card button {
+        background-color: #e4affd;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        transition: background-color 0.3s ease, transform 0.2s;
+        box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.2);
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    }
+    
+    .product-card button:hover {
+        background-color: #ff69f8;
+        transform: scale(1.05);
+    }
+    /* Footer */
+    
+    footer {
+        margin-top: 100px;
+        background-color: #d8b6ff;
+        padding: 20px;
+        text-align: center;
+        color: #FFFFFF;
+        font-size: 18px;
+        width: 100%;
+        border-top: 6px solid #ffffff;
+        box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    .search-bar {
+        position: relative;
+        display: inline-block;
+        margin-right: 50px;
+        margin-top: 5px;
+    }
+    
+    .search-bar input[type="text"] {
+        padding: 8px 10px;
+        border: 2px solid #dcaff1;
+        border-radius: 20px;
+        padding-left: 35px;
+        margin-left: 40px;
+        font-size: 16px;
+        color: #d672fd;
+        outline: none;
+        transition: all 0.3s ease;
+    }
+    /* Color del placeholder */
+    
+    .search-bar input[type="text"]::placeholder {
+        color: #f3b9ff;
+        opacity: 0.8;
+        font-style: italic;
+    }
+    /* Icono de búsqueda */
+    
+    .search-bar i {
+        position: absolute;
+        left: 10px;
+        top: 35%;
+        transform: translateY(-50%);
+        color: #fafafa;
+        font-size: 22px;
+        transition: color 0.3s ease;
+    }
+    /* Hover efecto kawaii */
+    
+    .search-bar input[type="text"]:hover {
+        background-color: #ffe6fa;
+        border-color: #f3b9ff;
+    }
+    /* Efecto de foco */
+    
+    .search-bar input[type="text"]:focus {
+        background-color: #ffe6fa;
+        border-color: #f3b9ff;
+        box-shadow: 0 0 8px #f3b9ff;
+    }
+    /* Animación de color al pasar el mouse sobre el icono */
+    
+    .search-bar i:hover {
+        color: #8b32a7;
+        border-color: #ffffff;
+    }
+    
+    .container-top {
+        width: 1200px;
+        height: 460px;
+        display: flex;
+        border-radius: 10px;
+        border: 5px #fab0e5 solid;
+    }
+    
+    .fondof {
+        width: 650px;
+        height: 450px;
+    }
+    
+    .container-left {
+        width: 600px;
+        height: 450px;
+        background-color: rgb(232, 253, 200);
+    }
+    
+    #home {
+        width: 100%;
+        height: 100%;
+        padding-left: 100px;
+        padding-right: 100px;
+    }
