@@ -20,6 +20,30 @@
                                 color: #FFFFFF;
                                 margin: 0;
                             }
+
+                            /* Contenedor principal para el contenido de la página */
+                            .content {
+                                flex: 1; /* Hace que el contenido ocupe todo el espacio disponible */
+                            }
+
+
+                            /* Contenedor principal para el contenido de la página */
+                            .content {
+                                flex: 1; /* Hace que el contenido ocupe todo el espacio disponible */
+                            }
+
+                            /* Estilo del footer */
+                            footer {
+                                background-color: #d8b6ff; /* Rosa pastel */
+                                padding: 20px;
+                                text-align: center;
+                                color: #FFFFFF;
+                                font-size: 18px;
+                                width: 100%;
+                                border-top: 6px solid #ffffff; /* Borde blanco */
+                                box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+                                margin-top: auto; /* Esto asegura que el footer se mantenga en la parte inferior */
+                            }
                             /* Estilo Kawaii para Botones */
                             
                             .login-page button.btn {
@@ -154,17 +178,7 @@
                                 font-size: 18px;
                                 color: #FFFFFF;
                             }
-                            /* Footer Kawaii */
-                            
-                            footer {
-                                background-color: #FFB6C1;
-                                padding: 20px;
-                                text-align: center;
-                                color: #FFFFFF;
-                                font-size: 18px;
-                                border-top: 5px solid #FF69B4;
-                                width: 1300px;
-                            }
+ 
                             /* Estilos Responsivos */
                             
                             @media (max-width: 768px) {
@@ -336,19 +350,6 @@
                             .product-card button:hover {
                                 background-color: #ff69f8;
                                 transform: scale(1.05);
-                            }
-                            /* Footer */
-                            
-                            footer {
-                                margin-top: 100px;
-                                background-color: #d8b6ff;
-                                padding: 20px;
-                                text-align: center;
-                                color: #FFFFFF;
-                                font-size: 18px;
-                                width: 100%;
-                                border-top: 6px solid #ffffff;
-                                box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
                             }
                             
                             .search-bar {
