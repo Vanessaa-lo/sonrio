@@ -3,7 +3,7 @@
 
 session_start();
 $servername = "localhost"; // Cambia esto si es necesario
-$username_db = "usert"; // Usuario de la base de datos
+$username_db = "user"; // Usuario de la base de datos
 $password_db = ""; // Contraseña de la base de datos
 $dbname = "sonrio"; // Nombre de la base de datos
 
