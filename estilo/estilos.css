@@ -291,7 +291,8 @@
                                 width: 230px;
                                 /* Tamaño fijo para las tarjetas */
                                 text-align: center;
-                                padding: 20px;
+                                padding-top: 10px;
+                                padding-bottom: 10px;
                                 box-shadow: 0 8px 15px rgba(0, 0, 0, 0.404);
                                 transition: transform 0.2s;
                             }
@@ -472,7 +473,7 @@
                                 border-radius: 10px;
                                 margin-bottom: 20px;
                                 padding-left: 50px;
-                                background-color: #ebd5f6;
+                                background-color: #ffffff;
                             }
                             
                             .fondop {
@@ -565,75 +566,80 @@
                             }
                             
                             h2 {
-                                color: #fd8adc;
+                                color: #00020888;
                             }
                             
                             .product-card2 p {
                                 font-size: 14px;
                                 color: #777;
                             }
-
-
-                           /* Contenedor principal del carrito */
+                            /* Contenedor principal del carrito */
+                            
                             .cart-container {
                                 max-width: 1200px;
                                 margin: 30px auto;
                                 padding: 20px;
-                                background-color: #f3e6ff; /* Fondo lila claro */
+                                background-color: #f3e6ff;
+                                /* Fondo lila claro */
                                 border-radius: 10px;
                                 box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
                             }
-
+                            
                             .cart-container h1 {
                                 text-align: center;
-                                color: #9c6cc1; /* Lila pastel */
+                                color: #9c6cc1;
+                                /* Lila pastel */
                                 font-size: 32px;
                                 margin-bottom: 20px;
                             }
-
                             /* Estilos para los productos en el carrito */
+                            
                             .cart-items {
                                 display: flex;
                                 flex-wrap: wrap;
                                 gap: 20px;
                                 justify-content: center;
                             }
-
+                            
                             .cart-item {
-                                background-color: #e8d6f3; /* Lila suave */
+                                background-color: #e8d6f3;
+                                /* Lila suave */
                                 padding: 15px;
                                 border-radius: 8px;
                                 box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
                                 width: 250px;
                                 text-align: center;
                             }
-
+                            
                             .cart-item .item-image {
                                 width: 100%;
                                 border-radius: 8px;
                             }
-
+                            
                             .cart-item .item-details h3 {
                                 font-size: 18px;
-                                color: #9c6cc1; /* Lila pastel */
+                                color: #9c6cc1;
+                                /* Lila pastel */
                                 margin: 10px 0;
                             }
-
+                            
                             .cart-item .item-price {
                                 font-size: 16px;
-                                color: #ff7f9f; /* Rosa suave */
+                                color: #ff7f9f;
+                                /* Rosa suave */
                             }
-
                             /* Controles de cantidad */
+                            
                             .item-quantity {
                                 display: flex;
                                 justify-content: center;
                                 align-items: center;
                                 margin-top: 10px;
                             }
-
+                            
                             .item-quantity button {
-                                background-color: #b3a6f3; /* Azul pastel */
+                                background-color: #b3a6f3;
+                                /* Azul pastel */
                                 border: none;
                                 color: white;
                                 font-size: 18px;
@@ -642,23 +648,26 @@
                                 cursor: pointer;
                                 transition: background-color 0.3s;
                             }
-
+                            
                             .item-quantity button:hover {
-                                background-color: #9380f1; /* Lila más fuerte */
+                                background-color: #9380f1;
+                                /* Lila más fuerte */
                             }
-
+                            
                             .item-quantity input {
                                 width: 50px;
                                 text-align: center;
                                 font-size: 16px;
                                 margin: 0 10px;
-                                border: 2px solid #b3a6f3; /* Azul pastel */
+                                border: 2px solid #b3a6f3;
+                                /* Azul pastel */
                                 border-radius: 5px;
                             }
-
                             /* Botón Eliminar */
+                            
                             .remove-item {
-                                background-color: #ff7f9f; /* Rosa suave */
+                                background-color: #ff7f9f;
+                                /* Rosa suave */
                                 color: white;
                                 font-size: 14px;
                                 padding: 8px 15px;
@@ -668,12 +677,13 @@
                                 cursor: pointer;
                                 transition: background-color 0.3s;
                             }
-
+                            
                             .remove-item:hover {
-                                background-color: #e86693; /* Rosa más fuerte */
+                                background-color: #e86693;
+                                /* Rosa más fuerte */
                             }
-
                             /* Resumen de la compra */
+                            
                             .cart-summary {
                                 background-color: #fff;
                                 padding: 20px;
@@ -682,15 +692,17 @@
                                 box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
                                 text-align: center;
                             }
-
+                            
                             .cart-summary p {
                                 font-size: 18px;
-                                color: #9c6cc1; /* Lila pastel */
+                                color: #9c6cc1;
+                                /* Lila pastel */
                                 margin: 10px 0;
                             }
-
+                            
                             .cart-summary .checkout-btn {
-                                background-color: #d9a0e0; /* Lila suave */
+                                background-color: #d9a0e0;
+                                /* Lila suave */
                                 color: white;
                                 font-size: 18px;
                                 padding: 12px 20px;
@@ -699,10 +711,63 @@
                                 cursor: pointer;
                                 transition: background-color 0.3s;
                             }
-
+                            
                             .cart-summary .checkout-btn:hover {
-                                background-color: #ff7f9f; /* Rosa suave */
+                                background-color: #ff7f9f;
+                                /* Rosa suave */
                             }
+/*----------------------HEAD------------------------*/
+                            
+                            .item-quantity2 {
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                margin-top: 20px;
+                                margin-bottom: 5px;
+                                /* Reducido el margen */
+                            }
+                            
+                            .item-quantity2 button {
+                                background-color: #d989fe;
+                                /* Azul pastel */
+                                border: none;
+                                color: rgb(255, 255, 255);
+                                font-size: 14px;
+                                /* Tamaño de fuente reducido */
+                                padding: 3px 10px;
+                                /* Reducido el padding */
+                                border-radius: 4px;
+                                cursor: pointer;
+                                transition: background-color 0.3s;
+                            }
+                            
+                            .item-quantity2 button:hover {
+                                background-color: #9380f1;
+                                /* Lila más fuerte */
+                            }
+                            
+                            .item-quantity2 input {
+                                width: 35px;
+                                /* Ancho reducido */
+                                text-align: center;
+                                font-size: 14px;
+                                /* Tamaño de fuente reducido */
+                                margin: 0 5px;
+                                /* Reducido el margen lateral */
+                                border: 1px solid #b3a6f3;
+                                /* Azul pastel */
+                                border-radius: 4px;
+                                padding: 3px;
+                                /* Espaciado interno reducido */
+                            }
+                            
+                            p {
+                                font-size: 20px;
+                                font-weight: bold;
+                                color: rgba(0, 0, 0, 0.608);
+                                margin-bottom: 20px;
+                            }
+/*-----------------------------------------------*/
 
                             
                             /*Mensaje de carrito vacio*/
@@ -742,4 +807,137 @@
                                 transform: scale(1.02); /* Ligero efecto de agrandado al pasar el cursor */
                                 box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15); /* Sombra más destacada */
                             }
-                            
+/*-----------------------------------------------------*/   
+/*Admin Dashboard*/   
+/*-----------------------------------------------------*/   
+/* Header Styles for Admin */
+.header {
+    background-color: #FFB6C1;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.header .top-bar .admin-tools a {
+    
+    text-decoration: none;
+    margin-left: 15px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.header .top-bar .admin-tools a:hover {
+    color: #FF69B4;
+}
+
+/* Navbar Styles for Admin */
+.nav-bar {
+    background-color: #e7bef7;
+    padding: 10px;
+    box-shadow: 0 4px 7px rgba(88, 10, 112, 0.205);
+    border-bottom: 5px solid #ffffff;
+}
+
+.nav-bar ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+}
+
+.nav-bar ul li a {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    transition: color 0.3s ease;
+    text-shadow: 1px 1px 2px rgb(64, 7, 87);
+}
+
+.nav-bar ul li a:hover {
+    color: #FF69B4;
+}
+
+/* Dashboard Overview Section */
+.dashboard-overview {
+    padding: 40px;
+    background-color: #e7bef7;
+    border-radius: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 20px;
+}
+
+.dashboard-overview .cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.dashboard-overview .card {
+    background-color: #FFFFFF;
+    border: 2px solid #ADD8E6;
+    border-radius: 15px;
+    padding: 20px;
+    width: 220px;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.dashboard-overview .card:hover {
+    transform: scale(1.05);
+}
+
+.dashboard-overview .card .card-icon {
+    font-size: 40px;
+    color: #FF69B4;
+    margin-bottom: 10px;
+}
+
+.dashboard-overview .card-info h3 {
+    font-size: 30px;
+    color: #333333;
+}
+
+.dashboard-overview .card-info p {
+    font-size: 18px;
+    color: #666666;
+}
+
+/* Updates Section */
+.latest-updates {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #e7bef7;
+    border-radius: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.latest-updates .updates {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.latest-updates .update-item {
+    background-color: #FFFFFF;
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.latest-updates .update-item:hover {
+    transform: scale(1.02);
+}
+
+.latest-updates .update-item i {
+    font-size: 24px;
+    color: #FF69B4;
+    margin-right: 15px;
+}
+

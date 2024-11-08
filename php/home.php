@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Productos</title>
     <link href="../estilo/estilos.css" rel="stylesheet">
-    <link rel="icon" href="../assets/imagenes/icon.ico" type="image/x-icon">
-
+    <link rel="icon" href="../estilo/imagenes/cinta.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 </head>
@@ -18,9 +17,11 @@
         <div class="logosonrio">
             <img src="../estilo/imagenes/logg.png" class="logosonrio" id="logo-productos"></div>
         <div class="cont-a">
-            <a href="home.html"><i class="fas fa-home"></i>  Inicio</a>
-            <a href="productos.html"><i class="fas fa-box"></i>  Productos</a>
-            <a href="carrito.html"><i class="fas fa-shopping-cart"></i>  Carrito</a>
+            <div class="cont-a">
+                <a href="home.php"><i class="fas fa-home"></i> Inicio</a>
+                <a href="productos.php"><i class="fas fa-box"></i> Productos</a>
+                <a href="carrito.php"><i class="fas fa-shopping-cart"></i> Carrito</a>
+            </div>
         </div>
         <!-- Buscador -->
         <div class="search-bar">
@@ -59,15 +60,15 @@
                 </div>
                 <div class="promo-item">
                     <img src="..\estilo\imagenes\hk.jpg" alt="Promo 2">
-                    <h2>Kurommy</h2>
+                    <h2>Hello Kitty</h2>
                 </div>
                 <div class="promo-item">
                     <img src="..\estilo\imagenes\pengg.jpg" alt="Promo 3">
-                    <h2>My Melody</h2>
+                    <h2>Tuxedosam</h2>
                 </div>
                 <div class="promo-item">
                     <img src="..\estilo\imagenes\perr.jpg" alt="Promo 3">
-                    <h2>My Melody</h2>
+                    <h2>Pochaco</h2>
                 </div>
             </div>
         </section>
