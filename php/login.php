@@ -1,36 +1,84 @@
-<?php
-// login.php
+    <!DOCTYPE html>
+    <html lang="es">
 
-session_start();
-$servername = "localhost"; // Cambia esto si es necesario
-$username_db = "root"; // Usuario de la base de datos
-$password_db = ""; // Contraseña de la base de datos
-$dbname = "tienda"; // Nombre de la base de datos
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="../estilo/imagenes/cinta.png" type="image/x-icon">
+        <title>Login</title>
+        <link rel="stylesheet" href="../estilo/estilos.css">
+        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-// Crear la conexión
-$conn = new mysqli($servername, $username_db, $password_db, $dbname);
+    </head>
 
-// Verificar la conexión
-if ($conn->connect_error) {
-    die("Error de conexión: " . $conn->connect_error);
+    <body class="login-page light-mode">
+        <!-- Botón para alternar entre modo claro y oscuro -->
+        <button id="toggle-mode" class="btn-mode">
+            <i class="fas fa-sun"></i>
+        </button>
+
+        <div class="login-wrapper">
+            <div class="login-container">
+                <h2>Inicia Sesion</h2>
+                <p>Por favor, ingresa tus datos</p>
+                <?php
+// Mostrar pop-up de error si el inicio de sesión falló
+if (isset($_GET['error'])) {
+    echo "<script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Usuario o contraseña incorrectos.',
+            confirmButtonText: 'Aceptar'
+        });
+    </script>";
 }
-
-// Obtener los datos del formulario
-$username = $_POST['username'];
-$password = $_POST['password'];
-
-// Consulta SQL para verificar las credenciales
-$sql = "SELECT * FROM usuarios WHERE username='$username' AND password='$password'";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    // Usuario autenticado con éxito
-    $_SESSION['username'] = $username;
-    echo "Login exitoso. Bienvenido, " . $username;
-} else {
-    // Credenciales incorrectas
-    echo "Usuario o contraseña incorrectos";
-}
-
-$conn->close();
 ?>
+
+
+                <form action="procesar_login.php" method="POST">
+                    <div class="input-group">
+                        <label for="username">Usuario:</label>
+                        <div class="input-icon">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="username" name="username" required>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="password">Contraseña:</label>
+                        <div class="input-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="password" name="password" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn">Ingresar</button>
+
+                    <div class="forgot-password">
+                        <a href="#">Olvidé mi contraseña</a>
+                    </div>
+                </form>
+            </div>
+            <div class="login-image">
+                <img src="../estilo/imagenes/logoo.png" alt="Imagen decorativa de inicio de sesión">
+            </div>
+        </div>
+
+        <!-- Script para alternar modo claro/oscuro -->
+        <script>
+            const toggleButton = document.getElementById('toggle-mode');
+            const body = document.body;
+
+            toggleButton.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                body.classList.toggle('light-mode');
+                if (body.classList.contains('dark-mode')) {
+                    toggleButton.innerHTML = '<i class="fas fa-moon"></i>';
+                } else {
+                    toggleButton.innerHTML = '<i class="fas fa-sun"></i>';
+                }
+            });
+        </script>
+    </body>
+
+    </html>
