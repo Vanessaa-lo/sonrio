@@ -26,12 +26,6 @@
                                 flex: 1; /* Hace que el contenido ocupe todo el espacio disponible */
                             }
 
-
-                            /* Contenedor principal para el contenido de la página */
-                            .content {
-                                flex: 1; /* Hace que el contenido ocupe todo el espacio disponible */
-                            }
-
                             /* Estilo del footer */
                             footer {
                                 background-color: #d8b6ff; /* Rosa pastel */
