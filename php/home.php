@@ -17,9 +17,11 @@
         <div class="logosonrio">
             <img src="../estilo/imagenes/logg.png" class="logosonrio" id="logo-productos"></div>
         <div class="cont-a">
-            <a href="home.html"><i class="fas fa-home"></i>  Inicio</a>
-            <a href="productos.html"><i class="fas fa-box"></i>  Productos</a>
-            <a href="carrito.html"><i class="fas fa-shopping-cart"></i>  Carrito</a>
+            <div class="cont-a">
+                <a href="home.php"><i class="fas fa-home"></i> Inicio</a>
+                <a href="productos.php"><i class="fas fa-box"></i> Productos</a>
+                <a href="carrito.php"><i class="fas fa-shopping-cart"></i> Carrito</a>
+            </div>
         </div>
         <!-- Buscador -->
         <div class="search-bar">
