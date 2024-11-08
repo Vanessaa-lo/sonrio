@@ -709,3 +709,42 @@
                                 background-color: #ff7f9f; /* Rosa suave */
                             }
 
+                            
+                            /*Mensaje de carrito vacio*/
+                            #empty-cart-message {
+                                text-align: center;
+                                padding: 25px;
+                                background: linear-gradient(135deg, #f9e7eb, #efd8ef, #d6ddf6); /* Fondo en rosa, morado y azul pastel */
+                                border-radius: 20px;
+                                margin-top: 25px;
+                                font-family: 'Poppins', sans-serif; /* Fuente moderna y estética */
+                                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+                                max-width: 600px;
+                                margin: 20px auto;
+                                transition: all 0.3s ease;
+                            }
+                            
+                            #empty-cart-message p {
+                                font-size: 2em; /* Tamaño grande */
+                                color: #6B5B95; /* Morado pastel para el texto */
+                                margin: 0;
+                                letter-spacing: 1px;
+                            }
+                            
+                            #empty-cart-message a {
+                                font-size: 1.2em;
+                                color: #FFB7C5; /* Rosa pastel para el enlace */
+                                text-decoration: none;
+                                font-weight: 600;
+                                transition: color 0.3s ease;
+                            }
+                            
+                            #empty-cart-message a:hover {
+                                color: #A5D8D6; /* Azul pastel al pasar el cursor */
+                            }
+                            
+                            #empty-cart-message:hover {
+                                transform: scale(1.02); /* Ligero efecto de agrandado al pasar el cursor */
+                                box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15); /* Sombra más destacada */
+                            }
+                            
