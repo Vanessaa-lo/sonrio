@@ -5,40 +5,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../assets/imagenes/icon.ico" type="image/x-icon">
-    <title>Admin</title>
+    <title>Admin Dashboard</title>
     <link rel="stylesheet" href="../estilo/estilos.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="admin-page light-mode">
-    <!-- Botón para alternar entre modo claro y oscuro -->
-    <button class="btn-mode" onclick="toggleMode()">
-        <i class="fas fa-adjust"></i>
-    </button>
+    <!-- Navbar -->
+    <div class="navbar" id="navbar-productos">
+        <div class="logosonrio">
+            <img src="../estilo/imagenes/logg.png" class="logosonrio" id="logo-productos"></div>
+    </div>
 
-    <!-- Contenedor principal con diseño mejorado -->
-    <header class="header">
-        <div class="top-bar">
-            <div class="logo">
-                <img src="../assets/imagenes/logg.png" alt="Logo Admin">
-            </div>
-            <div class="admin-tools">
-                <a href="#" class="notifications"><i class="fas fa-bell"></i> Notificaciones</a>
-                <a href="#" class="profile"><i class="fas fa-user-circle"></i> Perfil</a>
-            </div>
-        </div>
-    </header>
-
+    <!-- Barra de navegación -->
     <nav class="nav-bar">
         <ul>
-            <li><a href="home.html"><i class="fas fa-home"></i> Inicio</a></li>
-            <li><a href="productos.html"><i class="fas fa-box"></i> Productos</a></li>
+            <li><a href="home.php"><i class="fas fa-home"></i> Inicio</a></li>
+            <li><a href="productos.php"><i class="fas fa-box"></i> Productos</a></li>
             <li><a href="usuarios.html"><i class="fas fa-users"></i> Usuarios</a></li>
             <li><a href="pedidos.html"><i class="fas fa-shopping-cart"></i> Pedidos</a></li>
             <li><a href="#"><i class="fas fa-chart-line"></i> Estadísticas</a></li>
         </ul>
     </nav>
 
+    <!-- Contenido principal del dashboard -->
     <main class="content">
         <section class="dashboard-overview">
             <h2>Resumen del Dashboard</h2>
@@ -93,6 +83,7 @@
         </section>
     </main>
 
+    <!-- Pie de página -->
     <footer class="footer">
         <p>&copy; 2024 Admin Dashboard - Todos los derechos reservados</p>
         <div class="footer-social-icons">

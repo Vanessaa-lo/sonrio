@@ -722,7 +722,7 @@
                                 background-color: #ff7f9f;
                                 /* Rosa suave */
                             }
-<<<<<<< HEAD
+/*----------------------HEAD------------------------*/
                             
                             .item-quantity2 {
                                 display: flex;
@@ -773,7 +773,7 @@
                                 color: rgba(0, 0, 0, 0.608);
                                 margin-bottom: 20px;
                             }
-=======
+/*-----------------------------------------------*/
 
                             
                             /*Mensaje de carrito vacio*/
@@ -813,5 +813,137 @@
                                 transform: scale(1.02); /* Ligero efecto de agrandado al pasar el cursor */
                                 box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15); /* Sombra más destacada */
                             }
-                            
->>>>>>> 2048364e928396613a2ccb229a3ec0b077a53b95
+/*-----------------------------------------------------*/   
+/*Admin Dashboard*/   
+/*-----------------------------------------------------*/   
+/* Header Styles for Admin */
+.header {
+    background-color: #FFB6C1;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.header .top-bar .admin-tools a {
+    
+    text-decoration: none;
+    margin-left: 15px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.header .top-bar .admin-tools a:hover {
+    color: #FF69B4;
+}
+
+/* Navbar Styles for Admin */
+.nav-bar {
+    background-color: #ADD8E6;
+    padding: 10px;
+    box-shadow: 0 4px 7px rgba(88, 10, 112, 0.205);
+    border-bottom: 5px solid #ffffff;
+}
+
+.nav-bar ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+}
+
+.nav-bar ul li a {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    transition: color 0.3s ease;
+    text-shadow: 1px 1px 2px rgb(64, 7, 87);
+}
+
+.nav-bar ul li a:hover {
+    color: #FF69B4;
+}
+
+/* Dashboard Overview Section */
+.dashboard-overview {
+    padding: 40px;
+    background-color: #FFB6C1;
+    border-radius: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 20px;
+}
+
+.dashboard-overview .cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.dashboard-overview .card {
+    background-color: #FFFFFF;
+    border: 2px solid #ADD8E6;
+    border-radius: 15px;
+    padding: 20px;
+    width: 220px;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.dashboard-overview .card:hover {
+    transform: scale(1.05);
+}
+
+.dashboard-overview .card .card-icon {
+    font-size: 40px;
+    color: #FF69B4;
+    margin-bottom: 10px;
+}
+
+.dashboard-overview .card-info h3 {
+    font-size: 30px;
+    color: #333333;
+}
+
+.dashboard-overview .card-info p {
+    font-size: 18px;
+    color: #666666;
+}
+
+/* Updates Section */
+.latest-updates {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #FFD700;
+    border-radius: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.latest-updates .updates {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.latest-updates .update-item {
+    background-color: #FFFFFF;
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.latest-updates .update-item:hover {
+    transform: scale(1.02);
+}
+
+.latest-updates .update-item i {
+    font-size: 24px;
+    color: #FF69B4;
+    margin-right: 15px;
+}
+
