@@ -869,10 +869,15 @@
 }
 
 .dashboard-overview .cards {
-    display: flex;
-    gap: 20px;
+    display: flex;  
+    padding-left: 20px;
     flex-wrap: wrap;
     justify-content: center;
+}
+.dashboard-overview h2{
+    text-align: center;
+    font-size: 50px;
+
 }
 
 .dashboard-overview .card {
