@@ -43,10 +43,16 @@ if (isset($_POST['producto_id']) && isset($_POST['ajax'])) {
     exit;
 }
 
-// Consultar productos desde la base de datos
+// Verificar si hay una consulta de búsqueda final
 $consulta = "SELECT id, nombre, descripcion, precio, stock, url_imagen FROM productos";
+if (isset($_GET['query'])) {
+    $query = $conexion->real_escape_string($_GET['query']);
+    $consulta .= " WHERE nombre LIKE '%$query%'";
+}
+
 $resultado = $conexion->query($consulta);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -62,15 +68,22 @@ $resultado = $conexion->query($consulta);
 </head>
 
 <body>
-    <!-- Navbar -->
-    <div class="navbar" id="navbar-productos">
+     <!-- Navbar -->
+     <div class="navbar" id="navbar-productos">
         <div class="logosonrio">
-            <img src="../estilo/imagenes/logg.png" class="logosonrio" id="logo-productos">
-        </div>
+            <img src="../estilo/imagenes/logg.png" class="logosonrio" id="logo-productos"></div>
         <div class="cont-a">
-            <a href="home.php"><i class="fas fa-home"></i> Inicio</a>
-            <a href="productos.php"><i class="fas fa-box"></i> Productos</a>
-            <a href="carrito.php"><i class="fas fa-shopping-cart"></i> Carrito</a>
+            <div class="cont-a">
+                <a href="home.php"><i class="fas fa-home"></i> Inicio</a>
+                <a href="productos.php"><i class="fas fa-box"></i> Productos</a>
+                <a href="carrito.php"><i class="fas fa-shopping-cart"></i> Carrito</a>
+            </div>
+        </div>
+        <!-- Buscador -->
+        <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" id="buscarProducto" placeholder="¿Qué estás buscando?" oninput="buscarProductos()" onkeypress="finalizarBusqueda(event)">
+  
         </div>
     </div>
 
@@ -160,6 +173,25 @@ $resultado = $conexion->query($consulta);
                 console.error("Error:", error);
             });
         }
+
+        function buscarProductos() {
+    const query = document.getElementById("buscarProducto").value;
+
+    fetch("buscar_productos.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: "query=" + encodeURIComponent(query)
+    })
+    .then(response => response.text())
+    .then(html => {
+        // Reemplazar el contenido de la sección de productos con los resultados de la búsqueda
+        document.getElementById("productos").innerHTML = html;
+    })
+    .catch(error => console.error("Error en la búsqueda:", error));
+}
+
     </script>
 </body>
 </html>

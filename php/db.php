@@ -1,12 +1,9 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "sonrio";
+// Archivo: db.php
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conexion = new mysqli("localhost", "root", "", "sonrio");
 
-if ($conn->connect_error) {
-    die("Conexión fallida: " . $conn->connect_error);
+if ($conexion->connect_error) {
+    die("Conexión fallida: " . $conexion->connect_error);
 }
 ?>
