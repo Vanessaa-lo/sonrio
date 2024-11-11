@@ -53,9 +53,10 @@ if (isset($_GET['error'])) {
                         </div>
                     </div>
                     <button type="submit" class="btn">Ingresar</button>
-
+                     
                     <div class="forgot-password">
-                        <a href="#">Olvidé mi contraseña</a>
+                    <P>¿Aún no tienes cuenta?</P>
+                        <a href="registro.php">Registrate</a>
                     </div>
                 </form>
             </div>
