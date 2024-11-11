@@ -434,6 +434,9 @@
                                     width: 600px;
                                     height: 450px;
                                     background-color: rgb(232, 253, 200);
+                                    color: rgb(255, 255, 255);
+                                    text-shadow: 1px 1px 2px rgb(90, 143, 41);
+                                    padding: 124px;
                                 }
                                 
                                 #home {

@@ -29,7 +29,9 @@
         <div class="container-top">
             <img src="..\estilo\imagenes\fondof.webp" alt="Imagenes" class="fondof" />
             <div class="container-left">
-
+             <h1>Abrazos suaves y adorables </h1>
+             <br />
+             <h1>¡lleva la magia de Sonrio contigo! </h1>
             </div>
 
         </div>
