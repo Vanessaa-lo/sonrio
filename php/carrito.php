@@ -31,7 +31,7 @@
         
             <!-- Mensaje de carrito vacío -->
             <div id="empty-cart-message" style="display: none;">
-                <p>Tu carrito está vacío. <a href="productos.html">¡Explora nuestros productos!</a></p>
+                <p>Tu carrito está vacío. <a href="productos.php">¡Explora nuestros productos!</a></p>
             </div>
 
         <!-- Lista de productos -->
