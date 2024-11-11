@@ -93,7 +93,7 @@ $resultado = $conexion->query($consulta);
             echo '    <h3>' . $producto['nombre'] . '</h3>';
             echo '    <img src="' . $imagen_url . '" alt="' . $producto['nombre'] . '">';
             echo '    <p>$' . $precio . ' MXN</p>';
-            echo '    <p>' . $descripcion . '</p>';
+       
             echo '    <form onsubmit="return agregarAlCarrito(event)">'; // Cambia el envío
             echo '        <input type="hidden" name="producto_id" value="' . $producto['id'] . '">';
             echo '        <input type="hidden" name="nombre" value="' . $producto['nombre'] . '">';
