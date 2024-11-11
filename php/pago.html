@@ -1,35 +1,112 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Productos</title>
-        <link href="../estilo/estilos.css" rel="stylesheet">
-        <link rel="icon" href="../assets/imagenes/icon.ico" type="image/x-icon">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras | Tienda Kawaii</title>
+    <link href="../estilo/estilos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<body>
 
-    </head>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logosonrio">
+            <img src="../estilo/imagenes/logg.png" class="logosonrio" alt="Logo Tienda Kawaii">
+        </div>
+        <div class="cont-a">
+            <a href="home.php"><i class="fas fa-home"></i> Inicio</a>
+            <a href="productos.php"><i class="fas fa-box"></i> Productos</a>
+            <a href="carrito.php"><i class="fas fa-shopping-cart"></i> Carrito</a>
+        </div>
+    </div>
 
-    <body>
-
-         <!-- Navbar -->
-        <div class="navbar" id="navbar-productos">
-            <div class="logosonrio">
-                <img src="../estilo/imagenes/logg.png" class="logosonrio" id="logo-productos"></div>
-            <div class="cont-a">
-                <a href="home.html"><i class="fas fa-home"></i>  Inicio</a>
-                <a href="productos.html"><i class="fas fa-box"></i>  Productos</a>
-                <a href="carrito.html"><i class="fas fa-shopping-cart"></i>  Carrito</a>
-            </div>
+    <!-- Sección de Pago -->
+    <div class="container-pago">
+        <h2 class="titulo-pago">¡Completa tu Compra!</h2>
+        <div class="resumen-pago">
+            <h3>Resumen de Compra</h3>
+            <ul>
+                <li><strong>Producto A</strong> x 2 - $30.00</li>
+                <li><strong>Producto B</strong> x 1 - $15.00</li>
+            </ul>
+            <hr>
+            <p><strong>Total: $45.00</strong></p>
         </div>
 
-        <!-- Footer -->
-        <footer>
-            © 2024 Tienda Sonrio - Todos los derechos reservados
-        </footer>
+        <!-- Formulario de Pago con Tarjeta -->
+        <div class="metodo-pago">
+            <h3>Introduce tus Datos de Pago</h3>
+            <form id="form-pago">
+                <div class="pago-tarjeta">
+                    <label for="nombre-titular">Nombre del Titular</label>
+                    <input type="text" id="nombre-titular" placeholder="Nombre del Titular" required aria-label="Nombre del titular de la tarjeta">
 
-    </body>
+                    <label for="tarjeta-numero">Número de tarjeta</label>
+                    <input type="text" id="tarjeta-numero" placeholder="1234 5678 9012 3456" required aria-label="Número de tarjeta">
+                    
+                    <label for="tarjeta-expiracion">Fecha de expiración</label>
+                    <input type="text" id="tarjeta-expiracion" placeholder="MM/AA" required aria-label="Fecha de expiración">
+                    
+                    <label for="tarjeta-cvc">CVC</label>
+                    <input type="text" id="tarjeta-cvc" placeholder="123" required aria-label="Código de seguridad">
+                </div>
+
+                <button type="submit" class="boton-pago">Realizar Pago</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        © 2024 Tienda Sonrio - Todos los derechos reservados
+    </footer>
+
+    <!-- Script de validación de pago -->
+    <script>
+        document.getElementById("form-pago").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            const nombreTitular = document.getElementById("nombre-titular").value;
+            const tarjetaNumero = document.getElementById("tarjeta-numero").value;
+            const tarjetaExpiracion = document.getElementById("tarjeta-expiracion").value;
+            const tarjetaCvc = document.getElementById("tarjeta-cvc").value;
+            
+            if (!nombreTitular || !tarjetaNumero || !tarjetaExpiracion || !tarjetaCvc) {
+                alert("Por favor, llena todos los campos.");
+                return;
+            }
+
+            // Validación de número de tarjeta (16 dígitos)
+            const tarjetaNumeroRegex = /^[0-9]{16}$/;
+            if (!tarjetaNumeroRegex.test(tarjetaNumero)) {
+                alert("El número de tarjeta no es válido.");
+                return;
+            }
+
+            // Validación de fecha de expiración (MM/AA)
+            const tarjetaExpiracionRegex = /^(0[1-9]|1[0-2])\/\d{2}$/;
+            if (!tarjetaExpiracionRegex.test(tarjetaExpiracion)) {
+                alert("La fecha de expiración no es válida.");
+                return;
+            }
+
+            // Validación del CVC (3 dígitos)
+            const tarjetaCvcRegex = /^[0-9]{3}$/;
+            if (!tarjetaCvcRegex.test(tarjetaCvc)) {
+                alert("El CVC no es válido.");
+                return;
+            }
+
+            // Simulación de pago exitoso
+            alert("¡Pago realizado con éxito! 😊");
+
+            // Aquí podrías agregar una redirección o mostrar un mensaje más detallado de confirmación
+        });
+    </script>
+
+</body>
 
 </html>
