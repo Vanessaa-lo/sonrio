@@ -13,30 +13,25 @@
 
 <body>
     <!-- Navbar -->
-    <div class="navbar" id="navbar-productos">
+    <div class="navbar">
         <div class="logosonrio">
-            <img src="../estilo/imagenes/logg.png" class="logosonrio" id="logo-productos"></div>
-        <div class="cont-a">
-            <div class="cont-a">
-                <a href="home.php"><i class="fas fa-home"></i> Inicio</a>
-                <a href="productos.php"><i class="fas fa-box"></i> Productos</a>
-                <a href="carrito.php"><i class="fas fa-shopping-cart"></i> Carrito</a>
-            </div>
+            <img src="../estilo/imagenes/logg.png" class="logosonrio" alt="Logo Tienda Kawaii">
         </div>
-        <!-- Buscador -->
-        <div class="search-bar">
-            <i class="fas fa-search"></i>
-            <input type="text" placeholder="que estas buscando?">
+        <div class="cont-a">
+            <a href="home.php"><i class="fas fa-home"></i> Inicio</a>
+            <a href="productos.php"><i class="fas fa-box"></i> Productos</a>
+            <a href="carrito.php"><i class="fas fa-shopping-cart"></i> Carrito</a>
         </div>
     </div>
-
 
 
     <div class="container" id="home">
         <div class="container-top">
             <img src="..\estilo\imagenes\fondof.webp" alt="Imagenes" class="fondof" />
             <div class="container-left">
-
+             <h1>Abrazos suaves y adorables </h1>
+             <br />
+             <h1>¡lleva la magia de Sonrio contigo! </h1>
             </div>
 
         </div>

@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verificar si las credenciales corresponden a un administrador
     if ($username == $admin_usuario && $password == $admin_contrasena) {
         // Redirigir a la página de administración
-        header("Location: admin.html");
+        header("Location: admin.php");
         exit;
     }
     // Verificar si las credenciales corresponden a un usuario regular
