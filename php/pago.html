@@ -42,16 +42,16 @@
             <form id="form-pago">
                 <div class="pago-tarjeta">
                     <label for="nombre-titular">Nombre del Titular</label>
-                    <input type="text" id="nombre-titular" placeholder="Nombre del Titular" required aria-label="Nombre del titular de la tarjeta">
+                    <input type="text" id="nombre-titular" placeholder="Nombre del Titular" required aria-label="Nombre del titular de la tarjeta" autocomplete="name">
 
                     <label for="tarjeta-numero">Número de tarjeta</label>
-                    <input type="text" id="tarjeta-numero" placeholder="1234 5678 9012 3456" required aria-label="Número de tarjeta">
-                    
+                    <input type="tel" id="tarjeta-numero" placeholder="1234 5678 9012 3456" required aria-label="Número de tarjeta" autocomplete="cc-number">
+
                     <label for="tarjeta-expiracion">Fecha de expiración</label>
-                    <input type="text" id="tarjeta-expiracion" placeholder="MM/AA" required aria-label="Fecha de expiración">
-                    
+                    <input type="tel" id="tarjeta-expiracion" placeholder="MM/AA" required aria-label="Fecha de expiración" autocomplete="cc-exp">
+
                     <label for="tarjeta-cvc">CVC</label>
-                    <input type="text" id="tarjeta-cvc" placeholder="123" required aria-label="Código de seguridad">
+                    <input type="tel" id="tarjeta-cvc" placeholder="123" required aria-label="Código de seguridad" autocomplete="cc-csc">
                 </div>
 
                 <button type="submit" class="boton-pago">Realizar Pago</button>
@@ -64,46 +64,45 @@
         © 2024 Tienda Sonrio - Todos los derechos reservados
     </footer>
 
-    <!-- Script de validación de pago -->
+    <!-- Script de validación y formateo de pago -->
     <script>
         document.getElementById("form-pago").addEventListener("submit", function(event) {
             event.preventDefault();
-            
+
             const nombreTitular = document.getElementById("nombre-titular").value;
             const tarjetaNumero = document.getElementById("tarjeta-numero").value;
             const tarjetaExpiracion = document.getElementById("tarjeta-expiracion").value;
             const tarjetaCvc = document.getElementById("tarjeta-cvc").value;
-            
+
             if (!nombreTitular || !tarjetaNumero || !tarjetaExpiracion || !tarjetaCvc) {
                 alert("Por favor, llena todos los campos.");
-                return;
-            }
-
-            // Validación de número de tarjeta (16 dígitos)
-            const tarjetaNumeroRegex = /^[0-9]{16}$/;
-            if (!tarjetaNumeroRegex.test(tarjetaNumero)) {
-                alert("El número de tarjeta no es válido.");
-                return;
-            }
-
-            // Validación de fecha de expiración (MM/AA)
-            const tarjetaExpiracionRegex = /^(0[1-9]|1[0-2])\/\d{2}$/;
-            if (!tarjetaExpiracionRegex.test(tarjetaExpiracion)) {
-                alert("La fecha de expiración no es válida.");
-                return;
-            }
-
-            // Validación del CVC (3 dígitos)
-            const tarjetaCvcRegex = /^[0-9]{3}$/;
-            if (!tarjetaCvcRegex.test(tarjetaCvc)) {
-                alert("El CVC no es válido.");
                 return;
             }
 
             // Simulación de pago exitoso
             alert("¡Pago realizado con éxito! 😊");
 
-            // Aquí podrías agregar una redirección o mostrar un mensaje más detallado de confirmación
+            // Limpieza del formulario
+            document.getElementById("form-pago").reset();
+        });
+
+        // Formateo automático de la fecha de expiración
+        document.getElementById("tarjeta-expiracion").addEventListener("input", function(event) {
+            let valor = event.target.value.replace(/\D/g, '');
+            if (valor.length > 2) {
+                valor = valor.substring(0, 2) + '/' + valor.substring(2, 4);
+            }
+            event.target.value = valor;
+        });
+
+        // Formateo automático del número de tarjeta
+        document.getElementById("tarjeta-numero").addEventListener("input", function(event) {
+            let valor = event.target.value.replace(/\D/g, '').substring(0, 16);
+            let formattedValue = '';
+            for (let i = 0; i < valor.length; i += 4) {
+                formattedValue += valor.substring(i, i + 4) + ' ';
+            }
+            event.target.value = formattedValue.trim();
         });
     </script>
 
