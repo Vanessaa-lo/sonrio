@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../assets/imagenes/icon.ico" type="image/x-icon">
+    <link rel="icon" href="../../assets/imagenes/icon.ico" type="image/x-icon">
     <title>Admin</title>
-    <link rel="stylesheet" href="../estilo/estilos.css">
+    <link rel="stylesheet" href="../../estilo/estilos.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 
@@ -20,7 +20,7 @@
     <header class="header">
         <div class="top-bar">
         <div class="logosonrio">
-            <img src="../estilo/imagenes/logg.png" class="logosonrio" alt="Logo Tienda Kawaii">
+            <img src="../../estilo/imagenes/logg.png" class="logosonrio" alt="Logo Tienda Kawaii">
         </div>
             <div class="admin-tools">
                 <a href="#" class="notifications"><i class="fas fa-bell"></i> Notificaciones</a>

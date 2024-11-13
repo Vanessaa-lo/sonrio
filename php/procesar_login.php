@@ -15,13 +15,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verificar si las credenciales corresponden a un administrador
     if ($username == $admin_usuario && $password == $admin_contrasena) {
         // Redirigir a la página de administración
-        header("Location: admin.php");
+        header("Location: admin/admin.php");
         exit;
     }
     // Verificar si las credenciales corresponden a un usuario regular
     elseif ($username == $usuario_valido && $password == $contrasena_valida) {
         // Redirigir a la página de usuario regular
-        header("Location: home.php");
+        header("Location: user/home.php");
         exit;
     } else {
         // Redirigir de nuevo al formulario de inicio de sesión con un mensaje de error

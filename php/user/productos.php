@@ -60,8 +60,8 @@ $resultado = $conexion->query($consulta);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Productos | Tienda Sonrio</title>
-    <link href="../estilo/estilos.css" rel="stylesheet">
-    <link rel="icon" href="../estilo/imagenes/cinta.png" type="image/x-icon">
+    <link href="../../estilo/estilos.css" rel="stylesheet">
+    <link rel="icon" href="../../estilo/imagenes/cinta.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -71,7 +71,7 @@ $resultado = $conexion->query($consulta);
      <!-- Navbar -->
      <div class="navbar" id="navbar-productos">
         <div class="logosonrio">
-            <img src="../estilo/imagenes/logg.png" class="logosonrio" id="logo-productos"></div>
+            <img src="../../estilo/imagenes/logg.png" class="logosonrio" id="logo-productos"></div>
         <div class="cont-a">
             <div class="cont-a">
                 <a href="home.php"><i class="fas fa-home"></i> Inicio</a>

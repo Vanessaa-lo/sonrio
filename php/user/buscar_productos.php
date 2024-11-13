@@ -1,5 +1,5 @@
 <?php
-include("db.php");
+include("../db.php");
 
 $query = $_POST['query'] ?? '';
 $consulta = "SELECT id, nombre, descripcion, precio, url_imagen FROM productos WHERE nombre LIKE ?";
