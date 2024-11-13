@@ -6,15 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../../assets/imagenes/icon.ico" type="image/x-icon">
     <title>Admin</title>
-    <link rel="stylesheet" href="../../estilo/estilos.css">
+    <link rel="stylesheet" href="../../estilo/admin.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 
-<body class="admin-page light-mode">
-    <!-- Botón para alternar entre modo claro y oscuro -->
-    <button class="btn-mode" onclick="toggleMode()">
-        <i class="fas fa-adjust"></i>
-    </button>
+<body class="admin-page ">
+   
 
     <!-- Contenedor principal con diseño mejorado -->
     <header class="header">
@@ -22,10 +19,7 @@
         <div class="logosonrio">
             <img src="../../estilo/imagenes/logg.png" class="logosonrio" alt="Logo Tienda Kawaii">
         </div>
-            <div class="admin-tools">
-                <a href="#" class="notifications"><i class="fas fa-bell"></i> Notificaciones</a>
-                <a href="#" class="profile"><i class="fas fa-user-circle"></i> Perfil</a>
-            </div>
+           
         </div>
     </header>
 
@@ -94,12 +88,7 @@
     </main>
 
     <footer class="footer">
-        <p>&copy; 2024 Admin Dashboard - Todos los derechos reservados</p>
-        <div class="footer-social-icons">
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-        </div>
+        
     </footer>
 
     <script src="../estilo/funciones.js"></script>
