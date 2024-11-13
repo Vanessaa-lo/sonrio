@@ -41,34 +41,35 @@ $carrito = isset($_SESSION['carrito']) ? $_SESSION['carrito'] : [];
                 <?php
                 $totalCarrito = 0;
                 foreach ($carrito as $producto) :
-                    $nombre = isset($producto['nombre']) ? $producto['nombre'] : 'Producto desconocido';
-                    $precio = isset($producto['precio']) ? $producto['precio'] : 0;
-                    $cantidad = isset($producto['cantidad']) ? $producto['cantidad'] : 1;
-               
+                    $nombre = $producto['nombre'] ?? 'Producto desconocido';
+                    $precio = $producto['precio'] ?? 0;
+                    $cantidad = $producto['cantidad'] ?? 1;
+                    $imagen = $producto['imagen'] ?? 'ruta/a/imagen/por_defecto.png';
 
                     $totalProducto = $precio * $cantidad;
                     $totalCarrito += $totalProducto;
                 ?>
-                <div class="cart-item">
-                   
+                <div class="cart-item" data-id="<?php echo $producto['id']; ?>">
+                    <img src="<?php echo htmlspecialchars($imagen); ?>" alt="<?php echo htmlspecialchars($nombre); ?>" class="item-image">
                     <div class="item-details">
                         <h3><?php echo htmlspecialchars($nombre); ?></h3>
                         <p class="item-price">$<?php echo number_format($precio, 2); ?> MXN</p>
                     </div>
                     <div class="item-quantity">
                         <button class="decrease">-</button>
-                        <input type="number" value="<?php echo $cantidad; ?>" min="1" class="quantity-input">
+                        <input type="number" value="<?php echo $cantidad; ?>" min="1" class="quantity-input" onchange="updateTotals()">
                         <button class="increase">+</button>
                     </div>
+                    <p class="item-total">$<?php echo number_format($totalProducto, 2); ?> MXN</p>
                     <button class="remove-item" onclick="eliminarProducto('<?php echo $producto['id']; ?>')">Eliminar</button>
                 </div>
                 <?php endforeach; ?>
             </div>
 
             <div class="cart-summary">
-                <p><strong>Subtotal:</strong> $<?php echo number_format($totalCarrito, 2); ?> MXN</p>
+                <p><strong>Subtotal:</strong> $<span id="subtotal"><?php echo number_format($totalCarrito, 2); ?></span> MXN</p>
                 <p><strong>Envío:</strong> $5.00 MXN</p>
-                <p><strong>Total:</strong> $<?php echo number_format($totalCarrito + 5, 2); ?> MXN</p>
+                <p><strong>Total:</strong> $<span id="total"><?php echo number_format($totalCarrito + 5, 2); ?></span> MXN</p>
                 <button class="checkout-btn" onclick="window.location.href='pago.html'">Proceder al Pago</button>
                 <button class="checkout-btn" onclick="vaciarCarrito()">Vaciar Carrito</button>
             </div>
@@ -81,6 +82,39 @@ $carrito = isset($_SESSION['carrito']) ? $_SESSION['carrito'] : [];
     </footer>
 
     <script>
+        document.querySelectorAll('.increase').forEach(button => {
+            button.addEventListener('click', function() {
+                let input = this.previousElementSibling;
+                input.value = parseInt(input.value) + 1;
+                updateTotals();
+            });
+        });
+
+        document.querySelectorAll('.decrease').forEach(button => {
+            button.addEventListener('click', function() {
+                let input = this.nextElementSibling;
+                if (input.value > 1) {
+                    input.value = parseInt(input.value) - 1;
+                    updateTotals();
+                }
+            });
+        });
+
+        function updateTotals() {
+            let subtotal = 0;
+            document.querySelectorAll('.cart-item').forEach(item => {
+                let price = parseFloat(item.querySelector('.item-price').textContent.replace('$', '').replace('MXN', ''));
+                let quantity = parseInt(item.querySelector('.quantity-input').value);
+                let itemTotal = price * quantity;
+
+                item.querySelector('.item-total').textContent = '$' + itemTotal.toFixed(2) + ' MXN';
+                subtotal += itemTotal;
+            });
+
+            document.getElementById('subtotal').textContent = subtotal.toFixed(2);
+            document.getElementById('total').textContent = (subtotal + 5).toFixed(2);  // Asume un costo de envío de $5
+        }
+
         function vaciarCarrito() {
             if (confirm("¿Estás seguro de que deseas vaciar el carrito?")) {
                 fetch("vaciar_carrito.php", {
@@ -92,28 +126,27 @@ $carrito = isset($_SESSION['carrito']) ? $_SESSION['carrito'] : [];
         }
 
         function eliminarProducto(idProducto) {
-    fetch("eliminar_producto.php", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ id: idProducto })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.status === 'success') {
-            location.reload(); // Refresca la página si se eliminó correctamente
-        } else {
-            console.error("Error al eliminar el producto:", data);
-            alert("No se pudo eliminar el producto del carrito.");
+            fetch("eliminar_producto.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ id: idProducto })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    location.reload(); // Refresca la página si se eliminó correctamente
+                } else {
+                    console.error("Error al eliminar el producto:", data);
+                    alert("No se pudo eliminar el producto del carrito.");
+                }
+            })
+            .catch(error => {
+                console.error("Error de red:", error);
+                alert("Error al conectar con el servidor.");
+            });
         }
-    })
-    .catch(error => {
-        console.error("Error de red:", error);
-        alert("Error al conectar con el servidor.");
-    });
-}
-
     </script>
 </body>
 </html>
