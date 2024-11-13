@@ -10,8 +10,8 @@ $carrito = isset($_SESSION['carrito']) ? $_SESSION['carrito'] : [];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrito de Compras | Tienda Kawaii</title>
-    <link href="../estilo/estilos.css" rel="stylesheet">
+    <title>Carrito de Compras | Tienda Sonrio</title>
+    <link href="../../estilo/estilos.css" rel="stylesheet"> <!-- Ajuste en la ruta de CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -19,7 +19,7 @@ $carrito = isset($_SESSION['carrito']) ? $_SESSION['carrito'] : [];
     <!-- Navbar -->
     <div class="navbar">
         <div class="logosonrio">
-            <img src="../estilo/imagenes/logg.png" class="logosonrio" alt="Logo Tienda Kawaii">
+            <img src="../../estilo/imagenes/logg.png" class="logosonrio" alt="Logo Tienda Kawaii"> <!-- Ajuste en la ruta de la imagen -->
         </div>
         <div class="cont-a">
             <a href="home.php"><i class="fas fa-home"></i> Inicio</a>
@@ -34,7 +34,7 @@ $carrito = isset($_SESSION['carrito']) ? $_SESSION['carrito'] : [];
 
         <?php if (empty($carrito)) : ?>
             <div id="empty-cart-message">
-                <p>Tu carrito está vacío. <a href="productos.php">¡Explora nuestros productos!</a></p>
+                <p>Tu carrito está vacío. <a href="productos.php">¡Explora nuestros productos!</a></p> <!-- Ajuste en la ruta del enlace -->
             </div>
         <?php else : ?>
             <div class="cart-items">
@@ -44,7 +44,7 @@ $carrito = isset($_SESSION['carrito']) ? $_SESSION['carrito'] : [];
                     $nombre = $producto['nombre'] ?? 'Producto desconocido';
                     $precio = $producto['precio'] ?? 0;
                     $cantidad = $producto['cantidad'] ?? 1;
-                    $imagen = $producto['imagen'] ?? 'ruta/a/imagen/por_defecto.png';
+                    $imagen = $producto['imagen'] ?? '../../estilo/imagenes/default.png'; // Ruta ajustada para imagen por defecto
 
                     $totalProducto = $precio * $cantidad;
                     $totalCarrito += $totalProducto;
@@ -70,7 +70,7 @@ $carrito = isset($_SESSION['carrito']) ? $_SESSION['carrito'] : [];
                 <p><strong>Subtotal:</strong> $<span id="subtotal"><?php echo number_format($totalCarrito, 2); ?></span> MXN</p>
                 <p><strong>Envío:</strong> $5.00 MXN</p>
                 <p><strong>Total:</strong> $<span id="total"><?php echo number_format($totalCarrito + 5, 2); ?></span> MXN</p>
-                <button class="checkout-btn" onclick="window.location.href='pago.html'">Proceder al Pago</button>
+                <button class="checkout-btn" onclick="window.location.href='../user/pago.html'">Proceder al Pago</button> <!-- Ajuste en la ruta de pago.html -->
                 <button class="checkout-btn" onclick="vaciarCarrito()">Vaciar Carrito</button>
             </div>
         <?php endif; ?>
