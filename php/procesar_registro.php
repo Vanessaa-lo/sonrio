@@ -5,7 +5,7 @@
 session_start();
 
 // Conexión a la base de datos
-include("../db.php");
+include("db.php");
 
 // Verificar si el formulario fue enviado
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -28,20 +28,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                  VALUES (?, ?, ?, ?, ?)";
     $stmt = $conexion->prepare($consulta);
     if ($stmt === false) {
-        die("<script>Swal.fire('Error', 'Hubo un problema en la preparación de la consulta.', 'error');</script>");
+        echo "<script>
+                alert('Error: Hubo un problema en la preparación de la consulta.');
+                window.history.back();
+              </script>";
+        exit;
     }
 
     $stmt->bind_param("sssss", $nombre, $correo, $contraseña_hashed, $direccion, $estado_usuario);
     
     if ($stmt->execute()) {
         echo "<script>
-                Swal.fire('Registro Exitoso', 'El usuario ha sido registrado exitosamente.', 'success')
-                .then(() => {
-                    window.location.href = 'login.php';
-                });
+                alert('Registro Exitoso: El usuario ha sido registrado exitosamente.');
+                window.location.href = 'login.php';
               </script>";
     } else {
-        echo "<script>Swal.fire('Error', 'Hubo un problema al registrar el usuario.', 'error');</script>";
+        echo "<script>
+                alert('Error: Hubo un problema al registrar el usuario.');
+                window.history.back();
+              </script>";
     }
 
     $stmt->close();

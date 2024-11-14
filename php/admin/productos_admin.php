@@ -15,11 +15,11 @@ if (isset($_GET['eliminar_id'])) {
     $stmt = $conexion->prepare($consulta_eliminar);
     $stmt->bind_param("i", $id_producto);
     $stmt->execute();
-
     echo "<script>
-            Swal.fire('Producto Eliminado', 'El producto se ha eliminado correctamente.', 'success')
-            .then(() => { window.location.href = 'productos_admin.php'; });
-          </script>";
+    alert('Producto Agregado. El producto se a eliminado correctamente.');
+    window.location.href = 'productos_admin.php';
+  </script>";
+
     exit();
 }
 
@@ -43,9 +43,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['nombre']) && isset($_P
     $stmt_insert->execute();
 
     echo "<script>
-            Swal.fire('Producto Agregado', 'El producto se ha agregado correctamente.', 'success')
-            .then(() => { window.location.href = 'productos_admin.php'; });
-          </script>";
+    alert('Producto Agregado. El producto se ha agregado correctamente.');
+    window.location.href = 'productos_admin.php';
+  </script>";
+
     exit();
 }
 ?>
@@ -151,17 +152,13 @@ function modificarProducto(id) {
 }
 
 function eliminarProducto(id) {
-    Swal.fire({
-        title: '¿Estás seguro?',
-        text: "¿Estás seguro de eliminar este producto?",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Sí, eliminar',
-        cancelButtonText: 'Cancelar'
-    })
+    const confirmacion = confirm("¿Estás seguro de eliminar este producto?");
+    if (confirmacion) {
+        // Redirigir para eliminar el producto si el usuario confirma
+        window.location.href = 'productos_admin.php?eliminar_id=' + id;
+    }
 }
+
 
 function convertirImagenBase64() {
     const file = document.getElementById('imagen').files[0];
@@ -185,9 +182,10 @@ function procesarImagen(event) {
         form.method = "POST";
         form.submit();
     } else {
-        Swal.fire('Imagen requerida', 'Por favor, sube una imagen para el producto.', 'warning');
+        alert('Imagen requerida. Por favor, sube una imagen para el producto.');
     }
 }
+
 </script>
 
 </body>
