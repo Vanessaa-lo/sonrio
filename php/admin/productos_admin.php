@@ -160,11 +160,7 @@ function eliminarProducto(id) {
         cancelButtonColor: '#d33',
         confirmButtonText: 'Sí, eliminar',
         cancelButtonText: 'Cancelar'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            window.location.href = 'productos_admin.php?eliminar_id=' + id;
-        }
-    });
+    })
 }
 
 function convertirImagenBase64() {
