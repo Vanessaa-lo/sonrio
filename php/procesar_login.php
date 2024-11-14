@@ -1,17 +1,16 @@
 <?php
 session_start();
-include("db.php"); // Asegúrate de que este archivo contiene la conexión a la base de datos
+include("db.php");
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Obtener datos del formulario
     $username = $_POST['username'];
     $password = $_POST['password'];
 
     // Consulta para verificar si el usuario existe
-    $consulta = "SELECT * FROM usuarios WHERE email = ?";
+    $consulta = "SELECT * FROM usuarios WHERE nombre = ?";
     $stmt = $conexion->prepare($consulta);
 
     if (!$stmt) {
@@ -27,14 +26,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Verificar la contraseña encriptada
         if (password_verify($password, $usuario['contraseña'])) {
-            $_SESSION['usuario_nombre'] = $usuario['nombre'];
-            $_SESSION['usuario_id'] = $usuario['id'];
+            $_SESSION['nombre'] = $usuario['nombre'];
+            $_SESSION['id'] = $usuario['id'];
 
             // Redirigir según el nombre del usuario
             if (strtolower($usuario['nombre']) === 'admin') {
-                header("Location: }../admin/admin.php");
+                header("Location: admin/admin.php");
             } else {
-                header("Location: ../user/home.php");
+                header("Location: user/home.php");
             }
             exit;
         } else {
