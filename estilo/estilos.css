@@ -885,7 +885,7 @@
                            /* Métodos de pago */
                            
                            .metodo-pago {
-                               background-color: #f8e4f8;
+                               background-color: #fed6fe;
                                padding: 15px;
                                border-radius: 10px;
                                box-shadow: 0 4px 8px rgba(88, 10, 112, 0.2);
@@ -974,23 +974,125 @@
                            /* Estilos para pantallas pequeñas */
                            
                            @media screen and (max-width: 768px) {
-                               .container-pago {
-                                   width: 95%;
-                               }
-                               .titulo-pago {
-                                   font-size: 20px;
-                               }
-                               .resumen-pago h3 {
-                                   font-size: 18px;
-                               }
-                               .resumen-pago ul li {
-                                   font-size: 14px;
-                               }
-                               .boton-pago {
-                                   padding: 12px 20px;
-                                   font-size: 16px;
-                               }
-                           }
+                            /* Estilo para el contenedor del resumen de compra */
+                            .resumen-pago {
+                                background-color: #f9f2f8; /* Suave color pastel */
+                                padding: 20px;
+                                border-radius: 8px;
+                                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                                margin-bottom: 20px;
+                            }
+
+                            .resumen-pago h3 {
+                                font-size: 1.4em;
+                                color: #e48abf; /* Tono pastel rosado */
+                                margin-bottom: 15px;
+                                font-weight: bold;
+                            }
+
+                            .resumen-pago ul {
+                                list-style: none;
+                                padding: 0;
+                            }
+
+                            .resumen-pago li {
+                                display: flex;
+                                justify-content: space-between;
+                                padding: 8px 0;
+                                border-bottom: 1px solid #e6d9e3;
+                                font-size: 1em;
+                                color: #333; /* Texto en gris oscuro */
+                            }
+
+                            .resumen-pago li:last-child {
+                                border-bottom: none; /* Sin borde en el último elemento */
+                            }
+
+                            .resumen-pago li strong {
+                                color: #b06592; /* Color pastel para los nombres de los productos */
+                            }
+
+                            .resumen-pago p {
+                                font-size: 1.2em;
+                                font-weight: bold;
+                                color: #d94f9f; /* Color destacado para el total */
+                                text-align: right;
+                                margin-top: 15px;
+                            }
+
+                            .resumen-pago hr {
+                                border: 0;
+                                border-top: 1px solid #e6d9e3;
+                                margin: 10px 0;
+                            }
+                            .resumen-pago p {
+                                font-size: 1.1em;
+                                color: #b06592;
+                                text-align: right;
+                            }
+
+                            .resumen-pago p:last-child {
+                                font-size: 1.2em;
+                                font-weight: bold;
+                                color: #d94f9f; /* Tono para el total final */
+                            }
+                            }
+
+                              /* Estilo para la ventana emergente */
+                              .modal {
+                                display: none; /* Inicialmente oculta */
+                                position: fixed;
+                                z-index: 1;
+                                left: 0;
+                                top: 0;
+                                width: 100%;
+                                height: 100%;
+                                overflow: auto;
+                                background-color: rgb(0, 0, 0);
+                                background-color: rgba(0, 0, 0, 0.4);
+                                padding-top: 60px;
+                            }
+
+                            .modal-content {
+                                background-color: #fefefe;
+                                margin: 5% auto;
+                                padding: 20px;
+                                border: 1px solid #888;
+                                width: 80%;
+                                max-width: 400px;
+                                text-align: center;
+                            }
+
+                            .close {
+                                color: #aaa;
+                                font-size: 28px;
+                                font-weight: bold;
+                                position: absolute;
+                                top: 5px;
+                                right: 15px;
+                            }
+
+                            .close:hover,
+                            .close:focus {
+                                color: black;
+                                text-decoration: none;
+                                cursor: pointer;
+                            }
+
+                            /* Estilo de éxito */
+                            .pago-exitoso {
+                                color: green;
+                                font-size: 20px;
+                                font-weight: bold;
+                            }
+
+                            /* Estilo de error */
+                            .error-pago {
+                                color: red;
+                                font-size: 16px;
+                            }
+
+                           
                            /*----------------------------------------------------------------*/
                            /* Estilos para el registro
                               /* Estilo general de la página */

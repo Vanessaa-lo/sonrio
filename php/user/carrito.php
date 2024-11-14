@@ -70,7 +70,7 @@ $carrito = isset($_SESSION['carrito']) ? $_SESSION['carrito'] : [];
                 <p><strong>Subtotal:</strong> $<span id="subtotal"><?php echo number_format($totalCarrito, 2); ?></span> MXN</p>
                 <p><strong>Envío:</strong> $5.00 MXN</p>
                 <p><strong>Total:</strong> $<span id="total"><?php echo number_format($totalCarrito + 5, 2); ?></span> MXN</p>
-                <button class="checkout-btn" onclick="window.location.href='../user/pago.html'">Proceder al Pago</button> <!-- Ajuste en la ruta de pago.html -->
+                <button class="checkout-btn" onclick="window.location.href='../user/pago.php'">Proceder al Pago</button> <!-- Ajuste en la ruta de pago.html -->
                 <button class="checkout-btn" onclick="vaciarCarrito()">Vaciar Carrito</button>
             </div>
         <?php endif; ?>
