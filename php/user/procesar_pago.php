@@ -22,6 +22,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Validación de la fecha de expiración
     if (!preg_match("/^\d{2}\/\d{2}$/", $tarjetaExpiracion)) {
         $errores[] = "Fecha de expiración inválida.";
+    } else {
+        list($mes, $anio) = explode('/', $tarjetaExpiracion);
+        $mes = (int)$mes;
+        $anio = (int)$anio;
+
+        $fechaActual = new DateTime();
+        $fechaExpiracion = new DateTime("20$anio-$mes-01");
+
+        if ($fechaExpiracion < $fechaActual) {
+            $errores[] = "La tarjeta ha expirado.";
+        }
     }
 
     // Validación del CVC

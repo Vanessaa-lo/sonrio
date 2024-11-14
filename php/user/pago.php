@@ -160,7 +160,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && empty($errores)) {
 
 </body>
 </html>
-
 <!-- Script de validación y formateo de pago -->
 <script>
     document.getElementById("form-pago").addEventListener("submit", function(event) {
@@ -217,19 +216,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && empty($errores)) {
                 this.value = this.value.slice(0, 4); // Limita a 4 dígitos
             }
         });
-
-
+    });
 
     // Formateo del número de tarjeta
     document.getElementById("tarjeta-numero").addEventListener("input", function(event) {
         let valor = event.target.value.replace(/\D/g, '').substring(0, 16);
-        event.target.value = valor.match(/.{1,4}/g)?.join(' ') || valor;
+        event.target.value = valor.match(/.{1,4}/g)?.join(' ') || valor; // Agrega espacio cada 4 dígitos
     });
 
     // Formateo de la fecha de expiración
     document.getElementById("tarjeta-expiracion").addEventListener("input", function(event) {
-        let valor = event.target.value.replace(/\D/g, '').substring(0, 4);
-        event.target.value = valor.length > 2 ? valor.substring(0, 2) + '/' + valor.substring(2, 4) : valor;
+        let valor = event.target.value.replace(/\D/g, '').substring(0, 4); // Solo permitimos 4 dígitos
+        event.target.value = valor.length > 2 ? valor.substring(0, 2) + '/' + valor.substring(2, 4) : valor; // Añadimos la barra '/'
     });
 </script>
 
