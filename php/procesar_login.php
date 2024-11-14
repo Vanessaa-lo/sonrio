@@ -32,9 +32,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Redirigir según el nombre del usuario
             if (strtolower($usuario['nombre']) === 'admin') {
-                header("Location: admin/admin.php");
+                header("Location: }../admin/admin.php");
             } else {
-                header("Location: user/home.php");
+                header("Location: ../user/home.php");
             }
             exit;
         } else {
