@@ -18,6 +18,7 @@ if (isset($_POST['producto_id']) && isset($_POST['ajax'])) {
     $nombre = $_POST['nombre'];
     $precio = (float)$_POST['precio'];
     $cantidad = (int)$_POST['cantidad'];
+    $imagen = $_POST['imagen']; // Obtiene la URL de la imagen desde el formulario
 
     // Verificar si el producto ya está en el carrito
     $encontrado = false;
@@ -35,7 +36,8 @@ if (isset($_POST['producto_id']) && isset($_POST['ajax'])) {
             'id' => $producto_id,
             'nombre' => $nombre,
             'precio' => $precio,
-            'cantidad' => $cantidad
+            'cantidad' => $cantidad,
+            'imagen' => $imagen // Agregar la imagen al carrito
         ];
     }
 
@@ -107,10 +109,11 @@ $resultado = $conexion->query($consulta);
             echo '    <img src="' . $imagen_url . '" alt="' . $producto['nombre'] . '">';
             echo '    <p>$' . $precio . ' MXN</p>';
        
-            echo '    <form onsubmit="return agregarAlCarrito(event)">'; // Cambia el envío
+            echo '    <form onsubmit="return agregarAlCarrito(event)">';
             echo '        <input type="hidden" name="producto_id" value="' . $producto['id'] . '">';
             echo '        <input type="hidden" name="nombre" value="' . $producto['nombre'] . '">';
             echo '        <input type="hidden" name="precio" value="' . $producto['precio'] . '">';
+            echo '        <input type="hidden" name="imagen" value="' . $imagen_url . '">'; // Agregar el campo de imagen
             echo '        <div class="item-quantity2">';
             echo '            <button type="button" class="decrease" onclick="decrementarCantidad(this)">-</button>';
             echo '            <input type="number" name="cantidad" value="1" min="1" class="quantity-input">';
@@ -118,6 +121,7 @@ $resultado = $conexion->query($consulta);
             echo '        </div>';
             echo '        <button type="submit" class="add-to-cart-btn">Agregar al carrito</button>';
             echo '    </form>';
+            
             echo '</div>';
         }
     } else {

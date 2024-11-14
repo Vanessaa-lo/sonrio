@@ -28,7 +28,6 @@ if (basename(__FILE__) === 'admin.php' && $_SESSION['usuario_tipo'] !== 'admin')
     <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet">
 
 </head>
-
 <body>
     <!-- Navbar -->
     <div class="navbar">
@@ -41,8 +40,25 @@ if (basename(__FILE__) === 'admin.php' && $_SESSION['usuario_tipo'] !== 'admin')
             <a href="carrito.php"><i class="fas fa-shopping-cart"></i> Carrito</a>
         </div>
     </div>
+   <!-- Video fondo -->
+ <section id="inicio">
+ 	<div class="hero">
 
+ 	<video muted="" autoplay="" loop="" plays-inline="" class="back-video">
+ 		<source src="../estilo/imagenes/sonriohome.mp4" type="video/mp4">
+ 	</video>
+ 	<!--Texto principal -->
+    <div class="content">
+    	<h1>Sonrio</h1>
+    	<h2>¡Lleva la magia de Sonrio contigo!</h2>
+ 	</div>
+ 	</div>
 
+ 	</section>
+
+     <!-- Main Content -->
+    <div class="main-content">
+    <!-- Main Content -->
     <div class="container" id="home">
         <div class="container-top">
             <img src="..\estilo\imagenes\fondof.webp" alt="Imagenes" class="fondof" />
@@ -55,36 +71,36 @@ if (basename(__FILE__) === 'admin.php' && $_SESSION['usuario_tipo'] !== 'admin')
         </div>
         <br></br>
         <!-- Sección de Promociones -->
-        <section class="promociones">
-            <h2 class="ttop">¿Quién es tu favorito?</h2>
-            <div class="promocion-circulos">
-                <div class="promo-item">
-                    <img src="..\estilo\imagenes\rani.jpg" alt="Promo 1">
-                    <h2>keroppi</h2>
-
-                </div>
-                <div class="promo-item">
-                    <img src="..\estilo\imagenes\kuro.jpg" alt="Promo 2">
-                    <h2>Kurommy</h2>
-                </div>
-                <div class="promo-item">
-                    <img src="..\estilo\imagenes\myme.jpg" alt="Promo 3">
-                    <h2>My Melody</h2>
-                </div>
-                <div class="promo-item">
-                    <img src="..\estilo\imagenes\hk.jpg" alt="Promo 2">
-                    <h2>Hello Kitty</h2>
-                </div>
-                <div class="promo-item">
-                    <img src="..\estilo\imagenes\pengg.jpg" alt="Promo 3">
-                    <h2>Tuxedosam</h2>
-                </div>
-                <div class="promo-item">
-                    <img src="..\estilo\imagenes\perr.jpg" alt="Promo 3">
-                    <h2>Pochaco</h2>
-                </div>
-            </div>
-        </section>
+<section class="promociones">
+    <h2 class="ttop">¿Quién es tu favorito?</h2>
+    <div class="promocion-circulos">
+        <!-- Elemento de Promoción -->
+        <div class="promo-item">
+            <img src="../estilo/imagenes/rani.jpg" alt="Promo 1">
+            <h2>Keroppi</h2>
+        </div>
+        <div class="promo-item">
+            <img src="../estilo/imagenes/kuro.jpg" alt="Promo 2">
+            <h2>Kurommy</h2>
+        </div>
+        <div class="promo-item">
+            <img src="../estilo/imagenes/myme.jpg" alt="Promo 3">
+            <h2>My Melody</h2>
+        </div>
+        <div class="promo-item">
+            <img src="../estilo/imagenes/hk.jpg" alt="Promo 4">
+            <h2>Hello Kitty</h2>
+        </div>
+        <div class="promo-item">
+            <img src="../estilo/imagenes/pengg.jpg" alt="Promo 5">
+            <h2>Tuxedosam</h2>
+        </div>
+        <div class="promo-item">
+            <img src="../estilo/imagenes/perr.jpg" alt="Promo 6">
+            <h2>Pochaco</h2>
+        </div>
+    </div>
+</section>
 
 
 
@@ -155,7 +171,7 @@ if (basename(__FILE__) === 'admin.php' && $_SESSION['usuario_tipo'] !== 'admin')
 
 
 
-
+</div>
 </body>
 
 
