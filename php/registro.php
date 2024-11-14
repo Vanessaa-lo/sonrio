@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -76,20 +77,7 @@
 
 
 
-                <div class="input-row">
-                    <div class="input-group2">
-                        <label for="pais">País:</label>
-                        <div class="input-icon2">
-                            <i class="fas fa-globe"></i>
-                            <select id="pais" name="pais" required>
-                                <option value="" disabled selected>Selecciona tu país</option>
-                                <option value="México">México</option>
-                                <option value="Estados Unidos">Estados Unidos</option>
-                                <option value="Canadá">Canadá</option>
-                                <!-- Agrega más opciones según sea necesario -->
-                            </select>
-                        </div>
-                    </div>
+               
                     <div class="input-group2">
                         <label for="contraseña">Contraseña:</label>
                         <div class="input-icon2">
