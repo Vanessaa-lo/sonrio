@@ -543,3 +543,7 @@
     form button:hover {
         background-color: #9b42e3;
     }
+    
+    .h1-usuario {
+        color: white;
+    }
