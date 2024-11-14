@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -29,7 +31,7 @@
             <li><a href="productos_admin.php"><i class="fas fa-box"></i> Productos</a></li>
             <li><a href="usuarios_admin.php"><i class="fas fa-users"></i> Usuarios</a></li>
             <li><a href="pedidos_admin.php"><i class="fas fa-shopping-cart"></i> Pedidos</a></li>
-            <li><a href="eatadisticas_admin.php"><i class="fas fa-chart-line"></i> Estadísticas</a></li>
+           
         </ul>
     </nav>
 

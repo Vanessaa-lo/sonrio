@@ -1,20 +1,4 @@
-<?php
-session_start();
 
-// Verificar si el usuario ha iniciado sesión
-if (!isset($_SESSION['usuario_id'])) {
-    // Si no está autorizado, redirigir al inicio de sesión
-    header("Location: login.php");
-    exit;
-}
-
-// Verificar tipo de usuario para la página de administración
-if (basename(__FILE__) === 'admin.php' && $_SESSION['usuario_tipo'] !== 'admin') {
-    // Si el usuario no es administrador, redirigir a home.php
-    header("Location: ../user/home.php");
-    exit;
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 

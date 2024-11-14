@@ -17,6 +17,7 @@
             <p>Por favor, ingresa tus datos</p>
 
             <form action="procesar_registro.php" method="POST">
+
                 <div class="input-row">
                     <div class="input-group2">
                         <label for="nombre">Nombre:</label>
@@ -25,23 +26,7 @@
                             <input type="text" id="nombre" name="nombre" required>
                         </div>
                     </div>
-                    <div class="input-group2">
-                        <label for="apellidoPaterno">Apellido Paterno:</label>
-                        <div class="input-icon2">
-                            <i class="fas fa-user"></i>
-                            <input type="text" id="apellidoPaterno" name="apellidoPaterno" required>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="input-row">
-                    <div class="input-group2">
-                        <label for="apellidoMaterno">Apellido Materno:</label>
-                        <div class="input-icon2">
-                            <i class="fas fa-user"></i>
-                            <input type="text" id="apellidoMaterno" name="apellidoMaterno" required>
-                        </div>
-                    </div>
+                  
                     <div class="input-group2">
                         <label for="correo">Correo Electrónico:</label>
                         <div class="input-icon2">

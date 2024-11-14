@@ -13,17 +13,7 @@
     </head>
 
     <body class="login-page light-mode">
-        <!-- Botón para alternar entre modo claro y oscuro -->
-        <button id="toggle-mode" class="btn-mode">
-            <i class="fas fa-sun"></i>
-        </button>
-
-        <div class="login-wrapper">
-            <div class="login-container">
-                <h2>Inicia Sesion</h2>
-                <p>Por favor, ingresa tus datos</p>
-                <?php
-// Mostrar pop-up de error si el inicio de sesión falló
+    <?php
 if (isset($_GET['error'])) {
     echo "<script>
         Swal.fire({
@@ -36,6 +26,16 @@ if (isset($_GET['error'])) {
 }
 ?>
 
+        <!-- Botón para alternar entre modo claro y oscuro -->
+        <button id="toggle-mode" class="btn-mode">
+            <i class="fas fa-sun"></i>
+        </button>
+
+        <div class="login-wrapper">
+            <div class="login-container">
+                <h2>Inicia Sesion</h2>
+                <p>Por favor, ingresa tus datos</p>
+   
 
                 <form action="procesar_login.php" method="POST">
                     <div class="input-group">
@@ -59,27 +59,14 @@ if (isset($_GET['error'])) {
                         <a href="registro.php">Registrate</a>
                     </div>
                 </form>
+           
             </div>
             <div class="login-image">
                 <img src="../estilo/imagenes/logoo.png" alt="Imagen decorativa de inicio de sesión">
             </div>
         </div>
 
-        <!-- Script para alternar modo claro/oscuro -->
-        <script>
-            const toggleButton = document.getElementById('toggle-mode');
-            const body = document.body;
-
-            toggleButton.addEventListener('click', () => {
-                body.classList.toggle('dark-mode');
-                body.classList.toggle('light-mode');
-                if (body.classList.contains('dark-mode')) {
-                    toggleButton.innerHTML = '<i class="fas fa-moon"></i>';
-                } else {
-                    toggleButton.innerHTML = '<i class="fas fa-sun"></i>';
-                }
-            });
-        </script>
+       
     </body>
 
     </html>
