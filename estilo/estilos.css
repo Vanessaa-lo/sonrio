@@ -37,7 +37,6 @@
                           }
                           
                           * {
-<<<<<<< Updated upstream
                               margin: 0;
                               padding: 0;
                               box-sizing: border-box;
@@ -1211,200 +1210,207 @@
                                   font-size: 16px;
                                   padding: 12px;
                               }
-                          }
-                          /*----------------------------------------------------------------*/
-                          /* Estilos para el registro
-=======
-                               margin: 0;
-                               padding: 0;
-                               box-sizing: border-box;
-                               font-family: 'Comic Sans MS';
-                           }
-                           .content {
-                            position: absolute;
-                            top: 50%;
-                            left: 50%;
-                            transform: translate(-50%, -50%);
-                            text-align: center;
-                            z-index: 1;
-                        }
-                        
-                        .content h1 {
-                            font-size: 160px;
-                            color: #FFFFFF; /* Blanco puro para resaltar */
-                            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Sombra negra */
-                            font-weight: 600;
-                            transition: 0.5s;
-                        }
-                        
-                        .content h2 {
-                            font-size: 40px;
-                            color: #FFFFFF; /* Blanco puro */
-                            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Sombra negra */
-                            font-weight: 600;
-                        }
-                        
-                        .content h1:hover {
-                            -webkit-text-stroke: 2px #f88cd8;
-                            color: transparent;
-                        }
-                        
-                        
-
-                           
-                           /* Colores Pastel y Fuente Redondeada */
-                           
-                           html,
-                           body {
-                               height: 100%;
-                               display: flex;
-                               flex-direction: column;
-                               background-image: url("Fondo Horizontal.jpeg");
-                               background-size: cover;
-                               background-position: center;
-                               background-repeat: no-repeat;
-                               background-attachment: fixed;
-                               color: #FFFFFF;
-                               margin: 0;
-                               z-index: -2;
-                           }
-                           /* Contenedor principal para el contenido de la página */
-                           
-                           .content {
-                               flex: 1;
-                               /* Hace que el contenido ocupe todo el espacio disponible */
-                           }
-                           /* Estilo del footer */
-                           
-                           footer {
-                               background-color: #d8b6ff;
-                               /* Rosa pastel */
-                               padding: 20px;
-                               text-align: center;
-                               color: #FFFFFF;
-                               font-size: 18px;
-                               width: 100%;
-                               border-top: 6px solid #ffffff;
-                               /* Borde blanco */
-                               box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
-                               /* Sombra suave */
-                               margin-top: auto;
-                               /* Esto asegura que el footer se mantenga en la parte inferior */
-                           }
-                           /* Estilo Kawaii para Botones */
-                           
-                           .login-page button.btn {
-                               background-color: #e4b6ff;
-                               color: white;
-                               padding: 14px 0;
-                               width: 100%;
-                               border: none;
-                               border-radius: 25px;
-                               cursor: pointer;
-                               font-size: 20px;
-                               font-weight: bold;
-                               transition: background-color 0.3s ease, transform 0.2s;
-                               box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.2);
-                               text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-                           }
-                           
-                           .login-page button.btn:hover {
-                               background-color: #f09dd4;
-                               transform: scale(1.05);
-                           }
-                           
-                           .input-group {
-                               margin-bottom: 15px;
-                           }
-                           /* Estilo Kawaii para Inputs */
-                           
-                           .login-page input[type="text"],
-                           .login-page input[type="password"] {
-                               width: 100%;
-                               padding: 15px 45px;
-                               border: 2px solid #b9a6fc;
-                               border-radius: 20px;
-                               background-color: #cccff8e1;
-                               color: black;
-                               font-size: 18px;
-                               outline: none;
-                               box-shadow: inset 0px 4px 8px rgba(98, 156, 231, 0.411);
-                               transition: border-color 0.3s ease, box-shadow 0.3s ease;
-                           }
-                           
-                           .login-page input[type="text"]:focus,
-                           .login-page input[type="password"]:focus {
-                               border-color: #ffffff;
-                               box-shadow: 0px 0px 8px rgba(255, 105, 180, 0.5);
-                           }
-                           /* Fondo y Borde Kawaii en Contenedor Principal */
-                           
-                           .login-page .login-wrapper {
-                               background-color: #a155e934;
-                               border-radius: 25px;
-                               border: 5px solid #fdfdfd;
-                               box-shadow: 0px 10px 25px rgba(14, 0, 2, 0.37);
-                               padding: 50px;
-                           }
-                           /* Estilo Kawaii para Textos y Etiquetas */
-                           
-                           .login-page .login-container h2 {
-                               font-size: 55px;
-                               color: #fcf8f8;
-                               font-weight: bold;
-                               margin-bottom: 20px;
-                               text-shadow: 1px 2px 3px rgba(108, 9, 133, 0.925);
-                           }
-                           
-                           .login-page label {
-                               font-size: 18px;
-                               font-weight: bold;
-                               color: #FFFFFF;
-                               margin-bottom: 10px;
-                               text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-                           }
-                           
-                           .login-wrapper p {
-                               font-weight: bold;
-                               font-size: 20px;
-                               text-shadow: 1px 1px 3px rgba(108, 9, 133, 0.925);
-                               margin-left: 60px;
-                           }
-                           /* Botón para alternar entre modo claro y oscuro */
-                           
-                           .btn-mode {
-                               position: absolute;
-                               top: 20px;
-                               right: 20px;
-                               background-color: transparent;
-                               border: none;
-                               font-size: 28px;
-                               cursor: pointer;
-                               color: #FF69B4;
-                               transition: color 0.3s ease;
-                           }
-                           
-                           .forgot-password {
-                               margin-top: 20px;
-                               margin-left: 5px;
-                               height: 50px;
-                           }
-                           /* Estilo Kawaii para Links */
-                           
-                           .forgot-password a {
-                               font-size: 25px;
-                               text-decoration: none;
-                               color: #1602278a;
-                               text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.753);
-                               transition: color 0.3s ease;
-                               font-weight: bold;
-                               margin-left: 110px;
-                               margin-top: -80px;
-                           }
-                           
-                           .forgot-password a:hover {
-                               color: #f88cd8;
-                           }
+                              *----------------------------------------------------------------*/
+                              /* Estilos para el registro
+                                  /* Estilo general de la página */
+                              
+                              body.login-page2 {
+                                  display: flex;
+                                  justify-content: center;
+                                  align-items: center;
+                                  min-height: 100vh;
+                                  background-image: url("imagenes/fondoreg.jpg");
+                                  background-size: cover;
+                                  background-position: center;
+                                  font-family: Arial, sans-serif;
+                                  margin: 0;
+                                  padding: 10px;
+                              }
+                              
+                              .login-wrapper2 {
+                                  display: flex;
+                                  flex-direction: column;
+                                  max-width: 1000px;
+                                  background-color: #d5c5fa8f;
+                                  border-radius: 20px;
+                                  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.726);
+                                  padding: 40px;
+                                  position: relative;
+                                  text-align: center;
+                                  border: 5px rgb(255, 255, 255) solid;
+                              }
+                              
+                              .login-container2 h2 {
+                                  font-size: 45px;
+                                  font-weight: bold;
+                                  color: #ffffff;
+                                  margin-bottom: 15px;
+                                  text-shadow: 1px 1px 2px rgb(64, 7, 87);
+                              }
+                              
+                              .login-container2 p {
+                                  color: #793f90;
+                                  font-size: 23px;
+                                  margin-bottom: 30px;
+                              }
+                              /* Estilo de la imagen del logo */
+                              
+                              .login-image2 {
+                                  position: absolute;
+                                  top: 10px;
+                                  right: 10px;
+                                  width: 80px;
+                                  height: auto;
+                              }
+                              
+                              .input-row {
+                                  display: flex;
+                                  gap: 15px;
+                                  margin-bottom: 20px;
+                              }
+                              /* Campo de entrada individual */
+                              
+                              .input-group2 {
+                                  flex: 1;
+                                  display: flex;
+                                  flex-direction: column;
+                                  position: relative;
+                              }
+                              
+                              .input-group2 label {
+                                  font-size: 0.85em;
+                                  color: #8e44ad;
+                                  margin-bottom: 5px;
+                              }
+                              
+                              .input-icon2 {
+                                  position: relative;
+                                  display: flex;
+                                  align-items: center;
+                              }
+                              
+                              .input-icon2 i {
+                                  position: absolute;
+                                  left: 10px;
+                                  color: #9b59b6;
+                                  font-size: 1em;
+                              }
+                              
+                              .input-icon2 input {
+                                  padding: 10px 10px 10px 35px;
+                                  border: 1px solid #dcdcdc;
+                                  border-radius: 8px;
+                                  width: 100%;
+                                  font-size: 20px;
+                                  outline: none;
+                                  transition: border-color 0.3s;
+                              }
+                              
+                              .input-icon2 input:focus {
+                                  border-color: #9b59b6;
+                              }
+                              /* Botón de registro */
+                              
+                              .btn2 {
+                                  background-color: #c166b3;
+                                  color: white;
+                                  padding: 12px;
+                                  border: none;
+                                  border-radius: 10px;
+                                  width: 100%;
+                                  font-size: 1em;
+                                  cursor: pointer;
+                                  transition: background-color 0.3s, transform 0.2s;
+                                  margin-top: 10px;
+                              }
+                              
+                              .btn2:hover {
+                                  background-color: #8e44ad;
+                                  transform: scale(1.05);
+                              }
+                              
+                              .forgot-password2 {
+                                  margin-top: 20px;
+                                  font-size: 22px;
+                                  color: #0c0a0da4;
+                              }
+                              
+                              .forgot-password2 a {
+                                  color: #0e0b1062;
+                                  text-decoration: none;
+                                  font-weight: bold;
+                                  transition: color 0.3s;
+                              }
+                              
+                              .forgot-password2 a:hover {
+                                  color: #ad448d;
+                              }
+                              /*estilos de la pagina dirección */
+                              /* Contenedor de Dirección */
+                              
+                              .container-direccion {
+                                  width: 90%;
+                                  max-width: 600px;
+                                  margin: 40px auto;
+                                  background-color: #fdf2f9;
+                                  padding: 20px;
+                                  border-radius: 15px;
+                                  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                              }
+                              /* Título de Dirección */
+                              
+                              .titulo-direccion {
+                                  font-size: 24px;
+                                  font-weight: bold;
+                                  color: #a54caf;
+                                  text-align: center;
+                                  margin-bottom: 20px;
+                              }
+                              /* Estilo de las filas de entrada de dirección */
+                              
+                              .direccion-row {
+                                  margin-bottom: 15px;
+                                  display: flex;
+                                  flex-direction: column;
+                              }
+                              /* Etiquetas de los campos */
+                              
+                              .direccion-row label {
+                                  font-size: 16px;
+                                  color: #666;
+                                  margin-bottom: 5px;
+                              }
+                              /* Campos de entrada de texto */
+                              
+                              .direccion-row input,
+                              .direccion-row select {
+                                  padding: 10px;
+                                  font-size: 16px;
+                                  border-radius: 5px;
+                                  border: 1px solid #ddd;
+                                  width: 100%;
+                                  box-sizing: border-box;
+                              }
+                              /* Botón para enviar dirección */
+                              
+                              .btn-direccion-enviar {
+                                  width: 100%;
+                                  padding: 12px;
+                                  font-size: 16px;
+                                  font-weight: bold;
+                                  color: white;
+                                  background-color: #a54caf;
+                                  border: none;
+                                  border-radius: 5px;
+                                  cursor: pointer;
+                                  transition: background-color 0.3s ease;
+                                  text-align: center;
+                                  margin-top: 15px;
+                              }
+                              
+                              .btn-direccion-enviar:hover {
+                                  background-color: #45a049;
+                              }
                            /* Página de Login */
                            
                            .login-page .login-wrapper {
@@ -2535,5 +2541,7 @@
                           }
                           
                           .btn-direccion-enviar:hover {
-                              background-color: #45a049;
+                            
+                                background-color: #45a049;
+                            }
                           }
