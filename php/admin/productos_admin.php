@@ -60,15 +60,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['nombre']) && isset($_P
     <title>Admin</title>
     <link rel="stylesheet" href="../../estilo/admin.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 <header class="header" id="header-admin">
     <div class="top-bar">
-        <button class="btn-agregar" onclick="abrirPopUp()">Agregar Nuevo Producto</button>
-        <button class="btn-salir" onclick="window.location.href='admin.php'">Salir</button>
+    <button class="btn-salir" onclick="window.location.href='admin.php'">
+       X
+        </button>
+        <button class="btn-agregar" onclick="abrirPopUp()">
+         Agregar Nuevo Producto
+        </button>
+      
     </div>
 </header>
+
 
 
 <div class="container">

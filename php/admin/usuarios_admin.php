@@ -37,6 +37,11 @@ $resultado = $conexion->query($consulta);
 <body>
 <header class="header" id="header-admin">
     <h1 class="h1-usuario">Usuarios Registrados</h1>
+    <div class="top-bar">
+    <button class="btn-salir" onclick="window.location.href='admin.php'">
+       X
+        </button>
+        </div>
 </header>
 
 <div class="container">

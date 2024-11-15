@@ -68,9 +68,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && empty($errores)) {
             <a href="carrito.php"><i class="fas fa-shopping-cart"></i> Carrito</a>
         </div>
     </div>
+   
+</div>
+
 
     <!-- Sección de Pago -->
     <div class="container-pago">
+    <div class="direccion">
+    <button class="btn-direccion" onclick="window.location.href='mi_direccion.php'">
+        Mi Dirección <i class="fas fa-chevron-right"></i>
+
+    </button>
+    </div>
         <h2 class="titulo-pago">¡Completa tu Compra!</h2>
         <div class="resumen-pago">
             <h3>Resumen de Compra</h3>

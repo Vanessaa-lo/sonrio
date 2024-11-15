@@ -315,9 +315,14 @@
         gap: 10px;
     }
     /* Botón de agregar */
+    /* Botones con iconos */
     
-    .btn-agregar {
-        background-color: #4CAF50;
+    .btn-agregar,
+    .btn-salir {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        /* Espacio entre el icono y el texto */
         color: white;
         border: none;
         padding: 8px 16px;
@@ -325,28 +330,27 @@
         cursor: pointer;
         border-radius: 4px;
         transition: background-color 0.3s ease;
+    }
+    /* Botón de agregar */
+    
+    .btn-agregar {
+        background-color: #f094d9;
+    }
+    
+    .btn-agregar:hover {
+        background-color: #8545a0;
     }
     /* Botón de salir */
     
     .btn-salir {
-        background-color: #f44336;
-        color: white;
-        border: none;
-        padding: 8px 16px;
-        font-size: 14px;
-        cursor: pointer;
-        border-radius: 4px;
-        transition: background-color 0.3s ease;
-    }
-    /* Efecto hover para los botones */
-    
-    .btn-agregar:hover {
-        background-color: #45a049;
+        background-color: #1c062d6f;
+        border: 3px solid white;
     }
     
     .btn-salir:hover {
         background-color: #d32f2f;
     }
+    /* Iconos dentro de los botones */
     
     .tabla-productos {
         width: 1300px;
@@ -453,20 +457,6 @@
         transition: background-color 0.3s;
     }
     /* Botón de Agregar */
-    
-    .btn-agregar {
-        background-color: #6a448ecb;
-        color: white;
-        display: right !important;
-        margin-left: 1200px;
-        margin-top: -100px;
-        border: 2px white solid;
-    }
-    
-    .btn-agregar:hover {
-        background-color: #9b42e3;
-    }
-    /* Tabla de productos */
     
     .tabla-productos {
         width: 100%;
