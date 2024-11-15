@@ -34,7 +34,7 @@ session_start();
                 <input type="text" id="calle" name="calle" placeholder="Ej. Av. Juárez" required>
             </div>
             <div class="direccion-row">
-                <label for="numero">Número:</label>
+                <label for="numero">Número Exterior:</label>
                 <input type="text" id="numero" name="numero" placeholder="Ej. 1234" required>
             </div>
             <div class="direccion-row">

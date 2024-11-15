@@ -39,80 +39,86 @@
 
  	</section>
 
-     <!-- Main Content -->
-    <div class="main-content">
-    <!-- Main Content -->
-<div class="container" id="home">
-    <div class="container-top">
-        <img src="../../estilo/imagenes/fondof.webp" alt="Imagenes" class="fondof" />
-        <div class="container-left">
-            <h1>Abrazos suaves y adorables</h1>
-            <br />
-            <h1>¡Lleva la magia de Sonrio contigo!</h1>
-        </div>
-    </div>
-    <br><br>
-    
-    <!-- Sección de Promociones -->
-    <section class="promociones">
-        <h2 class="ttop">¿Quién es tu favorito?</h2>
-        <div class="promocion-circulos">
-            <div class="promo-item">
-                <img src="../../estilo/imagenes/rani.jpg" alt="Promo 1">
-                <h2>Keroppi</h2>
-            </div>
-            <div class="promo-item">
-                <img src="../../estilo/imagenes/kuro.jpg" alt="Promo 2">
-                <h2>Kurommy</h2>
-            </div>
-            <div class="promo-item">
-                <img src="../../estilo/imagenes/myme.jpg" alt="Promo 3">
-                <h2>My Melody</h2>
-            </div>
-            <div class="promo-item">
-                <img src="../../estilo/imagenes/hk.jpg" alt="Promo 2">
-                <h2>Hello Kitty</h2>
-            </div>
-            <div class="promo-item">
-                <img src="../../estilo/imagenes/pengg.jpg" alt="Promo 3">
-                <h2>Tuxedosam</h2>
-            </div>
-            <div class="promo-item">
-                <img src="../../estilo/imagenes/perr.jpg" alt="Promo 3">
-                <h2>Pochaco</h2>
+   <!-- Main Content -->
+<!--
+<div class="main-content">
+    <div class="container" id="home">
+        <div class="container-top">
+            <img src="../../estilo/imagenes/fondof.webp" alt="Imagenes" class="fondof" />
+            <div class="container-left">
+                <h1>Abrazos suaves y adorables</h1>
+                <br />
+                <h1>¡Lleva la magia de Sonrio contigo!</h1>
             </div>
         </div>
-    </section>
+        <br><br>
+        
+        <!-- Sección de Promociones -->
+        <!--
+        <section class="promociones">
+            <h2 class="ttop">¿Quién es tu favorito?</h2>
+            <div class="promocion-circulos">
+                <div class="promo-item">
+                    <img src="../../estilo/imagenes/rani.jpg" alt="Promo 1">
+                    <h2>Keroppi</h2>
+                </div>
+                <div class="promo-item">
+                    <img src="../../estilo/imagenes/kuro.jpg" alt="Promo 2">
+                    <h2>Kurommy</h2>
+                </div>
+                <div class="promo-item">
+                    <img src="../../estilo/imagenes/myme.jpg" alt="Promo 3">
+                    <h2>My Melody</h2>
+                </div>
+                <div class="promo-item">
+                    <img src="../../estilo/imagenes/hk.jpg" alt="Promo 2">
+                    <h2>Hello Kitty</h2>
+                </div>
+                <div class="promo-item">
+                    <img src="../../estilo/imagenes/pengg.jpg" alt="Promo 3">
+                    <h2>Tuxedosam</h2>
+                </div>
+                <div class="promo-item">
+                    <img src="../../estilo/imagenes/perr.jpg" alt="Promo 3">
+                    <h2>Pochaco</h2>
+                </div>
+            </div>
+        </section>
+        -->
 
-    <div class="container-medium">
-        <img src="../../estilo/imagenes/perso.webp" alt="Imagenes" class="fondop" />
-    </div>
-    <h2 class="ttop">Productos populares</h2>
-    <div class="slider">
-        <div class="cards">
-            <div class="product-card2">
-                <img src="../../estilo/imagenes/kuro.png" alt="Producto 2">
-                <h3>Producto 2</h3>
-                <p>$15.00</p>
-            </div>
-            <div class="product-card2">
-                <img src="../../estilo/imagenes/azul.png" alt="Producto 3">
-                <h3>Producto 3</h3>
-                <p>$20.00</p>
-            </div>
-            <div class="product-card2">
-                <img src="../../estilo/imagenes/bunny.png" alt="Producto 3">
-                <h3>Producto 3</h3>
-                <p>$20.00</p>
-            </div>
-            <div class="product-card2">
-                <img src="../../estilo/imagenes/pngwing.com (1).png" alt="Producto 1">
-                <h3>Devil My melody</h3>
-                <p>$10.00</p>
+        <!-- Productos Populares -->
+        <!--
+        <div class="container-medium">
+            <img src="../../estilo/imagenes/perso.webp" alt="Imagenes" class="fondop" />
+        </div>
+        <h2 class="ttop">Productos populares</h2>
+        <div class="slider">
+            <div class="cards">
+                <div class="product-card2">
+                    <img src="../../estilo/imagenes/kuro.png" alt="Producto 2">
+                    <h3>Producto 2</h3>
+                    <p>$15.00</p>
+                </div>
+                <div class="product-card2">
+                    <img src="../../estilo/imagenes/azul.png" alt="Producto 3">
+                    <h3>Producto 3</h3>
+                    <p>$20.00</p>
+                </div>
+                <div class="product-card2">
+                    <img src="../../estilo/imagenes/bunny.png" alt="Producto 3">
+                    <h3>Producto 3</h3>
+                    <p>$20.00</p>
+                </div>
+                <div class="product-card2">
+                    <img src="../../estilo/imagenes/pngwing.com (1).png" alt="Producto 1">
+                    <h3>Devil My melody</h3>
+                    <p>$10.00</p>
+                </div>
             </div>
         </div>
     </div>
 </div>
+-->
 
 <script>
     // Manejo del carrito de compras

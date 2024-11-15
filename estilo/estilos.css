@@ -1213,7 +1213,6 @@
                               *----------------------------------------------------------------*/
                               /* Estilos para el registro
                                   /* Estilo general de la página */
-                              
                               body.login-page2 {
                                   display: flex;
                                   justify-content: center;
@@ -1226,7 +1225,6 @@
                                   margin: 0;
                                   padding: 10px;
                               }
-                              
                               .login-wrapper2 {
                                   display: flex;
                                   flex-direction: column;
@@ -1239,7 +1237,6 @@
                                   text-align: center;
                                   border: 5px rgb(255, 255, 255) solid;
                               }
-                              
                               .login-container2 h2 {
                                   font-size: 45px;
                                   font-weight: bold;
@@ -1247,14 +1244,12 @@
                                   margin-bottom: 15px;
                                   text-shadow: 1px 1px 2px rgb(64, 7, 87);
                               }
-                              
                               .login-container2 p {
                                   color: #793f90;
                                   font-size: 23px;
                                   margin-bottom: 30px;
                               }
                               /* Estilo de la imagen del logo */
-                              
                               .login-image2 {
                                   position: absolute;
                                   top: 10px;
@@ -1262,40 +1257,34 @@
                                   width: 80px;
                                   height: auto;
                               }
-                              
                               .input-row {
                                   display: flex;
                                   gap: 15px;
                                   margin-bottom: 20px;
                               }
                               /* Campo de entrada individual */
-                              
                               .input-group2 {
                                   flex: 1;
                                   display: flex;
                                   flex-direction: column;
                                   position: relative;
                               }
-                              
                               .input-group2 label {
                                   font-size: 0.85em;
                                   color: #8e44ad;
                                   margin-bottom: 5px;
                               }
-                              
                               .input-icon2 {
                                   position: relative;
                                   display: flex;
                                   align-items: center;
                               }
-                              
                               .input-icon2 i {
                                   position: absolute;
                                   left: 10px;
                                   color: #9b59b6;
                                   font-size: 1em;
                               }
-                              
                               .input-icon2 input {
                                   padding: 10px 10px 10px 35px;
                                   border: 1px solid #dcdcdc;
@@ -1305,12 +1294,10 @@
                                   outline: none;
                                   transition: border-color 0.3s;
                               }
-                              
                               .input-icon2 input:focus {
                                   border-color: #9b59b6;
                               }
                               /* Botón de registro */
-                              
                               .btn2 {
                                   background-color: #c166b3;
                                   color: white;
@@ -1323,31 +1310,26 @@
                                   transition: background-color 0.3s, transform 0.2s;
                                   margin-top: 10px;
                               }
-                              
                               .btn2:hover {
                                   background-color: #8e44ad;
                                   transform: scale(1.05);
                               }
-                              
                               .forgot-password2 {
                                   margin-top: 20px;
                                   font-size: 22px;
                                   color: #0c0a0da4;
                               }
-                              
                               .forgot-password2 a {
                                   color: #0e0b1062;
                                   text-decoration: none;
                                   font-weight: bold;
                                   transition: color 0.3s;
                               }
-                              
                               .forgot-password2 a:hover {
                                   color: #ad448d;
                               }
                               /*estilos de la pagina dirección */
                               /* Contenedor de Dirección */
-                              
                               .container-direccion {
                                   width: 90%;
                                   max-width: 600px;
@@ -1358,7 +1340,6 @@
                                   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
                               }
                               /* Título de Dirección */
-                              
                               .titulo-direccion {
                                   font-size: 24px;
                                   font-weight: bold;
@@ -1367,21 +1348,18 @@
                                   margin-bottom: 20px;
                               }
                               /* Estilo de las filas de entrada de dirección */
-                              
                               .direccion-row {
                                   margin-bottom: 15px;
                                   display: flex;
                                   flex-direction: column;
                               }
                               /* Etiquetas de los campos */
-                              
                               .direccion-row label {
                                   font-size: 16px;
                                   color: #666;
                                   margin-bottom: 5px;
                               }
                               /* Campos de entrada de texto */
-                              
                               .direccion-row input,
                               .direccion-row select {
                                   padding: 10px;
@@ -1392,7 +1370,6 @@
                                   box-sizing: border-box;
                               }
                               /* Botón para enviar dirección */
-                              
                               .btn-direccion-enviar {
                                   width: 100%;
                                   padding: 12px;
@@ -1407,1141 +1384,1009 @@
                                   text-align: center;
                                   margin-top: 15px;
                               }
-                              
                               .btn-direccion-enviar:hover {
                                   background-color: #45a049;
                               }
-                           /* Página de Login */
-                           
-                           .login-page .login-wrapper {
-                               display: flex;
-                               justify-content: center;
-                               align-items: center;
-                               width: 80%;
-                               max-width: 1000px;
-                               margin: auto;
-                               padding: 50px;
-                               margin-top: 40px;
-                           }
-                           
-                           .login-page .login-container {
-                               width: 50%;
-                               padding-right: 30px;
-                           }
-                           
-                           .login-page .login-container p {
-                               margin-bottom: 30px;
-                               font-size: 18px;
-                               color: #FFFFFF;
-                           }
-                           /* Estilos Responsivos */
-                           
-                           @media (max-width: 768px) {
-                               .login-page .login-wrapper {
-                                   flex-direction: column;
-                                   padding: 20px;
-                               }
-                               .login-page .login-container,
-                               .login-page .login-image {
-                                   width: 100%;
-                                   padding: 0;
-                                   text-align: center;
-                               }
-                               .login-page .login-container h2 {
-                                   font-size: 32px;
-                               }
-                               .login-page .login-container p {
-                                   font-size: 16px;
-                               }
-                               .login-page input[type="text"],
-                               .login-page input[type="password"] {
-                                   padding: 12px;
-                               }
-                               .login-page button.btn {
-                                   padding: 12px 0;
-                                   font-size: 18px;
-                                   margin-bottom: 10px;
-                               }
-                           }
-                           
-                           @media (max-width: 480px) {
-                               .login-page .login-wrapper {
-                                   width: 90%;
-                               }
-                               .login-page .login-container h2 {
-                                   font-size: 28px;
-                               }
-                               .login-page .login-container p {
-                                   font-size: 14px;
-                               }
-                               .btn-mode {
-                                   font-size: 24px;
-                                   top: 10px;
-                                   right: 10px;
-                               }
-                           }
-                           /* Navbar */
-                           
-                           .navbar {
-                               background-color: #a255e941;
-                               width: 100%;
-                               display: flex;
-                               justify-content: space-between;
-                               /* Coloca el logo a la izquierda y los enlaces a la derecha */
-                               align-items: center;
-                               /* Alinea verticalmente todo el contenido */
-                               padding: 15px 40px;
-                               /* Espaciado para que no quede pegado a los bordes */
-                               box-shadow: 0 4px 7px rgba(88, 10, 112, 0.205);
-                               border-bottom: 5px solid #ffffff;
-                               max-height: 90px;
-                               z-index: 2;
-                           }
-                           /* Logo dentro del navbar */
-                           
-                           .logosonrio {
-                               width: 190px;
-                               z-index: 2;
-                               /* Ajusta el tamaño del logo */
-                               height: auto;
-                               filter: brightness(1.3)
-                               
-                               /* Mantiene la proporción del logo */
-                           }
-                           /* Estilo de los enlaces dentro del navbar */
-                           
-                           .navbar a {
-                               color: #00020888;
-                               padding: 10px 20px;
-                               text-decoration: none;
-                               font-weight: bold;
-                               transition: color 0.3s ease;
-                               font-size: 20px;
-                               margin-left: 4px;
-                           }
-                           
-                           .navbar a:hover {
-                               color: #f3a0c9;
-                               /* Cambia el color cuando el usuario pasa el cursor */
-                           }
-                           /* Contenedor de enlaces */
-                           
-                           .cont-a {
-                               display: flex;
-                               gap: 20px;
-                               /* Espaciado entre los enlaces */
-                               align-items: center;
-                               font-size: 16px;
-                           }
-                           
-                           .navbar a:hover {
-                               color: #FF69B4;
-                           }
-                           /* Contenedor de productos */
-                           
-                           .container {
-                               display: flex;
-                               flex-wrap: wrap;
-                               /* Permite que los elementos pasen a la siguiente línea si no caben */
-                               justify-content: center;
-                               /* Centra las tarjetas horizontalmente */
-                               padding: 20px;
-                               margin-top: 20px;
-                               width: 100%;
-                               max-width: 1500px;
-                           }
-                           /* Tarjetas de producto */
-                           
-                           .product-card {
-                               background-color: white;
-                               border: 5px solid rgb(232, 253, 200);
-                               border-radius: 20px;
-                               margin-left: 50px;
-                               margin-right: 50px;
-                               margin-top: 40px;
-                               width: 230px;
-                               /* Tamaño fijo para las tarjetas */
-                               text-align: center;
-                               padding-top: 10px;
-                               padding-bottom: 10px;
-                               box-shadow: 0 8px 15px rgba(0, 0, 0, 0.404);
-                               transition: transform 0.2s;
-                           }
-                           
-                           .cards {
-                               width: 1500px;
-                               display: flex;
-                               flex-wrap: wrap;
-                               /* Permite que los elementos pasen a la siguiente línea si no caben */
-                               justify-content: center;
-                           }
-                           
-                           .product-card:hover {
-                               transform: scale(1.05);
-                           }
-                           
-                           .product-card img {
-                               width: 150px;
-                               height: 150px;
-                               border-radius: 15px;
-                               filter: drop-shadow(.8);
-                           }
-                           
-                           .product-card h3 {
-                               font-size: 23px;
-                               color: rgba(0, 0, 0, 0.63);
-                               font-weight: bold;
-                               margin: 10px 0;
-                           }
-                           
-                           .product-card p {
-                               color: #000000da;
-                               margin: 5px 0;
-                           }
-                           
-                           .product-card button {
-                               background-color: #e4affd;
-                               color: white;
-                               padding: 10px;
-                               border: none;
-                               border-radius: 20px;
-                               cursor: pointer;
-                               font-size: 16px;
-                               font-weight: bold;
-                               transition: background-color 0.3s ease, transform 0.2s;
-                               box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.2);
-                               text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-                           }
-                           
-                           .product-card button:hover {
-                               background-color: #ff69f8;
-                               transform: scale(1.05);
-                           }
-                           
-                           .search-bar {
-                               position: relative;
-                               display: inline-block;
-                               margin-right: 50px;
-                               margin-top: 5px;
-                           }
-                           
-                           .search-bar input[type="text"] {
-                               padding: 8px 10px;
-                               border: 2px solid #dcaff1;
-                               border-radius: 20px;
-                               padding-left: 35px;
-                               margin-left: 40px;
-                               font-size: 16px;
-                               color: #d672fd;
-                               outline: none;
-                               transition: all 0.3s ease;
-                           }
-                           /* Color del placeholder */
-                           
-                           .search-bar input[type="text"]::placeholder {
-                               color: #f3b9ff;
-                               opacity: 0.8;
-                               font-style: italic;
-                           }
-                           /* Icono de búsqueda */
-                           
-                           .search-bar i {
-                               position: absolute;
-                               left: 10px;
-                               top: 35%;
-                               transform: translateY(-50%);
-                               color: #fafafa;
-                               font-size: 22px;
-                               transition: color 0.3s ease;
-                           }
-                           /* Hover efecto kawaii */
-                           
-                           .search-bar input[type="text"]:hover {
-                               background-color: #ffe6fa;
-                               border-color: #f3b9ff;
-                           }
-                           /* Efecto de foco */
-                           
-                           .search-bar input[type="text"]:focus {
-                               background-color: #ffe6fa;
-                               border-color: #f3b9ff;
-                               box-shadow: 0 0 8px #f3b9ff;
-                           }
-                           /* Animación de color al pasar el mouse sobre el icono */
-                           
-                           .search-bar i:hover {
-                               color: #8b32a7;
-                               border-color: #ffffff;
-                           }
-                           
-                           .container-top {
-                               width: 1200px;
-                               height: 460px;
-                               display: flex;
-                               border-radius: 10px;
-                               border: 5px rgb(232, 178, 219) solid;
-                           }
-                           
-                           .fondof {
-                               width: 650px;
-                               height: 450px;
-                           }
-                           
-                           .container-left {
-                               width: 600px;
-                               height: 450px;
-                               background-color: rgb(232, 253, 200);
-                               color: rgb(232, 178, 219);
-                               padding: 122px;
-                           }
-                           
-                           #home {
-                            position:absolute;
-                               width: 100%;
-                               height: 100%;
-                               padding-left: 100px;
-                               padding-right: 100px;
-                               display: flex;
-                               flex-wrap: wrap;
-                               padding-top: 20px; /* Espacio entre el video y el contenido principal */
-                               margin-top: 100vh; /* Empuja el contenido principal debajo del video */
-                               /* Permite que los elementos pasen a la siguiente línea si no caben */
-                               justify-content: center;
-                               /* Centra las tarjetas horizontalmente */
-                           }
-                           
-                           .ttop {
-                               font-size: 40px;
-                               color: #c594e3;
-                               font-weight: bolder;
-                               margin-top: 30px;
-                               margin-bottom: 20px;
-                           }
-                           
-                           .product-card2 {
-                               background-color: white;
-                               border: 5px solid rgb(232, 253, 200);
-                               border-radius: 20px;
-                               margin-left: 20px;
-                               margin-right: 20px;
-                               margin-top: 40px;
-                               width: 230px;
-                               /* Tamaño fijo para las tarjetas */
-                               text-align: center;
-                               padding: 10px;
-                               box-shadow: 0 8px 15px rgba(0, 0, 0, 0.404);
-                               transition: transform 0.2s;
-                               color: #8b32a7;
-                           }
-                           
-                           .product-card2 img {
-                               width: 150px;
-                               height: 150px;
-                               border-radius: 15px;
-                               filter: drop-shadow(.8);
-                           }
-                           
-                           .container-medium {
-                               margin-top: 80px;
-                               width: 1200px;
-                               height: 480px;
-                               display: flex;
-                               border-radius: 10px;
-                               margin-bottom: 20px;
-                               padding-left: 50px;
-                               background-color: #ffffff;
-                           }
-                           
-                           .fondop {
-                               width: 75%;
-                               height: auto;
-                               margin-left: 70px;
-                           }
-                           /* Estilos de Promociones */
-.promociones {
-    text-align: center;
-    padding: 10px 0;
-    max-width: 1200px;
-    margin: 0 auto; /* Centrado horizontal */
-}
-
-.ttop {
-    font-size: 40px;
-    color: #c594e3;
-    font-weight: bolder;
-    margin-top: 30px;
-    margin-bottom: 20px;
-}
-
-.promocion-circulos {
-    display: flex;
-    flex-wrap: wrap; /* Asegura ajuste en pantallas pequeñas */
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.promo-item {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: #00020888;
-    background-color: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-}
-
-.promo-item:hover {
-    transform: scale(1.05);
-}
-
-.promo-item img {
-    width: 100%;
-    height: auto;
-    border-radius: 50%;
-}
-
-.promo-item h2 {
-    font-size: 16px;
-    color: #c594e3;
-    margin-top: 10px;
-    text-align: center;
-}
-
-/* Ajustes responsivos */
-@media (max-width: 768px) {
-    .promo-item {
-        width: 120px;
-        height: 120px;
-    }
-
-    .ttop {
-        font-size: 30px;
-    }
-}
-
-@media (max-width: 480px) {
-    .promo-item {
-        width: 100px;
-        height: 100px;
-    }
-
-    .ttop {
-        font-size: 24px;
-    }
-}
-                           /* Estilos de Slider */
-                           
-                           .slider {
-                            overflow: hidden;
-                            width: 100%;
-                            max-width: 1200px; /* Máximo ancho centrado */
-                            margin: 20px auto; /* Centrado con margen vertical reducido */
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            position: relative;
-                            background-color: #ffffff;
-                            border-radius: 10px;
-                            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                        }
-                        
-                        .cards {
-                            display: flex;
-                            gap: 10px; /* Espacio reducido */
-                            overflow-x: auto;
-                            scroll-behavior: smooth;
-                            padding: 10px;
-                        }
-                        
-                        .cards::-webkit-scrollbar {
-                            display: none;
-                        }
-                        
-                        .product-card2 {
-                            min-width: 150px;
-                            max-width: 200px;
-                            background-color: #f7e6fd;
-                            padding: 10px; /* Espacio reducido */
-                            border-radius: 10px;
-                            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                            text-align: center;
-                            flex-shrink: 0;
-                            transition: transform 0.3s ease;
-                        }
-                        
-                        .product-card2:hover {
-                            transform: scale(1.05);
-                        }
-                        
-                        .product-card2 img {
-                            width: 100%;
-                            border-radius: 8px;
-                        }
-                        
-                        .product-card2 h3 {
-                            font-size: 16px;
-                            margin: 5px 0;
-                            color: #d672fd;
-                        }
-                        
-                        .product-card2 p {
-                            font-size: 14px;
-                            color: #777;
-                        }
-                        
-                        /* Estilos para el contenedor principal del carrito */
-.cart-container {
-    max-width: 1500px;
-    margin: 30px auto;
-    padding: 30px;
-    background-color: #fef1ff; /* Fondo lila claro */
-    border-radius: 10px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-}
-
-.cart-container h1 {
-    text-align: center;
-    color: #a372c2; /* Lila pastel */
-    font-size: 32px;
-    margin-bottom: 20px;
-}
-
-/* Estilos para los productos en el carrito */
-.cart-item {
-    display: flex;
-    align-items: center;
-    padding: 15px;
-    margin-bottom: 10px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.item-image {
-    width: 80px;
-    height: 80px;
-    border-radius: 10px;
-    margin-right: 15px;
-}
-
-.item-details h3 {
-    font-size: 18px;
-    color: #6a5e8d;
-    margin: 0;
-}
-
-.item-price,
-.item-total {
-    font-size: 16px;
-    color: #6a5e8d;
-    font-weight: bold;
-}
-
-/* Botones de cantidad */
-.item-quantity button {
-    background-color: #e2d2fa;
-    color: #6a5e8d;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-.item-quantity button:hover {
-    background-color: #d1baf4;
-}
-
-.quantity-input {
-    width: 40px;
-    text-align: center;
-    margin: 0 5px;
-}
-
-/* Botón de eliminar */
-.remove-item {
-    background-color: #ff9aa2;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    margin-left: auto;
-}
-
-.remove-item:hover {
-    background-color: #ff758f;
-}
-
-/* Estilos para el resumen del carrito */
-.cart-summary {
-    text-align: center;
-    background-color: #faf1f9;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
-}
-
-.cart-summary p {
-    font-size: 18px;
-    color: #6a5e8d;
-    margin: 5px 0;
-}
-
-.checkout-btn {
-    background-color: #c5a6e8;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.2s;
-    box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.2);
-    margin-top: 15px;
-}
-
-.checkout-btn:hover {
-    background-color: #a585d4;
-    transform: scale(1.05);
-}
-
-/* Estilos para el slider de productos */
-.slider {
-    overflow: hidden;
-    width: 100%;
-    max-width: 1200px;
-    margin: 20px auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.cards {
-    display: flex;
-    gap: 10px;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    padding: 10px;
-}
-
-.product-card2 {
-    min-width: 150px;
-    max-width: 200px;
-    background-color: #f7e6fd;
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    flex-shrink: 0;
-    transition: transform 0.3s ease;
-}
-
-.product-card2:hover {
-    transform: scale(1.05);
-}
-
-.product-card2 img {
-    width: 100%;
-    border-radius: 8px;
-}
-
-.product-card2 h3 {
-    font-size: 16px;
-    margin: 5px 0;
-    color: #d672fd;
-}
-
-.product-card2 p {
-    font-size: 14px;
-    color: #777;
-}
-
-                           /*-----------------------------------------------*/
-                           /*Mensaje de carrito vacio*/
-                           
-                           #empty-cart-message {
-                               text-align: center;
-                               padding: 25px;
-                               background: linear-gradient(135deg, #f9e7eb, #efd8ef, #d6ddf6);
-                               /* Fondo en rosa, morado y azul pastel */
-                               border-radius: 20px;
-                               margin-top: 25px;
-                               font-family: 'Poppins', sans-serif;
-                               /* Fuente moderna y estética */
-                               box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-                               /* Sombra suave */
-                               max-width: 600px;
-                               margin: 20px auto;
-                               transition: all 0.3s ease;
-                           }
-                           
-                           #empty-cart-message p {
-                               font-size: 2em;
-                               /* Tamaño grande */
-                               color: #6B5B95;
-                               /* Morado pastel para el texto */
-                               margin: 0;
-                               letter-spacing: 1px;
-                           }
-                           
-                           #empty-cart-message a {
-                               font-size: 1.2em;
-                               color: #FFB7C5;
-                               /* Rosa pastel para el enlace */
-                               text-decoration: none;
-                               font-weight: 600;
-                               transition: color 0.3s ease;
-                           }
-                           
-                           #empty-cart-message a:hover {
-                               color: #A5D8D6;
-                               /* Azul pastel al pasar el cursor */
-                           }
-                           
-                           #empty-cart-message:hover {
-                               transform: scale(1.02);
-                               /* Ligero efecto de agrandado al pasar el cursor */
-                               box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
-                               /* Sombra más destacada */
-                           }
-                           /* Contenedor principal */
-
-
-                           
-/* Contenedor principal */
-.container-pago {
-    width: 90%;
-    max-width: 600px;
-    margin: 40px auto;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-/* Título de la sección */
-.titulo-pago {
-    text-align: center;
-    color: #a85b9f;
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-/* Resumen de la compra */
-.resumen-pago {
-    background-color: #f9f2f8;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-}
-
-.resumen-pago h3 {
-    font-size: 20px;
-    color: #6a3ea7;
-    margin-bottom: 15px;
-}
-
-.resumen-pago ul {
-    list-style: none;
-    padding: 0;
-}
-
-.resumen-pago li {
-    display: flex;
-    justify-content: space-between;
-    padding: 8px 0;
-    border-bottom: 1px solid #e6d9e3;
-    font-size: 16px;
-    color: #333;
-}
-
-.resumen-pago li:last-child {
-    border-bottom: none;
-}
-
-.resumen-pago p {
-    font-size: 18px;
-    font-weight: bold;
-    color: #d94f9f;
-    text-align: right;
-    margin-top: 15px;
-}
-
-/* Métodos de pago */
-.metodo-pago {
-    background-color: #fed6fe;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(88, 10, 112, 0.2);
-    margin-bottom: 20px;
-}
-
-.metodo-pago h3 {
-    font-size: 20px;
-    color: #a85b9f;
-    margin-bottom: 10px;
-}
-
-.pago-tarjeta,
-.pago-paypal {
-    margin-bottom: 20px;
-}
-
-.pago-tarjeta label,
-.pago-paypal p {
-    font-size: 16px;
-    margin-bottom: 8px;
-}
-
-.pago-tarjeta input,
-.pago-paypal input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #e3aaff;
-    border-radius: 8px;
-    font-size: 16px;
-    margin-bottom: 10px;
-    background-color: #fef2ff;
-}
-
-.pago-tarjeta input:focus,
-.pago-paypal input:focus {
-    outline: none;
-    border-color: #f35c8f;
-}
-
-/* Botón de pago */
-.boton-pago {
-    background-color: #f35c8f;
-    color: white;
-    border: none;
-    padding: 14px 30px;
-    border-radius: 10px;
-    font-size: 18px;
-    width: 100%;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 20px;
-}
-
-.boton-pago:hover {
-    background-color: #e31d6e;
-}
-
-/* Spinner de carga (inicialmente oculto) */
-.spinner {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border: 8px solid #f3f3f3;
-    border-top: 8px solid #a85b9f;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    animation: spin 2s linear infinite;
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-/* Ventana emergente (modal) */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
-    padding-top: 60px;
-}
-
-.modal-content {
-    background-color: #fefefe;
-    margin: 5% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 400px;
-    text-align: center;
-}
-
-.close {
-    color: #aaa;
-    font-size: 28px;
-    font-weight: bold;
-    position: absolute;
-    top: 5px;
-    right: 15px;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-/* Estilo de éxito y error */
-.pago-exitoso {
-    color: green;
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.error-pago {
-    color: red;
-    font-size: 16px;
-}
-
-/* Ajustes para pantallas pequeñas */
-@media screen and (max-width: 768px) {
-    .resumen-pago {
-        padding: 15px;
-        font-size: 14px;
-    }
-
-    .resumen-pago h3 {
-        font-size: 18px;
-    }
-
-    .resumen-pago p {
-        font-size: 16px;
-    }
-
-    .boton-pago {
-        font-size: 16px;
-        padding: 12px;
-    }
-}
-
-
-                           
-                           /*----------------------------------------------------------------*/
-                           /* Estilos para el registro
+                              /* Página de Login */
+                              .login-page .login-wrapper {
+                                  display: flex;
+                                  justify-content: center;
+                                  align-items: center;
+                                  width: 80%;
+                                  max-width: 1000px;
+                                  margin: auto;
+                                  padding: 50px;
+                                  margin-top: 40px;
+                              }
+                              .login-page .login-container {
+                                  width: 50%;
+                                  padding-right: 30px;
+                              }
+                              .login-page .login-container p {
+                                  margin-bottom: 30px;
+                                  font-size: 18px;
+                                  color: #FFFFFF;
+                              }
+                              /* Estilos Responsivos */
+                              @media (max-width: 768px) {
+                                  .login-page .login-wrapper {
+                                      flex-direction: column;
+                                      padding: 20px;
+                                  }
+                                  .login-page .login-container,
+                                  .login-page .login-image {
+                                      width: 100%;
+                                      padding: 0;
+                                      text-align: center;
+                                  }
+                                  .login-page .login-container h2 {
+                                      font-size: 32px;
+                                  }
+                                  .login-page .login-container p {
+                                      font-size: 16px;
+                                  }
+                                  .login-page input[type="text"],
+                                  .login-page input[type="password"] {
+                                      padding: 12px;
+                                  }
+                                  .login-page button.btn {
+                                      padding: 12px 0;
+                                      font-size: 18px;
+                                      margin-bottom: 10px;
+                                  }
+                              }
+                              @media (max-width: 480px) {
+                                  .login-page .login-wrapper {
+                                      width: 90%;
+                                  }
+                                  .login-page .login-container h2 {
+                                      font-size: 28px;
+                                  }
+                                  .login-page .login-container p {
+                                      font-size: 14px;
+                                  }
+                                  .btn-mode {
+                                      font-size: 24px;
+                                      top: 10px;
+                                      right: 10px;
+                                  }
+                              }
+                              /* Navbar */
+                              .navbar {
+                                  background-color: #a255e941;
+                                  width: 100%;
+                                  display: flex;
+                                  justify-content: space-between;
+                                  /* Coloca el logo a la izquierda y los enlaces a la derecha */
+                                  align-items: center;
+                                  /* Alinea verticalmente todo el contenido */
+                                  padding: 15px 40px;
+                                  /* Espaciado para que no quede pegado a los bordes */
+                                  box-shadow: 0 4px 7px rgba(88, 10, 112, 0.205);
+                                  border-bottom: 5px solid #ffffff;
+                                  max-height: 90px;
+                                  z-index: 2;
+                              }
+                              /* Logo dentro del navbar */
+                              .logosonrio {
+                                  width: 190px;
+                                  z-index: 2;
+                                  /* Ajusta el tamaño del logo */
+                                  height: auto;
+                                  filter: brightness(1.3)
+                                  /* Mantiene la proporción del logo */
+                              }
+                              /* Estilo de los enlaces dentro del navbar */
+                              .navbar a {
+                                  color: #00020888;
+                                  padding: 10px 20px;
+                                  text-decoration: none;
+                                  font-weight: bold;
+                                  transition: color 0.3s ease;
+                                  font-size: 20px;
+                                  margin-left: 4px;
+                              }
+                              .navbar a:hover {
+                                  color: #f3a0c9;
+                                  /* Cambia el color cuando el usuario pasa el cursor */
+                              }
+                              /* Contenedor de enlaces */
+                              .cont-a {
+                                  display: flex;
+                                  gap: 20px;
+                                  /* Espaciado entre los enlaces */
+                                  align-items: center;
+                                  font-size: 16px;
+                              }
+                              .navbar a:hover {
+                                  color: #FF69B4;
+                              }
+                              /* Contenedor de productos */
+                              .container {
+                                  display: flex;
+                                  flex-wrap: wrap;
+                                  /* Permite que los elementos pasen a la siguiente línea si no caben */
+                                  justify-content: center;
+                                  /* Centra las tarjetas horizontalmente */
+                                  padding: 20px;
+                                  margin-top: 20px;
+                                  width: 100%;
+                                  max-width: 1500px;
+                              }
+                              /* Tarjetas de producto */
+                              .product-card {
+                                  background-color: white;
+                                  border: 5px solid rgb(232, 253, 200);
+                                  border-radius: 20px;
+                                  margin-left: 50px;
+                                  margin-right: 50px;
+                                  margin-top: 40px;
+                                  width: 230px;
+                                  /* Tamaño fijo para las tarjetas */
+                                  text-align: center;
+                                  padding-top: 10px;
+                                  padding-bottom: 10px;
+                                  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.404);
+                                  transition: transform 0.2s;
+                              }
+                              .cards {
+                                  width: 1500px;
+                                  display: flex;
+                                  flex-wrap: wrap;
+                                  /* Permite que los elementos pasen a la siguiente línea si no caben */
+                                  justify-content: center;
+                              }
+                              .product-card:hover {
+                                  transform: scale(1.05);
+                              }
+                              .product-card img {
+                                  width: 150px;
+                                  height: 150px;
+                                  border-radius: 15px;
+                                  filter: drop-shadow(.8);
+                              }
+                              .product-card h3 {
+                                  font-size: 23px;
+                                  color: rgba(0, 0, 0, 0.63);
+                                  font-weight: bold;
+                                  margin: 10px 0;
+                              }
+                              .product-card p {
+                                  color: #000000da;
+                                  margin: 5px 0;
+                              }
+                              .product-card button {
+                                  background-color: #e4affd;
+                                  color: white;
+                                  padding: 10px;
+                                  border: none;
+                                  border-radius: 20px;
+                                  cursor: pointer;
+                                  font-size: 16px;
+                                  font-weight: bold;
+                                  transition: background-color 0.3s ease, transform 0.2s;
+                                  box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.2);
+                                  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+                              }
+                              .product-card button:hover {
+                                  background-color: #ff69f8;
+                                  transform: scale(1.05);
+                              }
+                              .search-bar {
+                                  position: relative;
+                                  display: inline-block;
+                                  margin-right: 50px;
+                                  margin-top: 5px;
+                              }
+                              .search-bar input[type="text"] {
+                                  padding: 8px 10px;
+                                  border: 2px solid #dcaff1;
+                                  border-radius: 20px;
+                                  padding-left: 35px;
+                                  margin-left: 40px;
+                                  font-size: 16px;
+                                  color: #d672fd;
+                                  outline: none;
+                                  transition: all 0.3s ease;
+                              }
+                              /* Color del placeholder */
+                              .search-bar input[type="text"]::placeholder {
+                                  color: #f3b9ff;
+                                  opacity: 0.8;
+                                  font-style: italic;
+                              }
+                              /* Icono de búsqueda */
+                              .search-bar i {
+                                  position: absolute;
+                                  left: 10px;
+                                  top: 35%;
+                                  transform: translateY(-50%);
+                                  color: #fafafa;
+                                  font-size: 22px;
+                                  transition: color 0.3s ease;
+                              }
+                              /* Hover efecto kawaii */
+                              .search-bar input[type="text"]:hover {
+                                  background-color: #ffe6fa;
+                                  border-color: #f3b9ff;
+                              }
+                              /* Efecto de foco */
+                              .search-bar input[type="text"]:focus {
+                                  background-color: #ffe6fa;
+                                  border-color: #f3b9ff;
+                                  box-shadow: 0 0 8px #f3b9ff;
+                              }
+                              /* Animación de color al pasar el mouse sobre el icono */
+                              .search-bar i:hover {
+                                  color: #8b32a7;
+                                  border-color: #ffffff;
+                              }
+                              .container-top {
+                                  width: 1200px;
+                                  height: 460px;
+                                  display: flex;
+                                  border-radius: 10px;
+                                  border: 5px rgb(232, 178, 219) solid;
+                              }
+                              .fondof {
+                                  width: 650px;
+                                  height: 450px;
+                              }
+                              .container-left {
+                                  width: 600px;
+                                  height: 450px;
+                                  background-color: rgb(232, 253, 200);
+                                  color: rgb(232, 178, 219);
+                                  padding: 122px;
+                              }
+                              #home {
+                                  position: absolute;
+                                  width: 100%;
+                                  height: 100%;
+                                  padding-left: 100px;
+                                  padding-right: 100px;
+                                  display: flex;
+                                  flex-wrap: wrap;
+                                  padding-top: 20px;
+                                  /* Espacio entre el video y el contenido principal */
+                                  margin-top: 100vh;
+                                  /* Empuja el contenido principal debajo del video */
+                                  /* Permite que los elementos pasen a la siguiente línea si no caben */
+                                  justify-content: center;
+                                  /* Centra las tarjetas horizontalmente */
+                              }
+                              .ttop {
+                                  font-size: 40px;
+                                  color: #c594e3;
+                                  font-weight: bolder;
+                                  margin-top: 30px;
+                                  margin-bottom: 20px;
+                              }
+                              .product-card2 {
+                                  background-color: white;
+                                  border: 5px solid rgb(232, 253, 200);
+                                  border-radius: 20px;
+                                  margin-left: 20px;
+                                  margin-right: 20px;
+                                  margin-top: 40px;
+                                  width: 230px;
+                                  /* Tamaño fijo para las tarjetas */
+                                  text-align: center;
+                                  padding: 10px;
+                                  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.404);
+                                  transition: transform 0.2s;
+                                  color: #8b32a7;
+                              }
+                              .product-card2 img {
+                                  width: 150px;
+                                  height: 150px;
+                                  border-radius: 15px;
+                                  filter: drop-shadow(.8);
+                              }
+                              .container-medium {
+                                  margin-top: 80px;
+                                  width: 1200px;
+                                  height: 480px;
+                                  display: flex;
+                                  border-radius: 10px;
+                                  margin-bottom: 20px;
+                                  padding-left: 50px;
+                                  background-color: #ffffff;
+                              }
+                              .fondop {
+                                  width: 75%;
+                                  height: auto;
+                                  margin-left: 70px;
+                              }
+                              /* Estilos de Promociones */
+                              .promociones {
+                                  text-align: center;
+                                  padding: 10px 0;
+                                  max-width: 1200px;
+                                  margin: 0 auto;
+                                  /* Centrado horizontal */
+                              }
+                              .ttop {
+                                  font-size: 40px;
+                                  color: #c594e3;
+                                  font-weight: bolder;
+                                  margin-top: 30px;
+                                  margin-bottom: 20px;
+                              }
+                              .promocion-circulos {
+                                  display: flex;
+                                  flex-wrap: wrap;
+                                  /* Asegura ajuste en pantallas pequeñas */
+                                  justify-content: center;
+                                  align-items: center;
+                                  gap: 15px;
+                                  margin-top: 20px;
+                              }
+                              .promo-item {
+                                  width: 150px;
+                                  height: 150px;
+                                  border-radius: 50%;
+                                  display: flex;
+                                  flex-direction: column;
+                                  align-items: center;
+                                  justify-content: center;
+                                  color: #00020888;
+                                  background-color: #ffffff;
+                                  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                                  transition: transform 0.3s ease;
+                              }
+                              .promo-item:hover {
+                                  transform: scale(1.05);
+                              }
+                              .promo-item img {
+                                  width: 100%;
+                                  height: auto;
+                                  border-radius: 50%;
+                              }
+                              .promo-item h2 {
+                                  font-size: 16px;
+                                  color: #c594e3;
+                                  margin-top: 10px;
+                                  text-align: center;
+                              }
+                              /* Ajustes responsivos */
+                              @media (max-width: 768px) {
+                                  .promo-item {
+                                      width: 120px;
+                                      height: 120px;
+                                  }
+                                  .ttop {
+                                      font-size: 30px;
+                                  }
+                              }
+                              @media (max-width: 480px) {
+                                  .promo-item {
+                                      width: 100px;
+                                      height: 100px;
+                                  }
+                                  .ttop {
+                                      font-size: 24px;
+                                  }
+                              }
+                              /* Estilos de Slider */
+                              .slider {
+                                  overflow: hidden;
+                                  width: 100%;
+                                  max-width: 1200px;
+                                  /* Máximo ancho centrado */
+                                  margin: 20px auto;
+                                  /* Centrado con margen vertical reducido */
+                                  display: flex;
+                                  justify-content: center;
+                                  align-items: center;
+                                  position: relative;
+                                  background-color: #ffffff;
+                                  border-radius: 10px;
+                                  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                              }
+                              .cards {
+                                  display: flex;
+                                  gap: 10px;
+                                  /* Espacio reducido */
+                                  overflow-x: auto;
+                                  scroll-behavior: smooth;
+                                  padding: 10px;
+                              }
+                              .cards::-webkit-scrollbar {
+                                  display: none;
+                              }
+                              .product-card2 {
+                                  min-width: 150px;
+                                  max-width: 200px;
+                                  background-color: #f7e6fd;
+                                  padding: 10px;
+                                  /* Espacio reducido */
+                                  border-radius: 10px;
+                                  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                                  text-align: center;
+                                  flex-shrink: 0;
+                                  transition: transform 0.3s ease;
+                              }
+                              .product-card2:hover {
+                                  transform: scale(1.05);
+                              }
+                              .product-card2 img {
+                                  width: 100%;
+                                  border-radius: 8px;
+                              }
+                              .product-card2 h3 {
+                                  font-size: 16px;
+                                  margin: 5px 0;
+                                  color: #d672fd;
+                              }
+                              .product-card2 p {
+                                  font-size: 14px;
+                                  color: #777;
+                              }
+                              /* Estilos para el contenedor principal del carrito */
+                              .cart-container {
+                                  max-width: 1500px;
+                                  margin: 30px auto;
+                                  padding: 30px;
+                                  background-color: #fef1ff;
+                                  /* Fondo lila claro */
+                                  border-radius: 10px;
+                                  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+                              }
+                              .cart-container h1 {
+                                  text-align: center;
+                                  color: #a372c2;
+                                  /* Lila pastel */
+                                  font-size: 32px;
+                                  margin-bottom: 20px;
+                              }
+                              /* Estilos para los productos en el carrito */
+                              .cart-item {
+                                  display: flex;
+                                  align-items: center;
+                                  padding: 15px;
+                                  margin-bottom: 10px;
+                                  background-color: #fff;
+                                  border-radius: 10px;
+                                  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                              }
+                              .item-image {
+                                  width: 80px;
+                                  height: 80px;
+                                  border-radius: 10px;
+                                  margin-right: 15px;
+                              }
+                              .item-details h3 {
+                                  font-size: 18px;
+                                  color: #6a5e8d;
+                                  margin: 0;
+                              }
+                              .item-price,
+                              .item-total {
+                                  font-size: 16px;
+                                  color: #6a5e8d;
+                                  font-weight: bold;
+                              }
+                              /* Botones de cantidad */
+                              .item-quantity button {
+                                  background-color: #e2d2fa;
+                                  color: #6a5e8d;
+                                  border: none;
+                                  padding: 5px 10px;
+                                  border-radius: 5px;
+                                  cursor: pointer;
+                                  font-size: 14px;
+                              }
+                              .item-quantity button:hover {
+                                  background-color: #d1baf4;
+                              }
+                              .quantity-input {
+                                  width: 40px;
+                                  text-align: center;
+                                  margin: 0 5px;
+                              }
+                              /* Botón de eliminar */
+                              .remove-item {
+                                  background-color: #ff9aa2;
+                                  color: white;
+                                  border: none;
+                                  padding: 5px 10px;
+                                  border-radius: 5px;
+                                  cursor: pointer;
+                                  font-size: 14px;
+                                  margin-left: auto;
+                              }
+                              .remove-item:hover {
+                                  background-color: #ff758f;
+                              }
+                              /* Estilos para el resumen del carrito */
+                              .cart-summary {
+                                  text-align: center;
+                                  background-color: #faf1f9;
+                                  padding: 20px;
+                                  border-radius: 10px;
+                                  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                                  margin-top: 20px;
+                              }
+                              .cart-summary p {
+                                  font-size: 18px;
+                                  color: #6a5e8d;
+                                  margin: 5px 0;
+                              }
+                              .checkout-btn {
+                                  background-color: #c5a6e8;
+                                  color: white;
+                                  padding: 10px 20px;
+                                  border: none;
+                                  border-radius: 20px;
+                                  cursor: pointer;
+                                  font-size: 16px;
+                                  font-weight: bold;
+                                  transition: background-color 0.3s ease, transform 0.2s;
+                                  box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.2);
+                                  margin-top: 15px;
+                              }
+                              .checkout-btn:hover {
+                                  background-color: #a585d4;
+                                  transform: scale(1.05);
+                              }
+                              /* Estilos para el slider de productos */
+                              .slider {
+                                  overflow: hidden;
+                                  width: 100%;
+                                  max-width: 1200px;
+                                  margin: 20px auto;
+                                  display: flex;
+                                  justify-content: center;
+                                  align-items: center;
+                                  background-color: #ffffff;
+                                  border-radius: 10px;
+                                  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                              }
+                              .cards {
+                                  display: flex;
+                                  gap: 10px;
+                                  overflow-x: auto;
+                                  scroll-behavior: smooth;
+                                  padding: 10px;
+                              }
+                              .product-card2 {
+                                  min-width: 150px;
+                                  max-width: 200px;
+                                  background-color: #f7e6fd;
+                                  padding: 10px;
+                                  border-radius: 10px;
+                                  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                                  text-align: center;
+                                  flex-shrink: 0;
+                                  transition: transform 0.3s ease;
+                              }
+                              .product-card2:hover {
+                                  transform: scale(1.05);
+                              }
+                              .product-card2 img {
+                                  width: 100%;
+                                  border-radius: 8px;
+                              }
+                              .product-card2 h3 {
+                                  font-size: 16px;
+                                  margin: 5px 0;
+                                  color: #d672fd;
+                              }
+                              .product-card2 p {
+                                  font-size: 14px;
+                                  color: #777;
+                              }
+                              /*-----------------------------------------------*/
+                              /*Mensaje de carrito vacio*/
+                              #empty-cart-message {
+                                  text-align: center;
+                                  padding: 25px;
+                                  background: linear-gradient(135deg, #f9e7eb, #efd8ef, #d6ddf6);
+                                  /* Fondo en rosa, morado y azul pastel */
+                                  border-radius: 20px;
+                                  margin-top: 25px;
+                                  font-family: 'Poppins', sans-serif;
+                                  /* Fuente moderna y estética */
+                                  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+                                  /* Sombra suave */
+                                  max-width: 600px;
+                                  margin: 20px auto;
+                                  transition: all 0.3s ease;
+                              }
+                              #empty-cart-message p {
+                                  font-size: 2em;
+                                  /* Tamaño grande */
+                                  color: #6B5B95;
+                                  /* Morado pastel para el texto */
+                                  margin: 0;
+                                  letter-spacing: 1px;
+                              }
+                              #empty-cart-message a {
+                                  font-size: 1.2em;
+                                  color: #FFB7C5;
+                                  /* Rosa pastel para el enlace */
+                                  text-decoration: none;
+                                  font-weight: 600;
+                                  transition: color 0.3s ease;
+                              }
+                              #empty-cart-message a:hover {
+                                  color: #A5D8D6;
+                                  /* Azul pastel al pasar el cursor */
+                              }
+                              #empty-cart-message:hover {
+                                  transform: scale(1.02);
+                                  /* Ligero efecto de agrandado al pasar el cursor */
+                                  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+                                  /* Sombra más destacada */
+                              }
+                              /* Contenedor principal */
+                              /* Contenedor principal */
+                              .container-pago {
+                                  width: 90%;
+                                  max-width: 600px;
+                                  margin: 40px auto;
+                                  background-color: #fff;
+                                  padding: 20px;
+                                  border-radius: 15px;
+                                  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                              }
+                              /* Título de la sección */
+                              .titulo-pago {
+                                  text-align: center;
+                                  color: #a85b9f;
+                                  font-size: 24px;
+                                  margin-bottom: 20px;
+                              }
+                              /* Resumen de la compra */
+                              .resumen-pago {
+                                  background-color: #f9f2f8;
+                                  padding: 20px;
+                                  border-radius: 8px;
+                                  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                                  margin-bottom: 20px;
+                              }
+                              .resumen-pago h3 {
+                                  font-size: 20px;
+                                  color: #6a3ea7;
+                                  margin-bottom: 15px;
+                              }
+                              .resumen-pago ul {
+                                  list-style: none;
+                                  padding: 0;
+                              }
+                              .resumen-pago li {
+                                  display: flex;
+                                  justify-content: space-between;
+                                  padding: 8px 0;
+                                  border-bottom: 1px solid #e6d9e3;
+                                  font-size: 16px;
+                                  color: #333;
+                              }
+                              .resumen-pago li:last-child {
+                                  border-bottom: none;
+                              }
+                              .resumen-pago p {
+                                  font-size: 18px;
+                                  font-weight: bold;
+                                  color: #d94f9f;
+                                  text-align: right;
+                                  margin-top: 15px;
+                              }
+                              /* Métodos de pago */
+                              .metodo-pago {
+                                  background-color: #fed6fe;
+                                  padding: 15px;
+                                  border-radius: 10px;
+                                  box-shadow: 0 4px 8px rgba(88, 10, 112, 0.2);
+                                  margin-bottom: 20px;
+                              }
+                              .metodo-pago h3 {
+                                  font-size: 20px;
+                                  color: #a85b9f;
+                                  margin-bottom: 10px;
+                              }
+                              .pago-tarjeta,
+                              .pago-paypal {
+                                  margin-bottom: 20px;
+                              }
+                              .pago-tarjeta label,
+                              .pago-paypal p {
+                                  font-size: 16px;
+                                  margin-bottom: 8px;
+                              }
+                              .pago-tarjeta input,
+                              .pago-paypal input {
+                                  width: 100%;
+                                  padding: 12px;
+                                  border: 1px solid #e3aaff;
+                                  border-radius: 8px;
+                                  font-size: 16px;
+                                  margin-bottom: 10px;
+                                  background-color: #fef2ff;
+                              }
+                              .pago-tarjeta input:focus,
+                              .pago-paypal input:focus {
+                                  outline: none;
+                                  border-color: #f35c8f;
+                              }
+                              /* Botón de pago */
+                              .boton-pago {
+                                  background-color: #f35c8f;
+                                  color: white;
+                                  border: none;
+                                  padding: 14px 30px;
+                                  border-radius: 10px;
+                                  font-size: 18px;
+                                  width: 100%;
+                                  cursor: pointer;
+                                  transition: background-color 0.3s ease;
+                                  margin-top: 20px;
+                              }
+                              .boton-pago:hover {
+                                  background-color: #e31d6e;
+                              }
+                              /* Spinner de carga (inicialmente oculto) */
+                              .spinner {
+                                  display: none;
+                                  position: fixed;
+                                  top: 50%;
+                                  left: 50%;
+                                  transform: translate(-50%, -50%);
+                                  border: 8px solid #f3f3f3;
+                                  border-top: 8px solid #a85b9f;
+                                  border-radius: 50%;
+                                  width: 50px;
+                                  height: 50px;
+                                  animation: spin 2s linear infinite;
+                              }
+                              @keyframes spin {
+                                  0% {
+                                      transform: rotate(0deg);
+                                  }
+                                  100% {
+                                      transform: rotate(360deg);
+                                  }
+                              }
+                              /* Ventana emergente (modal) */
+                              .modal {
+                                  display: none;
+                                  position: fixed;
+                                  z-index: 1;
+                                  left: 0;
+                                  top: 0;
+                                  width: 100%;
+                                  height: 100%;
+                                  overflow: auto;
+                                  background-color: rgba(0, 0, 0, 0.4);
+                                  padding-top: 60px;
+                              }
+                              .modal-content {
+                                  background-color: #fefefe;
+                                  margin: 5% auto;
+                                  padding: 20px;
+                                  border: 1px solid #888;
+                                  width: 80%;
+                                  max-width: 400px;
+                                  text-align: center;
+                              }
+                              .close {
+                                  color: #aaa;
+                                  font-size: 28px;
+                                  font-weight: bold;
+                                  position: absolute;
+                                  top: 5px;
+                                  right: 15px;
+                              }
+                              .close:hover,
+                              .close:focus {
+                                  color: black;
+                                  text-decoration: none;
+                                  cursor: pointer;
+                              }
+                              /* Estilo de éxito y error */
+                              .pago-exitoso {
+                                  color: green;
+                                  font-size: 20px;
+                                  font-weight: bold;
+                              }
+                              .error-pago {
+                                  color: red;
+                                  font-size: 16px;
+                              }
+                              /* Ajustes para pantallas pequeñas */
+                              @media screen and (max-width: 768px) {
+                                  .resumen-pago {
+                                      padding: 15px;
+                                      font-size: 14px;
+                                  }
+                                  .resumen-pago h3 {
+                                      font-size: 18px;
+                                  }
+                                  .resumen-pago p {
+                                      font-size: 16px;
+                                  }
+                                  .boton-pago {
+                                      font-size: 16px;
+                                      padding: 12px;
+                                  }
+                              }
+                              /*----------------------------------------------------------------*/
+                              /* Estilos para el registro
 >>>>>>> Stashed changes
                               /* Estilo general de la página */
-                          
-                          body.login-page2 {
-                              display: flex;
-                              justify-content: center;
-                              align-items: center;
-                              min-height: 100vh;
-                              background-image: url("imagenes/fondoreg.jpg");
-                              background-size: cover;
-                              background-position: center;
-                              font-family: Arial, sans-serif;
-                              margin: 0;
-                              padding: 10px;
-                          }
-                          
-                          .login-wrapper2 {
-                              display: flex;
-                              flex-direction: column;
-                              max-width: 1000px;
-                              background-color: #d5c5fa8f;
-                              border-radius: 20px;
-                              box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.726);
-                              padding: 40px;
-                              position: relative;
-                              text-align: center;
-                              border: 5px rgb(255, 255, 255) solid;
-                          }
-                          
-                          .login-container2 h2 {
-                              font-size: 45px;
-                              font-weight: bold;
-                              color: #ffffff;
-                              margin-bottom: 15px;
-                              text-shadow: 1px 1px 2px rgb(64, 7, 87);
-                          }
-                          
-                          .login-container2 p {
-                              color: #793f90;
-                              font-size: 23px;
-                              margin-bottom: 30px;
-                          }
-                          /* Estilo de la imagen del logo */
-                          
-                          .login-image2 {
-                              position: absolute;
-                              top: 10px;
-                              right: 10px;
-                              width: 80px;
-                              height: auto;
-                          }
-                          
-                          .input-row {
-                              display: flex;
-                              gap: 15px;
-                              margin-bottom: 20px;
-                          }
-                          /* Campo de entrada individual */
-                          
-                          .input-group2 {
-                              flex: 1;
-                              display: flex;
-                              flex-direction: column;
-                              position: relative;
-                          }
-                          
-                          .input-group2 label {
-                              font-size: 0.85em;
-                              color: #8e44ad;
-                              margin-bottom: 5px;
-                          }
-                          
-                          .input-icon2 {
-                              position: relative;
-                              display: flex;
-                              align-items: center;
-                          }
-                          
-                          .input-icon2 i {
-                              position: absolute;
-                              left: 10px;
-                              color: #9b59b6;
-                              font-size: 1em;
-                          }
-                          
-                          .input-icon2 input {
-                              padding: 10px 10px 10px 35px;
-                              border: 1px solid #dcdcdc;
-                              border-radius: 8px;
-                              width: 100%;
-                              font-size: 20px;
-                              outline: none;
-                              transition: border-color 0.3s;
-                          }
-                          
-                          .input-icon2 input:focus {
-                              border-color: #9b59b6;
-                          }
-                          /* Botón de registro */
-                          
-                          .btn2 {
-                              background-color: #c166b3;
-                              color: white;
-                              padding: 12px;
-                              border: none;
-                              border-radius: 10px;
-                              width: 100%;
-                              font-size: 1em;
-                              cursor: pointer;
-                              transition: background-color 0.3s, transform 0.2s;
-                              margin-top: 10px;
-                          }
-                          
-                          .btn2:hover {
-                              background-color: #8e44ad;
-                              transform: scale(1.05);
-                          }
-                          
-                          .forgot-password2 {
-                              margin-top: 20px;
-                              font-size: 22px;
-                              color: #0c0a0da4;
-                          }
-                          
-                          .forgot-password2 a {
-                              color: #0e0b1062;
-                              text-decoration: none;
-                              font-weight: bold;
-                              transition: color 0.3s;
-                          }
-                          
-                          .forgot-password2 a:hover {
-                              color: #ad448d;
-                          }
-                          /*estilos de la pagina dirección */
-                          /* Contenedor de Dirección */
-                          
-                          .container-direccion {
-                              width: 90%;
-                              max-width: 600px;
-                              margin: 40px auto;
-                              background-color: #fdf2f9;
-                              padding: 20px;
-                              border-radius: 15px;
-                              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-                          }
-                          /* Título de Dirección */
-                          
-                          .titulo-direccion {
-                              font-size: 24px;
-                              font-weight: bold;
-                              color: #a54caf;
-                              text-align: center;
-                              margin-bottom: 20px;
-                          }
-                          /* Estilo de las filas de entrada de dirección */
-                          
-                          .direccion-row {
-                              margin-bottom: 15px;
-                              display: flex;
-                              flex-direction: column;
-                          }
-                          /* Etiquetas de los campos */
-                          
-                          .direccion-row label {
-                              font-size: 16px;
-                              color: #666;
-                              margin-bottom: 5px;
-                          }
-                          /* Campos de entrada de texto */
-                          
-                          .direccion-row input,
-                          .direccion-row select {
-                              padding: 10px;
-                              font-size: 16px;
-                              border-radius: 5px;
-                              border: 1px solid #ddd;
-                              width: 100%;
-                              box-sizing: border-box;
-                          }
-                          /* Botón para enviar dirección */
-                          
-                          .btn-direccion-enviar {
-                              width: 100%;
-                              padding: 12px;
-                              font-size: 16px;
-                              font-weight: bold;
-                              color: white;
-                              background-color: #a54caf;
-                              border: none;
-                              border-radius: 5px;
-                              cursor: pointer;
-                              transition: background-color 0.3s ease;
-                              text-align: center;
-                              margin-top: 15px;
-                          }
-                          
-                          .btn-direccion-enviar:hover {
-                            
-                                background-color: #45a049;
-                            }
+                              body.login-page2 {
+                                  display: flex;
+                                  justify-content: center;
+                                  align-items: center;
+                                  min-height: 100vh;
+                                  background-image: url("imagenes/fondoreg.jpg");
+                                  background-size: cover;
+                                  background-position: center;
+                                  font-family: Arial, sans-serif;
+                                  margin: 0;
+                                  padding: 10px;
+                              }
+                              .login-wrapper2 {
+                                  display: flex;
+                                  flex-direction: column;
+                                  max-width: 1000px;
+                                  background-color: #d5c5fa8f;
+                                  border-radius: 20px;
+                                  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.726);
+                                  padding: 40px;
+                                  position: relative;
+                                  text-align: center;
+                                  border: 5px rgb(255, 255, 255) solid;
+                              }
+                              .login-container2 h2 {
+                                  font-size: 45px;
+                                  font-weight: bold;
+                                  color: #ffffff;
+                                  margin-bottom: 15px;
+                                  text-shadow: 1px 1px 2px rgb(64, 7, 87);
+                              }
+                              .login-container2 p {
+                                  color: #793f90;
+                                  font-size: 23px;
+                                  margin-bottom: 30px;
+                              }
+                              /* Estilo de la imagen del logo */
+                              .login-image2 {
+                                  position: absolute;
+                                  top: 10px;
+                                  right: 10px;
+                                  width: 80px;
+                                  height: auto;
+                              }
+                              .input-row {
+                                  display: flex;
+                                  gap: 15px;
+                                  margin-bottom: 20px;
+                              }
+                              /* Campo de entrada individual */
+                              .input-group2 {
+                                  flex: 1;
+                                  display: flex;
+                                  flex-direction: column;
+                                  position: relative;
+                              }
+                              .input-group2 label {
+                                  font-size: 0.85em;
+                                  color: #8e44ad;
+                                  margin-bottom: 5px;
+                              }
+                              .input-icon2 {
+                                  position: relative;
+                                  display: flex;
+                                  align-items: center;
+                              }
+                              .input-icon2 i {
+                                  position: absolute;
+                                  left: 10px;
+                                  color: #9b59b6;
+                                  font-size: 1em;
+                              }
+                              .input-icon2 input {
+                                  padding: 10px 10px 10px 35px;
+                                  border: 1px solid #dcdcdc;
+                                  border-radius: 8px;
+                                  width: 100%;
+                                  font-size: 20px;
+                                  outline: none;
+                                  transition: border-color 0.3s;
+                              }
+                              .input-icon2 input:focus {
+                                  border-color: #9b59b6;
+                              }
+                              /* Botón de registro */
+                              .btn2 {
+                                  background-color: #c166b3;
+                                  color: white;
+                                  padding: 12px;
+                                  border: none;
+                                  border-radius: 10px;
+                                  width: 100%;
+                                  font-size: 1em;
+                                  cursor: pointer;
+                                  transition: background-color 0.3s, transform 0.2s;
+                                  margin-top: 10px;
+                              }
+                              .btn2:hover {
+                                  background-color: #8e44ad;
+                                  transform: scale(1.05);
+                              }
+                              .forgot-password2 {
+                                  margin-top: 20px;
+                                  font-size: 22px;
+                                  color: #0c0a0da4;
+                              }
+                              .forgot-password2 a {
+                                  color: #0e0b1062;
+                                  text-decoration: none;
+                                  font-weight: bold;
+                                  transition: color 0.3s;
+                              }
+                              .forgot-password2 a:hover {
+                                  color: #ad448d;
+                              }
+                              /*estilos de la pagina dirección */
+                              /* Contenedor de Dirección */
+                              .container-direccion {
+                                  width: 90%;
+                                  max-width: 600px;
+                                  margin: 40px auto;
+                                  background-color: #fdf2f9;
+                                  padding: 20px;
+                                  border-radius: 15px;
+                                  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                              }
+                              /* Título de Dirección */
+                              .titulo-direccion {
+                                  font-size: 24px;
+                                  font-weight: bold;
+                                  color: #a54caf;
+                                  text-align: center;
+                                  margin-bottom: 20px;
+                              }
+                              /* Estilo de las filas de entrada de dirección */
+                              .direccion-row {
+                                  margin-bottom: 15px;
+                                  display: flex;
+                                  flex-direction: column;
+                              }
+                              /* Etiquetas de los campos */
+                              .direccion-row label {
+                                  font-size: 16px;
+                                  color: #666;
+                                  margin-bottom: 5px;
+                              }
+                              /* Campos de entrada de texto */
+                              .direccion-row input,
+                              .direccion-row select {
+                                  padding: 10px;
+                                  font-size: 16px;
+                                  border-radius: 5px;
+                                  border: 1px solid #ddd;
+                                  width: 100%;
+                                  box-sizing: border-box;
+                              }
+                              /* Botón para enviar dirección */
+                              .btn-direccion-enviar {
+                                  width: 100%;
+                                  padding: 12px;
+                                  font-size: 16px;
+                                  font-weight: bold;
+                                  color: white;
+                                  background-color: #a54caf;
+                                  border: none;
+                                  border-radius: 5px;
+                                  cursor: pointer;
+                                  transition: background-color 0.3s ease;
+                                  text-align: center;
+                                  margin-top: 15px;
+                              }
+                              .btn-direccion-enviar:hover {
+                                  background-color: #45a049;
+                              }
                           }
