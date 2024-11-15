@@ -51,6 +51,18 @@
         align-items: center;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     }
+    /* Botón de salir */
+    
+    .btn-salir {
+        background-color: #f44336;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        font-size: 14px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+    }
     
     .header .top-bar .admin-tools a {
         text-decoration: none;
@@ -290,6 +302,50 @@
     
     #header-admin {
         background-color: #b099d0;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    /* Estilos básicos del header */
+    /* Contenedor de los botones en la barra superior */
+    
+    .top-bar {
+        display: flex;
+        gap: 10px;
+    }
+    /* Botón de agregar */
+    
+    .btn-agregar {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        font-size: 14px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+    }
+    /* Botón de salir */
+    
+    .btn-salir {
+        background-color: #f44336;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        font-size: 14px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+    }
+    /* Efecto hover para los botones */
+    
+    .btn-agregar:hover {
+        background-color: #45a049;
+    }
+    
+    .btn-salir:hover {
+        background-color: #d32f2f;
     }
     
     .tabla-productos {

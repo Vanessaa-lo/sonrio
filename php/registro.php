@@ -1,4 +1,53 @@
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
+// Iniciar sesión
+session_start();
+
+// Conexión a la base de datos
+include("db.php");
+
+$mensaje = '';  // Variable para almacenar el mensaje de notificación
+$registroExitoso = false; // Variable para determinar si el registro fue exitoso
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Obtener los datos del formulario
+    $nombre = $_POST['nombre'];
+    $correo = $_POST['correo'];
+    $cp = $_POST['cp'];
+    $estado = $_POST['estado'];
+    $contraseña = $_POST['contraseña'];
+    
+    // Encriptar la contraseña
+    $contraseña_hashed = password_hash($contraseña, PASSWORD_DEFAULT);
+
+    // Guardar el código postal en la columna direccion
+    $direccion = $cp;
+
+    // Preparar la consulta
+    $consulta = "INSERT INTO usuarios (nombre, email, contraseña, direccion, estado) 
+                 VALUES (?, ?, ?, ?, ?)";
+    $stmt = $conexion->prepare($consulta);
+
+    if ($stmt === false) {
+        die("Error en la preparación de la consulta: " . $conexion->error);
+    }
+
+    // Usar el estado ingresado por el usuario en lugar de un valor fijo
+    $stmt->bind_param("sssss", $nombre, $correo, $contraseña_hashed, $direccion, $estado);
+    
+    if ($stmt->execute()) {
+        $mensaje = "Registro Exitoso: El usuario ha sido registrado exitosamente.";
+        $registroExitoso = true;
+    } else {
+        $mensaje = "Error: Hubo un problema al registrar el usuario.";
+    }
+
+    $stmt->close();
+}
+$conexion->close();
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -16,8 +65,7 @@
             <h2>Regístrate</h2>
             <p>Por favor, ingresa tus datos</p>
 
-            <form action="procesar_registro.php" method="POST">
-
+            <form action="" method="POST">
                 <div class="input-row">
                     <div class="input-group2">
                         <label for="nombre">Nombre:</label>
@@ -44,7 +92,6 @@
                     </div>
                 </div>
 
-              
                     <div class="input-group2">
                         <label for="estado">Estado:</label>
                         <div class="input-icon2">
@@ -60,15 +107,11 @@
                     </div>  
             </div>
 
-
-
-               
-                    <div class="input-group2">
-                        <label for="contraseña">Contraseña:</label>
-                        <div class="input-icon2">
-                            <i class="fas fa-lock"></i>
-                            <input type="password" id="contraseña" name="contraseña" required>
-                        </div>
+                <div class="input-group2">
+                    <label for="contraseña">Contraseña:</label>
+                    <div class="input-icon2">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="contraseña" name="contraseña" required>
                     </div>
                 </div>
 
@@ -80,5 +123,21 @@
             </form>
         </div>
     </div>
+
+    <?php if (!empty($mensaje)) : ?>
+    <script>
+        Swal.fire({
+            icon: '<?php echo $registroExitoso ? "success" : "error"; ?>',
+            title: '<?php echo $registroExitoso ? "Registro Exitoso" : "Error"; ?>',
+            text: '<?php echo $mensaje; ?>',
+            confirmButtonText: 'Aceptar'
+        }).then((result) => {
+            <?php if ($registroExitoso) : ?>
+                window.location.href = 'login.php';
+            <?php endif; ?>
+        });
+    </script>
+    <?php endif; ?>
+
 </body>
 </html>

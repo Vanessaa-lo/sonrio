@@ -66,8 +66,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['nombre']) && isset($_P
 <header class="header" id="header-admin">
     <div class="top-bar">
         <button class="btn-agregar" onclick="abrirPopUp()">Agregar Nuevo Producto</button>
+        <button class="btn-salir" onclick="window.location.href='admin.php'">Salir</button>
     </div>
 </header>
+
 
 <div class="container">
     <h1>Productos Disponibles</h1>
