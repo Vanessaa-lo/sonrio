@@ -8,6 +8,23 @@ $totalCarrito = 0;
 // Variable para los errores
 $errores = [];
 
+// Conexión a la base de datos
+$conexion = new mysqli("localhost", "root", "", "sonrio");
+if ($conexion->connect_error) {
+    die("Conexión fallida: " . $conexion->connect_error);
+}
+
+// Inicializar el carrito en la sesión si no existe
+if (!isset($_SESSION['carrito'])) {
+    $_SESSION['carrito'] = [];
+}
+// Verificar si el carrito tiene productos
+$carrito = isset($_SESSION['carrito']) ? $_SESSION['carrito'] : [];
+$totalCarrito = 0;
+
+// Variable para los errores
+$errores = [];
+
 // Procesar pago si es un formulario POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombreTitular = trim($_POST['nombre-titular']);
@@ -15,43 +32,143 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $tarjetaExpiracion = $_POST['tarjeta-expiracion'];
     $tarjetaCvc = $_POST['tarjeta-cvc'];
 
+    // Validaciones
     if (empty($nombreTitular) || !preg_match("/^[a-zA-Z\s]+$/", $nombreTitular)) {
         $errores[] = "Nombre del titular inválido.";
     }
-
     if (strlen($tarjetaNumero) !== 16 || !ctype_digit($tarjetaNumero)) {
         $errores[] = "Número de tarjeta inválido.";
     }
-
     if (!preg_match("/^\d{2}\/\d{2}$/", $tarjetaExpiracion)) {
         $errores[] = "Fecha de expiración inválida.";
     }
-
     if (strlen($tarjetaCvc) < 3 || strlen($tarjetaCvc) > 4 || !ctype_digit($tarjetaCvc)) {
         $errores[] = "CVC inválido.";
     }
 
     if (empty($errores)) {
-        $_SESSION['carrito'] = []; // Limpiar el carrito
-        $_SESSION['totalCarrito'] = $totalCarrito; // Guardamos el total en la sesión
-        $pagoExitoso = true; // Indicador de pago exitoso
+        // Comprobar si hay productos en el carrito
+        if (empty($carrito)) {
+            // Si no hay productos en el carrito, mostrar mensaje y detener la ejecución
+            die("No hay productos en el carrito. No se puede realizar el pedido.");
+        }
+    
+        // Calcular el total del carrito
+        $totalCarrito = 0;
+        foreach ($carrito as $producto) {
+            $totalCarrito += $producto['precio'] * $producto['cantidad'];
+        }
+    
+        // Verificar si agregar $5 de envío (solo si hay productos)
+        $envio = 0;
+        if (!empty($carrito)) {
+            $envio = 5; // Agregar $5 de envío si hay productos
+        }
+    
+        $totalCarrito += $envio; // Agregar costo de envío al total
+    
+        // Insertar el pedido en la tabla 'pedidos'
+        $sqlPedido = "INSERT INTO pedidos (usuario_id, carrito_id, total, estado) 
+                      VALUES (?, ?, ?, ?)";
+        $stmt = $conexion->prepare($sqlPedido);
+    
+        // Verificar si la preparación de la consulta fue exitosa
+        if (!$stmt) {
+            die("Error en la preparación de la consulta para el pedido: " . $conexion->error);
+        }
+    
+        // Asumimos que el valor para 'usuario_id' y 'carrito_id' ya está disponible, si no, usa NULL
+        $usuarioId = null;  // O el valor real si tienes el ID del usuario
+        $carritoId = null;  // O el valor real si tienes el ID del carrito
+        $estado = 'pendiente'; // Asumimos que el estado inicial es 'pendiente'
+    
+        $stmt->bind_param('iids', $usuarioId, $carritoId, $totalCarrito, $estado);
+    
+        // Ejecutar la consulta
+        $stmt->execute();
+        $pedidoId = $conexion->insert_id;  // Obtener el ID del pedido recién insertado
+    
+        // Verificar si se obtuvo un pedido ID válido
+        if (!$pedidoId) {
+            die("Error al obtener el ID del pedido");
+        }
+    
+        // Insertar detalles del pedido en la tabla 'pedido_detalles'
+        $sqlDetalles = "INSERT INTO pedido_detalles (pedido_id, producto_id, cantidad, precio_unitario) 
+                        VALUES (?, ?, ?, ?)";
+        $stmtDetalles = $conexion->prepare($sqlDetalles);
+    
+        // Verificar si la preparación de la consulta para los detalles fue exitosa
+        if (!$stmtDetalles) {
+            die("Error en la preparación de la consulta para los detalles: " . $conexion->error);
+        }
+    
+        // Recorrer los productos del carrito para insertar los detalles
+        foreach ($carrito as $producto) {
+            // Verificar que el producto tenga los valores correctos
+            if (isset($producto['id'], $producto['cantidad'], $producto['precio'])) {
+                // Insertar cada producto en 'pedido_detalles'
+                $stmtDetalles->bind_param('iiid', $pedidoId, $producto['id'], $producto['cantidad'], $producto['precio']);
+                $stmtDetalles->execute();
+            } else {
+                // Si el producto no tiene los valores correctos, mostrar un error (opcional)
+                echo "Error: Producto incompleto";
+            }
+        }
+    
+        // Verificar si la inserción de detalles fue exitosa
+        if ($stmtDetalles->affected_rows <= 0) {
+            die("Error al insertar los detalles del pedido");
+        }
+    
+        // Si hay productos en el carrito, insertar el pago
+        if (!empty($carrito)) {
+            // Ahora insertar el pago en la tabla 'pagos'
+            $sqlPago = "INSERT INTO pagos (pedido_id, monto, metodo) 
+                        VALUES (?, ?, ?)";
+            $stmtPago = $conexion->prepare($sqlPago);
+    
+            // Verificar si la preparación de la consulta para el pago fue exitosa
+            if (!$stmtPago) {
+                die("Error en la preparación de la consulta para el pago: " . $conexion->error);
+            }
+    
+            // Asumimos que el monto es el total del pedido y el método de pago es 'tarjeta'
+            $montoPago = $totalCarrito;  // El monto final, incluyendo los $5 de envío
+            $metodoPago = 'tarjeta';  // Método de pago fijo (puedes cambiarlo si es necesario)
+    
+            $stmtPago->bind_param('ids', $pedidoId, $montoPago, $metodoPago);
+            $stmtPago->execute();
+    
+            // Verificar si la inserción del pago fue exitosa
+            if ($stmtPago->affected_rows <= 0) {
+                die("Error al insertar el pago");
+            }
+        }
+    
+        // Confirmar que el pedido fue realizado con éxito
+        echo "Pedido realizado exitosamente, ID de pedido: " . $pedidoId;
+
+        // Limpiar el carrito y mostrar mensaje de éxito
+        $_SESSION['carrito'] = [];  // Vaciar el carrito de la sesión
+        $carrito = [];  // Limpiar el carrito en la variable actual
+        $totalCarrito = 0;  // Reiniciar el total del carrito a 0
+        $pagoExitoso = true;  // Indicar que el pago fue exitoso
     } else {
+        // Si no se puede realizar el pago, establecer que el pago no fue exitoso
         $pagoExitoso = false;
     }
 }
-// Si el pago es exitoso, limpiamos el carrito
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && empty($errores)) {
-    $_SESSION['carrito'] = []; // Limpiar el carrito
-    $carrito = []; // Limpiar el carrito en la variable para que no se muestre
-}
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrito de Compras | Tienda Sonrio</title>
+    <title>Pago | Tienda Sonrio</title>
     <link href="../../estilo/estilos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- Agregar SweetAlert2 -->
