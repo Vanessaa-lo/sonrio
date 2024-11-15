@@ -23,7 +23,25 @@
         <a href="carrito.php"><i class="fas fa-shopping-cart"></i> Carrito</a>
     </div>
 </div>
+    <!-- Video fondo -->
+    <section id="inicio">
+ 	<div class="hero">
 
+ 	<video muted="" autoplay="" loop="" plays-inline="" class="back-video">
+ 		<source src="../../estilo/imagenes/sonriohome.mp4" type="video/mp4">
+ 	</video>
+ 	<!--Texto principal -->
+    <div class="content">
+    	<h1>Sonrio</h1>
+    	<h2>¡Lleva la magia de Sonrio contigo!</h2>
+ 	</div>
+ 	</div>
+
+ 	</section>
+
+     <!-- Main Content -->
+    <div class="main-content">
+    <!-- Main Content -->
 <div class="container" id="home">
     <div class="container-top">
         <img src="../../estilo/imagenes/fondof.webp" alt="Imagenes" class="fondof" />
