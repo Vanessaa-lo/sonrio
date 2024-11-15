@@ -1,5 +1,41 @@
 <?php
 session_start();
+
+// Conexión a la base de datos
+$conexion = new mysqli("localhost", "root", "", "sonrio");
+if ($conexion->connect_error) {
+    die("Conexión fallida: " . $conexion->connect_error);
+}
+
+// Obtener la lista de estados únicos desde la base de datos
+$estados = [];
+$query = "SELECT DISTINCT estado FROM ubicaciones ORDER BY estado ASC";
+$result = $conexion->query($query);
+
+if ($result) {
+    while ($row = $result->fetch_assoc()) {
+        $estados[] = $row['estado'];
+    }
+}
+
+// Procesar solicitud AJAX si se envía un código postal
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['codigo_postal'])) {
+    $codigo_postal = $_POST['codigo_postal'];
+
+    $stmt = $conexion->prepare("SELECT colonia, ciudad, estado FROM ubicaciones WHERE codigo_postal = ?");
+    $stmt->bind_param("s", $codigo_postal);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $ubicaciones = [];
+    while ($row = $result->fetch_assoc()) {
+        $ubicaciones[] = $row;
+    }
+
+    // Devuelve los resultados como JSON
+    echo json_encode($ubicaciones);
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -8,7 +44,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dirección de Envío | Tienda Sonrio</title>
-    <link href="../../estilo/estilos.css" rel="stylesheet">
+    <link href="../../estilo/admin.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
@@ -28,7 +64,11 @@ session_start();
     <!-- Contenedor de Dirección -->
     <div class="container-direccion">
         <h2 class="titulo-direccion">Introduce tu Dirección de Envío</h2>
-        <form action="procesar_direccion.php" method="POST" class="form-direccion">
+        <form action="mi_direccion.php" method="POST" class="form-direccion">
+            <div class="direccion-row">
+                <label for="codigo-postal">Código Postal:</label>
+                <input type="text" id="codigo-postal" name="codigo_postal" placeholder="Ej. 44100" required>
+            </div>
             <div class="direccion-row">
                 <label for="calle">Calle:</label>
                 <input type="text" id="calle" name="calle" placeholder="Ej. Av. Juárez" required>
@@ -49,19 +89,49 @@ session_start();
                 <label for="estado">Estado:</label>
                 <select id="estado" name="estado" required>
                     <option value="" disabled selected>Selecciona tu estado</option>
-                    <option value="Jalisco">Jalisco</option>
-                    <option value="Ciudad de México">Ciudad de México</option>
-                    <option value="Nuevo León">Nuevo León</option>
-                    <!-- Agregar más opciones si es necesario -->
+                    <?php foreach ($estados as $estado): ?>
+                        <option value="<?= htmlspecialchars($estado) ?>"><?= htmlspecialchars($estado) ?></option>
+                    <?php endforeach; ?>
                 </select>
-            </div>
-            <div class="direccion-row">
-                <label for="codigo-postal">Código Postal:</label>
-                <input type="text" id="codigo-postal" name="codigo_postal" placeholder="Ej. 44100" required>
             </div>
             <button type="submit" class="btn-direccion-enviar">Guardar Dirección</button>
         </form>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const codigoPostalInput = document.getElementById("codigo-postal");
+
+            codigoPostalInput.addEventListener("blur", function () {
+                const codigoPostal = this.value;
+
+                if (codigoPostal) {
+                    fetch(window.location.href, { // Hacer la solicitud a la misma página
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: 'codigo_postal=' + encodeURIComponent(codigoPostal),
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.length > 0) {
+                            // Rellenar los campos con la primera coincidencia
+                            document.getElementById("colonia").value = data[0].colonia;
+                            document.getElementById("ciudad").value = data[0].ciudad;
+                            document.getElementById("estado").value = data[0].estado;
+                        } else {
+                            Swal.fire('Lo sentimos...', 'Aún no tenemos envios para esta zona', 'warning');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        Swal.fire('Error', 'Ocurrió un problema al buscar las ubicaciones.', 'error');
+                    });
+                }
+            });
+        });
+    </script>
 
     <!-- Footer -->
     <footer>
