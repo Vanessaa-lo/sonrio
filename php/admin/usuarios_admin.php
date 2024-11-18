@@ -10,14 +10,70 @@ if ($conexion->connect_error) {
 // Función para eliminar usuario si se recibe el ID por GET
 if (isset($_GET['eliminar_id'])) {
     $id_usuario = $_GET['eliminar_id'];
+
+    // Obtener el nombre del usuario antes de eliminarlo (opcional para la descripción)
+    $consulta_nombre = "SELECT nombre FROM usuarios WHERE id = ?";
+    $stmt_nombre = $conexion->prepare($consulta_nombre);
+    $stmt_nombre->bind_param("i", $id_usuario);
+    $stmt_nombre->execute();
+    $resultado_nombre = $stmt_nombre->get_result();
+    $nombreUsuario = $resultado_nombre->fetch_assoc()['nombre'];
+
+    // Eliminar usuario
     $consulta_eliminar = "DELETE FROM usuarios WHERE id = ?";
-    $stmt = $conexion->prepare($consulta_eliminar);
-    $stmt->bind_param("i", $id_usuario);
-    $stmt->execute();
-    echo "<script>
-            alert('El usuario ha sido eliminado correctamente.');
-            window.location.href = 'usuarios_admin.php';
-          </script>";
+    $stmt_eliminar = $conexion->prepare($consulta_eliminar);
+    $stmt_eliminar->bind_param("i", $id_usuario);
+    if ($stmt_eliminar->execute()) {
+        // Registrar actualización
+        $descripcion = "Se eliminó el usuario: $nombreUsuario";
+        $consulta_actualizacion = "INSERT INTO actualizaciones (tipo, descripcion) VALUES ('usuario', ?)";
+        $stmt_actualizacion = $conexion->prepare($consulta_actualizacion);
+        $stmt_actualizacion->bind_param("s", $descripcion);
+        $stmt_actualizacion->execute();
+
+        // Notificación de éxito
+        echo "<script>
+                alert('El usuario ha sido eliminado correctamente.');
+                window.location.href = 'usuarios_admin.php';
+              </script>";
+    } else {
+        echo "<script>
+                alert('Error al eliminar el usuario.');
+                window.location.href = 'usuarios_admin.php';
+              </script>";
+    }
+    exit();
+}
+
+// Función para agregar usuario si se recibe el formulario
+if (isset($_POST['agregar_usuario'])) {
+    $nombreUsuario = $_POST['nombre'];
+    $email = $_POST['email'];
+
+    // Insertar usuario
+    $queryUsuario = "INSERT INTO usuarios (nombre, email) VALUES (?, ?)";
+    $stmt_usuario = $conexion->prepare($queryUsuario);
+    $stmt_usuario->bind_param("ss", $nombreUsuario, $email);
+
+    if ($stmt_usuario->execute()) {
+        // Registrar actualización
+        $descripcion = "Se agregó un nuevo usuario: $nombreUsuario";
+        $consulta_actualizacion = "INSERT INTO actualizaciones (tipo, descripcion) VALUES ('usuario', ?)";
+        $stmt_actualizacion = $conexion->prepare($consulta_actualizacion);
+        $stmt_actualizacion->bind_param("s", $descripcion);
+        $stmt_actualizacion->execute();
+
+        // Notificación de éxito
+        echo "<script>
+                alert('Usuario agregado correctamente.');
+                window.location.href = 'usuarios_admin.php';
+              </script>";
+    } else {
+        echo "<script>
+                alert('Error al agregar el usuario.');
+                window.location.href = 'usuarios_admin.php';
+              </script>";
+    }
     exit();
 }
 
@@ -25,6 +81,7 @@ if (isset($_GET['eliminar_id'])) {
 $consulta = "SELECT id, nombre, email, direccion, estado FROM usuarios";
 $resultado = $conexion->query($consulta);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">

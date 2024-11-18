@@ -24,6 +24,7 @@ if (isset($_GET['eliminar_id'])) {
 }
 
 // Obtener productos existentes
+// Obtener productos existentes
 $consulta = "SELECT id, nombre, descripcion, precio, stock, url_imagen FROM productos";
 $resultado = $conexion->query($consulta);
 
@@ -40,15 +41,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['nombre']) && isset($_P
                         VALUES (?, ?, ?, ?, ?)";
     $stmt_insert = $conexion->prepare($consulta_insert);
     $stmt_insert->bind_param("ssdis", $nombre, $descripcion, $precio, $stock, $imagen_base64);
-    $stmt_insert->execute();
 
-    echo "<script>
-    alert('Producto Agregado. El producto se ha agregado correctamente.');
-    window.location.href = 'productos_admin.php';
-  </script>";
+    if ($stmt_insert->execute()) {
+        // Registrar la actualización en la tabla de actualizaciones
+        $descripcion_actualizacion = "Se agregó un nuevo producto: $nombre";
+        $consulta_actualizacion = "INSERT INTO actualizaciones (tipo, descripcion) VALUES ('producto', ?)";
+        $stmt_actualizacion = $conexion->prepare($consulta_actualizacion);
+        $stmt_actualizacion->bind_param("s", $descripcion_actualizacion);
+        $stmt_actualizacion->execute();
 
-    exit();
+        // Mensaje de éxito
+        echo "<script>
+        alert('Producto Agregado. El producto se ha agregado correctamente.');
+        window.location.href = 'productos_admin.php';
+        </script>";
+    } else {
+        // Manejar errores al agregar el producto
+        echo "<script>
+        alert('Error al agregar el producto. Intenta nuevamente.');
+        window.location.href = 'productos_admin.php';
+        </script>";
+    }
 }
+
+
+
 ?>
 
 <!DOCTYPE html>
