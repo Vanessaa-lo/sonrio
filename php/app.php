@@ -7,6 +7,7 @@ $username_db = "user"; // Usuario de la base de datos
 $password_db = "usbw"; // Contraseña de la base de datos
 $dbname = "sonrio"; // Nombre de la base de datos
 
+
 // Crear la conexión
 $conn = new mysqli($servername, $username_db, $password_db, $dbname);
 

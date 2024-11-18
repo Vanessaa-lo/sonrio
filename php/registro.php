@@ -8,66 +8,87 @@ session_start();
 // Conexión a la base de datos
 include("db.php");
 
-$mensaje = '';  // Variable para almacenar el mensaje de notificación
-$registroExitoso = false; // Variable para determinar si el registro fue exitoso
+// Variables de mensajes y registro
+$mensaje = '';
+$registroExitoso = false;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Obtener los datos del formulario
-    $nombre = $_POST['nombre'];
-    $correo = $_POST['correo'];
-    $telefono = $_POST['telefono'];
-    $cp = $_POST['cp'];
-    $estado = $_POST['estado'];
-    $contraseña = $_POST['contraseña'];
+    // Validaciones de entrada
+    $nombre = trim($_POST['nombre']);
+    $correo = trim($_POST['correo']);
+    $telefono = trim($_POST['telefono']);
+    $cp = trim($_POST['cp']);
+    $estado = trim($_POST['estado']);
+    $contraseña = trim($_POST['contraseña']);
 
-    // Verificaciones
-    if (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
-        $mensaje = "Por favor, ingresa un correo electrónico válido.";
-        $registroExitoso = false;
-    } elseif (!preg_match("/^[0-9]{10,15}$/", $telefono)) {
-        $mensaje = "El número telefónico debe ser numérico y tener entre 10 y 15 dígitos.";
-        $registroExitoso = false;
-    } elseif (empty($nombre) || empty($correo) || empty($telefono) || empty($cp) || empty($estado) || empty($contraseña)) {
+    // Validaciones básicas
+    if (empty($nombre) || empty($correo) || empty($telefono) || empty($cp) || empty($estado) || empty($contraseña)) {
         $mensaje = "Todos los campos son obligatorios.";
-        $registroExitoso = false;
+    } elseif (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
+        $mensaje = "El correo electrónico no es válido.";
+    } elseif (!preg_match("/^[0-9]{5}$/", $cp)) {
+        $mensaje = "El código postal debe ser de 5 dígitos numéricos.";
+    } elseif (!preg_match("/^[0-9]{10,15}$/", $telefono)) {
+        $mensaje = "El número telefónico debe tener entre 10 y 15 dígitos.";
     } else {
-        // Si las validaciones son correctas, proceder con el registro
+        // Si pasa todas las validaciones
         $contraseña_hashed = password_hash($contraseña, PASSWORD_DEFAULT);
-        $direccion = $cp;
 
-        // Preparar la consulta
-        $consulta = "INSERT INTO usuarios (nombre, email, telefono, contraseña, direccion, estado) 
+        // Inserción en la tabla `usuarios`
+        $consulta = "INSERT INTO usuarios (nombre, email, contraseña, direccion, estado, telefono) 
                      VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $conexion->prepare($consulta);
 
         if ($stmt === false) {
-            $mensaje = "Error en la preparación de la consulta.";
-            $registroExitoso = false;
-        } else {
-            $stmt->bind_param("ssssss", $nombre, $correo, $telefono, $contraseña_hashed, $direccion, $estado);
-
-            if ($stmt->execute()) {
-                // Registrar actualización en la tabla `actualizaciones`
-                $descripcion = "Se agregó un nuevo usuario: $nombre";
-                $consulta_actualizacion = "INSERT INTO actualizaciones (tipo, descripcion) VALUES ('usuario', ?)";
-                $stmt_actualizacion = $conexion->prepare($consulta_actualizacion);
-                $stmt_actualizacion->bind_param("s", $descripcion);
-                $stmt_actualizacion->execute();
-                $stmt_actualizacion->close();
-
-                // Notificación de éxito
-                $mensaje = "Registro Exitoso: El usuario ha sido registrado exitosamente.";
-                $registroExitoso = true;
-            } else {
-                $mensaje = "Error: Hubo un problema al registrar el usuario.";
-                $registroExitoso = false;
-            }
-            $stmt->close();
+            die("Error en la preparación de la consulta: " . $conexion->error);
         }
+
+        $stmt->bind_param("ssssss", $nombre, $correo, $contraseña_hashed, $cp, $estado, $telefono);
+
+        if ($stmt->execute()) {
+            // Guardar última actualización en la tabla `actualizaciones`
+            $descripcion = "Se agregó un nuevo usuario: $nombre";
+            $consulta_actualizacion = "INSERT INTO actualizaciones (tipo, descripcion) VALUES ('usuario', ?)";
+            $stmt_actualizacion = $conexion->prepare($consulta_actualizacion);
+            $stmt_actualizacion->bind_param("s", $descripcion);
+            $stmt_actualizacion->execute();
+            $stmt_actualizacion->close();
+
+            // Mensaje de éxito
+            $mensaje = "Registro Exitoso: El usuario ha sido registrado exitosamente.";
+            $registroExitoso = true;
+        } else {
+            $mensaje = "Error: Hubo un problema al registrar el usuario.";
+        }
+        $stmt->close();
     }
 }
+
+// Consultas para obtener datos del dashboard
+$queryProductos = "SELECT COUNT(*) AS total FROM productos";
+$resultProductos = $conexion->query($queryProductos);
+$totalProductos = $resultProductos->fetch_assoc()['total'];
+
+$queryUsuarios = "SELECT COUNT(*) AS total FROM usuarios";
+$resultUsuarios = $conexion->query($queryUsuarios);
+$totalUsuarios = $resultUsuarios->fetch_assoc()['total'];
+
+$queryPedidos = "SELECT COUNT(*) AS total FROM pedidos WHERE estado = 'pendiente'";
+$resultPedidos = $conexion->query($queryPedidos);
+$totalPedidos = $resultPedidos->fetch_assoc()['total'];
+
+// Consulta para las últimas actualizaciones
+$queryActualizaciones = "SELECT tipo, descripcion FROM actualizaciones ORDER BY fecha DESC LIMIT 5";
+$resultActualizaciones = $conexion->query($queryActualizaciones);
+
+// Crecimiento mensual (simulación)
+$crecimientoMensual = "23%"; // Puedes calcularlo según tus datos
+
+// Cerrar conexión
 $conexion->close();
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="es">

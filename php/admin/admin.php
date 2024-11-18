@@ -2,11 +2,11 @@
 // Iniciar sesión
 session_start();
 
-// Conexión a la base de datos
-$conexion = new mysqli("localhost", "root", "usbw", "sonrio");
+$conexion = new mysqli("localhost", "root", "usbw", "sonrio", 3306);
 if ($conexion->connect_error) {
     die("<script>Swal.fire('Error', 'Conexión fallida a la base de datos.', 'error');</script>");
 }
+$conexion->set_charset("utf8"); 
 
 // Consultas para obtener datos del dashboard
 $queryProductos = "SELECT COUNT(*) AS total FROM productos";

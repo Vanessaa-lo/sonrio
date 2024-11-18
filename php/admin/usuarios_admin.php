@@ -1,11 +1,11 @@
 <?php
 session_start();
 
-// Conexión a la base de datos
-$conexion = new mysqli("localhost", "root", "usbw", "sonrio");
+$conexion = new mysqli("localhost", "root", "usbw", "sonrio", 3306);
 if ($conexion->connect_error) {
-    die("<script>alert('Conexión fallida a la base de datos.');</script>");
+    die("<script>Swal.fire('Error', 'Conexión fallida a la base de datos.', 'error');</script>");
 }
+$conexion->set_charset("utf8"); 
 
 // Función para eliminar usuario si se recibe el ID por GET
 if (isset($_GET['eliminar_id'])) {
