@@ -2,7 +2,7 @@
 session_start();
 
 // Conexión a la base de datos
-$conexion = new mysqli("localhost", "root", "", "sonrio");
+$conexion = new mysqli("localhost", "root", "usbw", "sonrio");
 if ($conexion->connect_error) {
     die("<script>alert('Conexión fallida a la base de datos.');</script>");
 }
@@ -11,7 +11,7 @@ if ($conexion->connect_error) {
 if (isset($_GET['eliminar_id'])) {
     $id_usuario = $_GET['eliminar_id'];
 
-    // Obtener el nombre del usuario antes de eliminarlo (opcional para la descripción)
+    // Obtener el nombre del usuario antes de eliminarlo
     $consulta_nombre = "SELECT nombre FROM usuarios WHERE id = ?";
     $stmt_nombre = $conexion->prepare($consulta_nombre);
     $stmt_nombre->bind_param("i", $id_usuario);
@@ -49,11 +49,12 @@ if (isset($_GET['eliminar_id'])) {
 if (isset($_POST['agregar_usuario'])) {
     $nombreUsuario = $_POST['nombre'];
     $email = $_POST['email'];
+    $telefono = $_POST['telefono'];
 
     // Insertar usuario
-    $queryUsuario = "INSERT INTO usuarios (nombre, email) VALUES (?, ?)";
+    $queryUsuario = "INSERT INTO usuarios (nombre, email, telefono) VALUES (?, ?, ?)";
     $stmt_usuario = $conexion->prepare($queryUsuario);
-    $stmt_usuario->bind_param("ss", $nombreUsuario, $email);
+    $stmt_usuario->bind_param("sss", $nombreUsuario, $email, $telefono);
 
     if ($stmt_usuario->execute()) {
         // Registrar actualización
@@ -78,10 +79,9 @@ if (isset($_POST['agregar_usuario'])) {
 }
 
 // Obtener usuarios existentes
-$consulta = "SELECT id, nombre, email, direccion, estado FROM usuarios";
+$consulta = "SELECT id, nombre, email, telefono, direccion, estado FROM usuarios";
 $resultado = $conexion->query($consulta);
 ?>
-
 
 <!DOCTYPE html>
 <html lang="es">
@@ -90,15 +90,16 @@ $resultado = $conexion->query($consulta);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administración de Usuarios</title>
     <link rel="stylesheet" href="../../estilo/admin.css">
+    <link rel="icon" href="../../estilo/imagenes/cinta.png" type="image/x-icon">
 </head>
 <body>
 <header class="header" id="header-admin">
     <h1 class="h1-usuario">Usuarios Registrados</h1>
     <div class="top-bar">
-    <button class="btn-salir" onclick="window.location.href='admin.php'">
-       X
+        <button class="btn-salir" onclick="window.location.href='admin.php'">
+           X
         </button>
-        </div>
+    </div>
 </header>
 
 <div class="container">
@@ -108,6 +109,7 @@ $resultado = $conexion->query($consulta);
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>Email</th>
+                <th>Teléfono</th>
                 <th>Dirección</th>
                 <th>Estado</th>
                 <th>Acciones</th>
@@ -121,13 +123,14 @@ $resultado = $conexion->query($consulta);
                 echo '<td>' . $usuario['id'] . '</td>';
                 echo '<td>' . $usuario['nombre'] . '</td>';
                 echo '<td>' . $usuario['email'] . '</td>';
+                echo '<td>' . $usuario['telefono'] . '</td>';
                 echo '<td>' . $usuario['direccion'] . '</td>';
                 echo '<td>' . $usuario['estado'] . '</td>';
                 echo '<td><button onclick="eliminarUsuario(' . $usuario['id'] . ')">Eliminar</button></td>';
                 echo '</tr>';
             }
         } else {
-            echo '<tr><td colspan="6">No hay usuarios registrados.</td></tr>';
+            echo '<tr><td colspan="7">No hay usuarios registrados.</td></tr>';
         }
         ?>
         </tbody>

@@ -2,7 +2,7 @@
 session_start();
 
 // Conexión a la base de datos
-$conexion = new mysqli("localhost", "root", "", "sonrio");
+$conexion = new mysqli("localhost", "root", "usbw", "sonrio");
 if ($conexion->connect_error) {
     die("<script>Swal.fire('Error', 'Conexión fallida a la base de datos.', 'error');</script>");
 }
@@ -10,20 +10,44 @@ if ($conexion->connect_error) {
 // Función para eliminar producto si se recibe el ID por GET
 if (isset($_GET['eliminar_id'])) {
     $id_producto = $_GET['eliminar_id'];
-    
+
+    // Obtener el nombre del producto antes de eliminarlo
+    $consulta_nombre = "SELECT nombre FROM productos WHERE id = ?";
+    $stmt_nombre = $conexion->prepare($consulta_nombre);
+    $stmt_nombre->bind_param("i", $id_producto);
+    $stmt_nombre->execute();
+    $resultado_nombre = $stmt_nombre->get_result();
+    $nombreProducto = $resultado_nombre->fetch_assoc()['nombre'];
+
+    // Eliminar el producto
     $consulta_eliminar = "DELETE FROM productos WHERE id = ?";
-    $stmt = $conexion->prepare($consulta_eliminar);
-    $stmt->bind_param("i", $id_producto);
-    $stmt->execute();
-    echo "<script>
-    alert('Producto Agregado. El producto se a eliminado correctamente.');
-    window.location.href = 'productos_admin.php';
-  </script>";
+    $stmt_eliminar = $conexion->prepare($consulta_eliminar);
+    $stmt_eliminar->bind_param("i", $id_producto);
+
+    if ($stmt_eliminar->execute()) {
+        // Registrar la actualización en la tabla de actualizaciones
+        $descripcion_actualizacion = "Se eliminó el producto: $nombreProducto";
+        $consulta_actualizacion = "INSERT INTO actualizaciones (tipo, descripcion) VALUES ('producto', ?)";
+        $stmt_actualizacion = $conexion->prepare($consulta_actualizacion);
+        $stmt_actualizacion->bind_param("s", $descripcion_actualizacion);
+        $stmt_actualizacion->execute();
+
+        // Mensaje de éxito
+        echo "<script>
+        alert('Producto eliminado correctamente. Se ha registrado en las actualizaciones.');
+        window.location.href = 'productos_admin.php';
+        </script>";
+    } else {
+        // Manejar errores al eliminar el producto
+        echo "<script>
+        alert('Error al eliminar el producto. Intenta nuevamente.');
+        window.location.href = 'productos_admin.php';
+        </script>";
+    }
 
     exit();
 }
 
-// Obtener productos existentes
 // Obtener productos existentes
 $consulta = "SELECT id, nombre, descripcion, precio, stock, url_imagen FROM productos";
 $resultado = $conexion->query($consulta);
@@ -63,9 +87,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['nombre']) && isset($_P
         </script>";
     }
 }
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -73,8 +94,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['nombre']) && isset($_P
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../../assets/imagenes/icon.ico" type="image/x-icon">
     <title>Admin</title>
+    <link rel="icon" href="../../estilo/imagenes/cinta.png" type="image/x-icon">
     <link rel="stylesheet" href="../../estilo/admin.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 

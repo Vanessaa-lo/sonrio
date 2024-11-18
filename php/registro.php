@@ -15,49 +15,60 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Obtener los datos del formulario
     $nombre = $_POST['nombre'];
     $correo = $_POST['correo'];
+    $telefono = $_POST['telefono'];
     $cp = $_POST['cp'];
     $estado = $_POST['estado'];
     $contraseña = $_POST['contraseña'];
-    
-    // Encriptar la contraseña
-    $contraseña_hashed = password_hash($contraseña, PASSWORD_DEFAULT);
 
-    // Guardar el código postal en la columna direccion
-    $direccion = $cp;
-
-    // Preparar la consulta
-    $consulta = "INSERT INTO usuarios (nombre, email, contraseña, direccion, estado) 
-                 VALUES (?, ?, ?, ?, ?)";
-    $stmt = $conexion->prepare($consulta);
-
-    if ($stmt === false) {
-        die("Error en la preparación de la consulta: " . $conexion->error);
-    }
-
-    // Usar el estado ingresado por el usuario en lugar de un valor fijo
-    $stmt->bind_param("sssss", $nombre, $correo, $contraseña_hashed, $direccion, $estado);
-    
-    if ($stmt->execute()) {
-        // Registrar actualización en la tabla `actualizaciones`
-        $descripcion = "Se agregó un nuevo usuario: $nombre";
-        $consulta_actualizacion = "INSERT INTO actualizaciones (tipo, descripcion) VALUES ('usuario', ?)";
-        $stmt_actualizacion = $conexion->prepare($consulta_actualizacion);
-        $stmt_actualizacion->bind_param("s", $descripcion);
-        $stmt_actualizacion->execute();
-        $stmt_actualizacion->close();
-
-        // Notificación de éxito
-        $mensaje = "Registro Exitoso: El usuario ha sido registrado exitosamente.";
-        $registroExitoso = true;
+    // Verificaciones
+    if (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
+        $mensaje = "Por favor, ingresa un correo electrónico válido.";
+        $registroExitoso = false;
+    } elseif (!preg_match("/^[0-9]{10,15}$/", $telefono)) {
+        $mensaje = "El número telefónico debe ser numérico y tener entre 10 y 15 dígitos.";
+        $registroExitoso = false;
+    } elseif (empty($nombre) || empty($correo) || empty($telefono) || empty($cp) || empty($estado) || empty($contraseña)) {
+        $mensaje = "Todos los campos son obligatorios.";
+        $registroExitoso = false;
     } else {
-        // Notificación de error
-        $mensaje = "Error: Hubo un problema al registrar el usuario.";
-    }
+        // Si las validaciones son correctas, proceder con el registro
+        $contraseña_hashed = password_hash($contraseña, PASSWORD_DEFAULT);
+        $direccion = $cp;
 
-    $stmt->close();
+        // Preparar la consulta
+        $consulta = "INSERT INTO usuarios (nombre, email, telefono, contraseña, direccion, estado) 
+                     VALUES (?, ?, ?, ?, ?, ?)";
+        $stmt = $conexion->prepare($consulta);
+
+        if ($stmt === false) {
+            $mensaje = "Error en la preparación de la consulta.";
+            $registroExitoso = false;
+        } else {
+            $stmt->bind_param("ssssss", $nombre, $correo, $telefono, $contraseña_hashed, $direccion, $estado);
+
+            if ($stmt->execute()) {
+                // Registrar actualización en la tabla `actualizaciones`
+                $descripcion = "Se agregó un nuevo usuario: $nombre";
+                $consulta_actualizacion = "INSERT INTO actualizaciones (tipo, descripcion) VALUES ('usuario', ?)";
+                $stmt_actualizacion = $conexion->prepare($consulta_actualizacion);
+                $stmt_actualizacion->bind_param("s", $descripcion);
+                $stmt_actualizacion->execute();
+                $stmt_actualizacion->close();
+
+                // Notificación de éxito
+                $mensaje = "Registro Exitoso: El usuario ha sido registrado exitosamente.";
+                $registroExitoso = true;
+            } else {
+                $mensaje = "Error: Hubo un problema al registrar el usuario.";
+                $registroExitoso = false;
+            }
+            $stmt->close();
+        }
+    }
 }
 $conexion->close();
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -69,7 +80,6 @@ $conexion->close();
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
-        /* Estilo general de la página */
         body.login-page2 {
             display: flex;
             justify-content: center;
@@ -81,6 +91,11 @@ $conexion->close();
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 10px;
+            color: #c166b3;
+        }
+        h2 {
+            font-size: 40px;
+            color: #c166b3;
         }
         .login-wrapper2 {
             display: flex;
@@ -94,6 +109,31 @@ $conexion->close();
             text-align: center;
             border: 5px rgb(255, 255, 255) solid;
         }
+        .form-grid {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .input-group2 {
+            display: flex;
+            flex-direction: column;
+        }
+        .input-group2 label {
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 8px;
+        }
+        .input-group2 input, 
+        .input-group2 select {
+            padding: 10px;
+            border: 1px solid #dcdcdc;
+            border-radius: 8px;
+            font-size: 16px;
+            background-color: #fafafa;
+            transition: border-color 0.3s, background-color 0.3s;
+        }
         .btn2 {
             background-color: #c166b3;
             color: white;
@@ -104,7 +144,7 @@ $conexion->close();
             font-size: 1em;
             cursor: pointer;
             transition: background-color 0.3s, transform 0.2s;
-            margin-top: 10px;
+            margin-top: 20px;
         }
         .btn2:hover {
             background-color: #8e44ad;
@@ -119,30 +159,36 @@ $conexion->close();
             <p>Por favor, ingresa tus datos</p>
 
             <form action="" method="POST">
-                <div class="input-group2">
-                    <label for="nombre">Nombre:</label>
-                    <input type="text" id="nombre" name="nombre" required>
-                </div>
-                <div class="input-group2">
-                    <label for="correo">Correo Electrónico:</label>
-                    <input type="email" id="correo" name="correo" required>
-                </div>
-                <div class="input-group2">
-                    <label for="cp">Código Postal:</label>
-                    <input type="text" id="cp" name="cp" required>
-                </div>
-                <div class="input-group2">
-                    <label for="estado">Estado:</label>
-                    <select id="estado" name="estado" required>
-                        <option value="" disabled selected>Selecciona tu estado</option>
-                        <option value="Jalisco">Jalisco</option>
-                        <option value="Ciudad de México">Ciudad de México</option>
-                        <option value="Nuevo León">Nuevo León</option>
-                    </select>
-                </div>
-                <div class="input-group2">
-                    <label for="contraseña">Contraseña:</label>
-                    <input type="password" id="contraseña" name="contraseña" required>
+                <div class="form-grid">
+                    <div class="input-group2">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </div>
+                    <div class="input-group2">
+                        <label for="correo">Correo Electrónico:</label>
+                        <input type="email" id="correo" name="correo" required>
+                    </div>
+                    <div class="input-group2">
+                        <label for="telefono">Número Telefónico:</label>
+                        <input type="text" id="telefono" name="telefono" required>
+                    </div>
+                    <div class="input-group2">
+                        <label for="cp">Código Postal:</label>
+                        <input type="text" id="cp" name="cp" required>
+                    </div>
+                    <div class="input-group2">
+                        <label for="estado">Estado:</label>
+                        <select id="estado" name="estado" required>
+                            <option value="" disabled selected>Selecciona tu estado</option>
+                            <option value="Jalisco">Jalisco</option>
+                            <option value="Ciudad de México">Ciudad de México</option>
+                            <option value="Nuevo León">Nuevo León</option>
+                        </select>
+                    </div>
+                    <div class="input-group2 full-width">
+                        <label for="contraseña">Contraseña:</label>
+                        <input type="password" id="contraseña" name="contraseña" required>
+                    </div>
                 </div>
                 <button type="submit" class="btn2">Registrar</button>
             </form>
@@ -156,10 +202,6 @@ $conexion->close();
             title: '<?php echo $registroExitoso ? "Registro Exitoso" : "Error"; ?>',
             text: '<?php echo $mensaje; ?>',
             confirmButtonText: 'Aceptar'
-        }).then((result) => {
-            <?php if ($registroExitoso) : ?>
-                window.location.href = 'login.php';
-            <?php endif; ?>
         });
     </script>
     <?php endif; ?>

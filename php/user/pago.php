@@ -9,7 +9,7 @@ $totalCarrito = 0;
 $errores = [];
 
 // Conexión a la base de datos
-$conexion = new mysqli("localhost", "root", "", "sonrio");
+$conexion = new mysqli("localhost", "root", "usbw", "sonrio");
 if ($conexion->connect_error) {
     die("Conexión fallida: " . $conexion->connect_error);
 }

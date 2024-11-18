@@ -3,7 +3,7 @@
 session_start();
 
 // Conexión a la base de datos
-$conexion = new mysqli("localhost", "root", "", "sonrio");
+$conexion = new mysqli("localhost", "root", "usbw", "sonrio");
 if ($conexion->connect_error) {
     die("<script>Swal.fire('Error', 'Conexión fallida a la base de datos.', 'error');</script>");
 }
@@ -37,6 +37,7 @@ $crecimientoMensual = "23%"; // Puedes calcularlo según tus datos
     <link rel="icon" href="../../assets/imagenes/icon.ico" type="image/x-icon">
     <title>Admin</title>
     <link rel="stylesheet" href="../../estilo/admin.css">
+    <link rel="icon" href="../../estilo/imagenes/cinta.png" type="image/x-icon">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 
@@ -107,7 +108,7 @@ $crecimientoMensual = "23%"; // Puedes calcularlo según tus datos
                 <i class="fas fa-<?php echo ($row['tipo'] == 'usuario') ? 'user' : 'box'; ?>"></i>
                 <p ><?php echo $row['descripcion']; ?></p><br><br>
                 <small class="fecha-actualizacion" style="color: #c18dfc; margin-left: 10px; font-weight:strong;">
-    <?php echo date("d-m-Y H:i", strtotime($row['fecha'])); ?>
+    <?php echo date("d-m-Y H:i", timestamp: strtotime($row['fecha'])); ?>
 </small>
 
             </div>
