@@ -1,96 +1,150 @@
-                          /* --------------------- */
-                          /* Propiedades Video Fondo */
-                          /* --------------------- */
+                            /* Colores Pastel y Fuente Redondeada */
                           
-                          #hero {
-                              width: 100%;
-                              height: 100vh;
-                              position: relative;
-                              padding: 0.5%;
-                              display: flex;
-                              align-items: center;
-                              justify-content: center;
-                          }
-                          
-                          video {
-                              position: absolute;
-                              top: 0;
-                              left: 0;
-                              width: 100%;
-                              height: 100%;
-                              object-fit: cover;
-                              z-index: -1;
-                          }
-                          
-                          @media (min-aspect-ratio: 16/9) {
-                              .back-video {
-                                  width: 100%;
-                                  height: auto;
-                              }
-                          }
-                          
-                          @media (max-aspect-ratio: 16/9) {
-                              .back-video {
-                                  width: auto;
-                                  height: 100%;
-                              }
-                          }
-                          
-                          * {
-                              margin: 0;
-                              padding: 0;
-                              box-sizing: border-box;
-                              font-family: 'Comic Sans MS';
-                          }
-                          
-                          .content {
-                              position: absolute;
-                              top: 50%;
-                              left: 50%;
-                              transform: translate(-50%, -50%);
-                              text-align: center;
-                              z-index: 1;
-                          }
-                          
-                          .content h1 {
-                              font-size: 160px;
-                              color: #FFFFFF;
-                              /* Blanco puro para resaltar */
-                              text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-                              /* Sombra negra */
-                              font-weight: 600;
-                              transition: 0.5s;
-                          }
-                          
-                          .content h2 {
-                              font-size: 40px;
-                              color: #FFFFFF;
-                              /* Blanco puro */
-                              text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-                              /* Sombra negra */
-                              font-weight: 600;
-                          }
-                          
-                          .content h1:hover {
-                              -webkit-text-stroke: 2px #f88cd8;
-                              color: transparent;
-                          }
-                          /* Colores Pastel y Fuente Redondeada */
-                          
-                          html,
-                          body {
-                              height: 100%;
-                              display: flex;
-                              flex-direction: column;
-                              background-image: url("Fondo Horizontal.jpeg");
-                              background-size: cover;
-                              background-position: center;
-                              background-repeat: no-repeat;
-                              background-attachment: fixed;
-                              color: #FFFFFF;
-                              margin: 0;
-                              z-index: -2;
-                          }
+                            html,
+                            body {
+                            height: 100%;
+                            display: flex;
+                            flex-direction: column;
+                            background-image: url("Fondo Horizontal.jpeg");
+                            background-size: cover;
+                            background-position: center;
+                            background-repeat: no-repeat;
+                            background-attachment: fixed;
+                            color: #FFFFFF;
+                            margin: 0;
+                            z-index: -2;
+                            }
+                            /* ---------------------------------- */
+                            /* Reset y Estilos Generales */
+                            * {
+                            margin: 0;
+                            padding: 0;
+                            box-sizing: border-box;
+                            font-family: 'Arial', sans-serif;
+                            }
+                            /* --------------------- */
+                            /* Sección About  */
+                            /* --------------------- */
+                            #about {
+                            padding: 50px 20px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            margin-top: auto;
+                            border-radius: 10px;
+                            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                            margin-top: 50px;
+                            }
+
+                        .about-container {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        max-width: 1200px;
+                        width: 100%;
+                        gap: 20px;
+                        }
+
+                        .about-logo {
+                        flex: 1;
+                        text-align: center;
+                        }
+
+                        .about-logo .logo {
+                        max-width: 200px;
+                        height: auto;
+                        border-radius: 10px;
+                        }
+
+                        .about-text {
+                        flex: 2;
+                        text-align: left;
+                        color: #555;
+                        }
+
+                        .about-text h2 {
+                        font-size: 36px;
+                        color: #a255e9;
+                        margin-bottom: 20px;
+                        }
+
+                        .about-text p {
+    
+                        font-size: 24px; /* Ajusta el tamaño de la fuente según sea necesario */
+                        color: #FFFFFF; /* Cambia este color si el texto blanco no es suficiente */
+                        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Añade sombra para mejor contraste */
+                        line-height: 1.5; /* Mejora la legibilidad */
+                        margin: 20px 0; /* Añade espacio alrededor del texto */
+    
+    
+                        }
+                        /* --------------------- */
+                        /* Propiedades Video Fondo */
+                        /* --------------------- */
+                        #hero {
+                        width: 100%;
+                        height: 100vh;
+                        position: relative;
+                        padding: 0.5%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        overflow: hidden; /* Evita desbordamientos */
+                        margin-bottom: 30px; /* Espaciado entre secciones */
+                        }
+
+                        video {
+                        position: static;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        z-index: -1;
+                        }
+
+                        @media (min-aspect-ratio: 16/9) {
+                        .back-video {
+                        width: 100%;
+                        height: auto;
+                        }
+                        }
+
+                        @media (max-aspect-ratio: 16/9) {
+                        .back-video {
+                        width: auto;
+                        height: 100%;
+                        }
+                        }
+
+                        .content {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        text-align: center;
+                        z-index: 1;
+                        }
+
+                        .content h1 {
+                        font-size: 160px;
+                        color: #FFFFFF;
+                        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+                        font-weight: 600;
+                        transition: 0.5s;
+                        }
+
+                        .content h2 {
+                        font-size: 40px;
+                        color: #FFFFFF;
+                        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+                        font-weight: 600;
+                        }
+
+                        .content h1:hover {
+                        -webkit-text-stroke: 2px #f88cd8;
+                        color: transparent;
+                        }
                           /* Contenedor principal para el contenido de la página */
                           
                           .content {
@@ -577,62 +631,62 @@
                           }
                           /* Estilos de Promociones */
                           
-                          .promociones {
-                              text-align: center;
-                              padding: 10px 0;
-                              max-width: 1200px;
-                              margin: 0 auto;
-                              /* Centrado horizontal */
-                          }
-                          
-                          .ttop {
-                              font-size: 40px;
-                              color: #c594e3;
-                              font-weight: bolder;
-                              margin-top: 30px;
-                              margin-bottom: 20px;
-                          }
-                          
-                          .promocion-circulos {
-                              display: flex;
-                              flex-wrap: wrap;
-                              /* Asegura ajuste en pantallas pequeñas */
-                              justify-content: center;
-                              align-items: center;
-                              gap: 15px;
-                              margin-top: 20px;
-                          }
-                          
-                          .promo-item {
-                              width: 150px;
-                              height: 150px;
-                              border-radius: 50%;
-                              display: flex;
-                              flex-direction: column;
-                              align-items: center;
-                              justify-content: center;
-                              color: #00020888;
-                              background-color: #ffffff;
-                              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                              transition: transform 0.3s ease;
-                          }
-                          
-                          .promo-item:hover {
-                              transform: scale(1.05);
-                          }
-                          
-                          .promo-item img {
-                              width: 100%;
-                              height: auto;
-                              border-radius: 50%;
-                          }
-                          
-                          .promo-item h2 {
-                              font-size: 16px;
-                              color: #c594e3;
-                              margin-top: 10px;
-                              text-align: center;
-                          }
+                        .promociones {
+                        text-align: center;
+                        padding: 10px 0;
+                        max-width: 1200px;
+                        margin: 0 auto;
+                        /* Centrado horizontal */
+                        }
+
+                        .ttop {
+                        font-size: 40px;
+                        color: #c594e3;
+                        font-weight: bolder;
+                        margin-top: 30px;
+                        margin-bottom: 20px;
+                        }
+
+                        .promocion-circulos {
+                        display: flex;
+                        flex-wrap: wrap;
+                        /* Asegura ajuste en pantallas pequeñas */
+                        justify-content: center;
+                        align-items: center;
+                        gap: 15px;
+                        margin-top: 20px;
+                        }
+
+                    .promo-item {
+                        width: 150px;
+                        height: 150px;
+                        border-radius: 50%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        color: #00020888;
+                        background-color: #ffffff;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                        transition: transform 0.3s ease;
+                        }
+
+                        .promo-item:hover {
+                        transform: scale(1.05);
+                        }
+
+                        .promo-item img {
+                         width: 100%;
+                         height: auto;
+                         border-radius: 50%;
+                        }
+
+                        .promo-item h2 {
+                        font-size: 16px;
+                            color: #c594e3;
+                            margin-top: 10px;
+                            text-align: center;
+                            }
                           /* Ajustes responsivos */
                           
                           @media (max-width: 768px) {

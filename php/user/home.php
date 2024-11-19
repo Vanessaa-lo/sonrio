@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos</title>
+    <title>Inicio | Tienda Sonrio </title>
     <!-- Ruta del CSS -->
     <link href="../../estilo/estilos.css" rel="stylesheet">
     <link rel="icon" href="../../estilo/imagenes/cinta.png" type="image/x-icon">
@@ -38,6 +38,53 @@
  	</div>
 
  	</section>
+    
+     <section id="about">
+    <div class="about-container">
+        <div class="about-logo">
+        <img src="../../estilo/imagenes/logoo.png" alt="Imagen decorativa de inicio de sesión">
+        </div>
+        <div class="about-text">
+            <h2>Sobre Sonrio</h2>
+            <p>
+            En Sonrio, nos dedicamos a ofrecer una selección única y encantadora de productos inspirados en el mágico universo de Sanrio. Descubre tus personajes favoritos y lleva su ternura contigo en cada detalle
+            </p>
+        </div>
+    </div>
+</section>
+<section class="promociones">
+            <h2 class="ttop">¿Quién es tu favorito?</h2>
+            <div class="promocion-circulos">
+                <div class="promo-item">
+                    <img src="../../estilo/imagenes/rani.jpg" alt="Promo 1">
+                    <h2>Keroppi</h2>
+                </div>
+                <div class="promo-item">
+                    <img src="../../estilo/imagenes/kuro.jpg" alt="Promo 2">
+                    <h2>Kurommy</h2>
+                </div>
+                <div class="promo-item">
+                    <img src="../../estilo/imagenes/myme.jpg" alt="Promo 3">
+                    <h2>My Melody</h2>
+                </div>
+                <div class="promo-item">
+                    <img src="../../estilo/imagenes/hk.jpg" alt="Promo 2">
+                    <h2>Hello Kitty</h2>
+                </div>
+                <div class="promo-item">
+                    <img src="../../estilo/imagenes/pengg.jpg" alt="Promo 3">
+                    <h2>Tuxedosam</h2>
+                </div>
+                <div class="promo-item">
+                    <img src="../../estilo/imagenes/perr.jpg" alt="Promo 3">
+                    <h2>Pochaco</h2>
+                </div>
+            </div>
+        </section>
+
+<footer>
+            © 2024 Tienda Sonrio - Todos los derechos reservados
+</footer>
 
    <!-- Main Content -->
 <!--
