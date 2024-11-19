@@ -1,4 +1,4 @@
-<?php
+<?php 
 session_start();
 
 // Conexión a la base de datos
@@ -8,12 +8,11 @@ if ($conexion->connect_error) {
 }
 $conexion->set_charset("utf8");
 
-if (!isset($_SESSION['id'])) {
-    die("Error: El usuario no ha iniciado sesión.");
+// Inicializar el carrito en la sesión si no existe
+if (!isset($_SESSION['carrito'])) {
+    $_SESSION['carrito'] = [];
 }
-
-$usuarioId = $_SESSION['id'];
-$carrito = $_SESSION['carrito'] ?? [];
+$carrito = $_SESSION['carrito'];
 $totalCarrito = 0;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -36,83 +35,98 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errores[] = "CVC inválido.";
     }
 
-    if (!empty($errores)) {
-        $_SESSION['mensaje'] = ['tipo' => 'error', 'texto' => implode(", ", $errores)];
-        header('Location: ' . $_SERVER['PHP_SELF']);
-        exit;
-    }
-
-    if (empty($carrito)) {
-        $_SESSION['mensaje'] = ['tipo' => 'error', 'texto' => 'No hay productos en el carrito.'];
-        header('Location: ' . $_SERVER['PHP_SELF']);
-        exit;
-    }
-
-    foreach ($carrito as $producto) {
-        $totalCarrito += $producto['precio'] * $producto['cantidad'];
-    }
-    $envio = 5;
-    $totalCarrito += $envio;
-
-    $direccion = $_SESSION['direccion'] ?? null;
-    if (!$direccion) {
-        $_SESSION['mensaje'] = ['tipo' => 'warning', 'texto' => 'Por favor completa tu dirección antes de realizar el pago.'];
-        header('Location: ' . $_SERVER['PHP_SELF']);
-        exit;
-    }
-
-    $sqlPedido = "INSERT INTO pedidos (usuario_id, total, estado, codigo_postal, colonia, ciudad, estado_direccion) 
-    VALUES (?, ?, ?, ?, ?, ?, ?)";
-
-        $stmt = $conexion->prepare($sqlPedido);
-        if (!$stmt) {
-        $_SESSION['mensaje'] = ['tipo' => 'error', 'texto' => 'Error al preparar la consulta: ' . $conexion->error];
-        header('Location: ' . $_SERVER['PHP_SELF']);
-        exit;
+    if (empty($errores)) {
+        if (empty($carrito)) {
+            $_SESSION['mensaje'] = ['tipo' => 'error', 'texto' => 'No hay productos en el carrito.'];
+            header('Location: ' . $_SERVER['PHP_SELF']);
+            exit;
         }
-
-        // Definir los valores que se insertarán en la tabla
-        $estadoPedido = 'pendiente de envio';
-
-        $stmt->bind_param(
-        'idsssss',
-        $usuarioId,
-        $totalCarrito,
-        $estadoPedido,
-        $direccion['codigo_postal'],
-        $direccion['colonia'],
-        $direccion['ciudad'],
-        $direccion['estado_direccion']
-        );
-
-    $stmt->execute();
-    $pedidoId = $conexion->insert_id;
-
-    if ($pedidoId) {
-        $sqlDetalles = "INSERT INTO pedido_detalles (pedido_id, producto_id, cantidad, precio_unitario) 
-                        VALUES (?, ?, ?, ?)";
-        $stmtDetalles = $conexion->prepare($sqlDetalles);
 
         foreach ($carrito as $producto) {
-            if (isset($producto['id'], $producto['cantidad'], $producto['precio'])) {
-                $stmtDetalles->bind_param('iiid', $pedidoId, $producto['id'], $producto['cantidad'], $producto['precio']);
-                $stmtDetalles->execute();
-            }
+            $totalCarrito += $producto['precio'] * $producto['cantidad'];
+        }
+        $envio = 5;
+        $totalCarrito += $envio;
+
+        if (!isset($_SESSION['direccion'])) {
+            $_SESSION['mensaje'] = ['tipo' => 'warning', 'texto' => 'Por favor completa tu dirección antes de realizar el pago.'];
+            header('Location: ' . $_SERVER['PHP_SELF']);
+            exit;
         }
 
-        $sqlPago = "INSERT INTO pagos (pedido_id, monto, metodo) VALUES (?, ?, ?)";
-        $stmtPago = $conexion->prepare($sqlPago);
-        $metodoPago = 'tarjeta';
-        $stmtPago->bind_param('ids', $pedidoId, $totalCarrito, $metodoPago);
-        $stmtPago->execute();
+        $direccion = $_SESSION['direccion'];
+        $codigoPostal = $direccion['codigo_postal'];
+        $colonia = $direccion['colonia'];
+        $ciudad = $direccion['ciudad'];
+        $estadoDireccion = $direccion['estado_direccion'];
+        $calle = $direccion['calle'];
+        $numero = $direccion['numero'];
+       
 
-        $_SESSION['mensaje'] = ['tipo' => 'success', 'texto' => "Pedido realizado exitosamente."];
-        $_SESSION['carrito'] = [];
-        unset($_SESSION['direccion']);
-        header('Location: ' . $_SERVER['PHP_SELF']);
-        exit;
+        $sqlPedido = "INSERT INTO pedidos (usuario_id, carrito_id, total, estado, codigo_postal, colonia, ciudad, estado_direccion, calle, numero) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        $stmt = $conexion->prepare($sqlPedido);
+
+        if (!$stmt) {
+            $_SESSION['mensaje'] = ['tipo' => 'error', 'texto' => 'Error al preparar la consulta.'];
+            header('Location: ' . $_SERVER['PHP_SELF']);
+            exit;
+        }
+
+        $usuarioId = $_SESSION['id'] ?? null;
+        $carritoId = null;
+        $estadoPedido = 'pendiente de envio';
+
+       
+        $stmt->bind_param(
+            'iidsssssss', 
+            $usuarioId, 
+            $carritoId, 
+            $totalCarrito, 
+            $estadoPedido, 
+            $codigoPostal, 
+            $colonia, 
+            $ciudad, 
+            $estadoDireccion, 
+            $calle, 
+            $numero
+        );
+        
+
+        $stmt->execute();
+        $pedidoId = $conexion->insert_id;
+
+        if ($pedidoId) {
+            $sqlDetalles = "INSERT INTO pedido_detalles (pedido_id, producto_id, cantidad, precio_unitario) 
+                            VALUES (?, ?, ?, ?)";
+            $stmtDetalles = $conexion->prepare($sqlDetalles);
+
+            foreach ($carrito as $producto) {
+                if (isset($producto['id'], $producto['cantidad'], $producto['precio'])) {
+                    $stmtDetalles->bind_param('iiid', $pedidoId, $producto['id'], $producto['cantidad'], $producto['precio']);
+                    $stmtDetalles->execute();
+                }
+            }
+
+            $sqlPago = "INSERT INTO pagos (pedido_id, monto, metodo) VALUES (?, ?, ?)";
+            $stmtPago = $conexion->prepare($sqlPago);
+            $metodoPago = 'tarjeta';
+            $stmtPago->bind_param('ids', $pedidoId, $totalCarrito, $metodoPago);
+            $stmtPago->execute();
+
+            $_SESSION['mensaje'] = ['tipo' => '😊 Gracias por tu compra!', 'texto' => "Pedido realizado exitosamente"];
+            $_SESSION['carrito'] = [];
+            unset($_SESSION['direccion']);
+            header('Location: ' . $_SERVER['PHP_SELF']);
+            exit;
+        } else {
+            $_SESSION['mensaje'] = ['tipo' => 'error', 'texto' => 'No se pudo guardar el pedido.'];
+            header('Location: ' . $_SERVER['PHP_SELF']);
+            exit;
+        }
     } else {
-        $_SESSION['mensaje'] = ['tipo' => 'error', 'texto' => 'No se pudo guardar el pedido.'];
+        $_SESSION['mensaje'] = ['tipo' => 'error', 'texto' => implode(", ", $errores)];
         header('Location: ' . $_SERVER['PHP_SELF']);
         exit;
     }

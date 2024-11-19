@@ -1,11 +1,15 @@
 <?php
 session_start();
 
+// Conexión a la base de datos
+
 $conexion = new mysqli("localhost", "root", "usbw", "sonrio", 3306);
+
 if ($conexion->connect_error) {
     die("<script>Swal.fire('Error', 'Conexión fallida a la base de datos.', 'error');</script>");
 }
 $conexion->set_charset("utf8");
+// Obtener la lista de estados únicos desde la base de datos
 $estados = [];
 $query = "SELECT DISTINCT estado FROM ubicaciones ORDER BY estado ASC";
 $result = $conexion->query($query);
