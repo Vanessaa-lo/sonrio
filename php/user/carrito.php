@@ -50,6 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <a href="home.php"><i class="fas fa-home"></i> Inicio</a>
         <a href="productos.php"><i class="fas fa-box"></i> Productos</a>
         <a href="carrito.php"><i class="fas fa-shopping-cart"></i> Carrito</a>
+        <a href="../login.php"><i class="fas fa-user"></i> Inicio de Sesión</a>
     </div>
 </div>
 <!-- Contenedor principal del carrito -->
