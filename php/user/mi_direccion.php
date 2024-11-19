@@ -2,10 +2,11 @@
 session_start();
 
 // Conexión a la base de datos
-$conexion = new mysqli("localhost", "root", "usbw", "sonrio");
+$conexion = new mysqli("localhost", "root", "usbw", "sonrio", 3306);
 if ($conexion->connect_error) {
-    die("Conexión fallida: " . $conexion->connect_error);
+    die("<script>Swal.fire('Error', 'Conexión fallida a la base de datos.', 'error');</script>");
 }
+$conexion->set_charset("utf8");
 
 // Obtener la lista de estados únicos desde la base de datos
 $estados = [];
@@ -19,7 +20,7 @@ if ($result) {
 }
 
 // Procesar solicitud AJAX si se envía un código postal
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['codigo_postal'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['codigo_postal']) && !isset($_POST['calle'])) {
     $codigo_postal = $_POST['codigo_postal'];
 
     $stmt = $conexion->prepare("SELECT colonia, ciudad, estado FROM ubicaciones WHERE codigo_postal = ?");
@@ -36,7 +37,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['codigo_postal'])) {
     echo json_encode($ubicaciones);
     exit;
 }
+
+// Procesar la dirección cuando se envía el formulario
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['calle'])) {
+    $codigoPostal = trim($_POST['codigo_postal']);
+    $calle = trim($_POST['calle']);
+    $numero = trim($_POST['numero']);
+    $colonia = trim($_POST['colonia']);
+    $ciudad = trim($_POST['ciudad']);
+    $estado = trim($_POST['estado']);
+
+    // Validar que todos los campos estén completos
+    if (empty($codigoPostal) || empty($calle) || empty($numero) || empty($colonia) || empty($ciudad) || empty($estado)) {
+        die("<script>Swal.fire('Error', 'Todos los campos de dirección son obligatorios.', 'error');</script>");
+    }
+
+    // Guardar en la sesión
+    $_SESSION['direccion'] = [
+        'codigo_postal' => $codigoPostal,
+        'calle' => $calle,
+        'numero' => $numero,
+        'colonia' => $colonia,
+        'ciudad' => $ciudad,
+        'estado_direccion' => $estado,
+    ];
+
+    // Redirigir de nuevo a la página de pago
+    header('Location: pago.php');
+    exit;
+}
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -64,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['codigo_postal'])) {
     <!-- Contenedor de Dirección -->
     <div class="container-direccion">
         <h2 class="titulo-direccion">Introduce tu Dirección de Envío</h2>
-        <form action="mi_direccion.php" method="POST" class="form-direccion">
+        <form method="POST" action="mi_direccion.php" class="form-direccion">
             <div class="direccion-row">
                 <label for="codigo-postal">Código Postal:</label>
                 <input type="text" id="codigo-postal" name="codigo_postal" placeholder="Ej. 44100" required>

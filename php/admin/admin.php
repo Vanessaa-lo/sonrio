@@ -25,8 +25,7 @@ $totalPedidos = $resultPedidos->fetch_assoc()['total'];
 $queryActualizaciones = "SELECT tipo, descripcion FROM actualizaciones ORDER BY fecha DESC LIMIT 5";
 $resultActualizaciones = $conexion->query($queryActualizaciones);
 
-// Crecimiento mensual (simulación)
-$crecimientoMensual = "23%"; // Puedes calcularlo según tus datos
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -86,13 +85,7 @@ $crecimientoMensual = "23%"; // Puedes calcularlo según tus datos
                         <p>Pedidos Pendientes</p>
                     </div>
                 </div>
-                <div class="card">
-                    <i class="fas fa-chart-line card-icon"></i>
-                    <div class="card-info">
-                        <h3><?php echo $crecimientoMensual; ?></h3>
-                        <p>Crecimiento Mensual</p>
-                    </div>
-                </div>
+                
             </div>
         </section>
 
