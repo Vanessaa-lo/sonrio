@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!$stmt) {
         die("Error en la preparación de la consulta: " . $conexion->error);
     }
-    
+
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $resultado = $stmt->get_result();
@@ -26,8 +26,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Verificar la contraseña encriptada
         if (password_verify($password, $usuario['contraseña'])) {
+            // Aquí se guarda el ID del usuario y otros detalles en la sesión
             $_SESSION['nombre'] = $usuario['nombre'];
-            $_SESSION['id'] = $usuario['id'];
+            $_SESSION['id'] = $usuario['id'];  // Guardar el ID de usuario en la sesión
 
             // Redirigir según el nombre del usuario
             if (strtolower($usuario['nombre']) === 'admin') {
