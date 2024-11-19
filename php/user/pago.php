@@ -15,9 +15,7 @@ if (!isset($_SESSION['carrito'])) {
 $carrito = $_SESSION['carrito'];
 $totalCarrito = 0;
 
-// Verificar si el formulario de pago fue enviado
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Validar datos de tarjeta
     $nombreTitular = trim($_POST['nombre-titular']);
     $tarjetaNumero = preg_replace('/\D/', '', $_POST['tarjeta-numero']);
     $tarjetaExpiracion = $_POST['tarjeta-expiracion'];
@@ -38,64 +36,66 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (empty($errores)) {
-        // Verificar si hay productos en el carrito
         if (empty($carrito)) {
-            die("No hay productos en el carrito. No se puede realizar el pedido.");
+            $_SESSION['mensaje'] = ['tipo' => 'error', 'texto' => 'No hay productos en el carrito.'];
+            header('Location: ' . $_SERVER['PHP_SELF']);
+            exit;
         }
 
-        // Calcular el total del carrito
         foreach ($carrito as $producto) {
             $totalCarrito += $producto['precio'] * $producto['cantidad'];
         }
-        $envio = 5; // Costo fijo de envío
+        $envio = 5;
         $totalCarrito += $envio;
 
-        // Verificar que exista una dirección en la sesión
         if (!isset($_SESSION['direccion'])) {
-            die("Por favor completa tu dirección antes de realizar el pago.");
+            $_SESSION['mensaje'] = ['tipo' => 'warning', 'texto' => 'Por favor completa tu dirección antes de realizar el pago.'];
+            header('Location: ' . $_SERVER['PHP_SELF']);
+            exit;
         }
 
-        // Obtener datos de la dirección desde la sesión
         $direccion = $_SESSION['direccion'];
         $codigoPostal = $direccion['codigo_postal'];
         $colonia = $direccion['colonia'];
         $ciudad = $direccion['ciudad'];
         $estadoDireccion = $direccion['estado_direccion'];
 
-        // Insertar el pedido en la tabla 'pedidos'
         $sqlPedido = "INSERT INTO pedidos (usuario_id, carrito_id, total, estado, codigo_postal, colonia, ciudad, estado_direccion) 
                       VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conexion->prepare($sqlPedido);
 
         if (!$stmt) {
-            die("Error en la preparación de la consulta para el pedido: " . $conexion->error);
+            $_SESSION['mensaje'] = ['tipo' => 'error', 'texto' => 'Error al preparar la consulta.'];
+            header('Location: ' . $_SERVER['PHP_SELF']);
+            exit;
         }
 
-        $usuarioId = null;  // O el valor real si tienes el ID del usuario
-        $carritoId = null;  // O el valor real si tienes el ID del carrito
+        $usuarioId = null;
+        $carritoId = null;
         $estadoPedido = 'pendiente';
 
         $stmt->bind_param('iidsssss', $usuarioId, $carritoId, $totalCarrito, $estadoPedido, $codigoPostal, $colonia, $ciudad, $estadoDireccion);
         $stmt->execute();
         $pedidoId = $conexion->insert_id;
 
-        if (!$pedidoId) {
-            die("Error al guardar el pedido");
+        if ($pedidoId) {
+            $_SESSION['mensaje'] = ['tipo' => 'listo!!😊', 'texto' => "Pedido realizado exitosamente "];
+            $_SESSION['carrito'] = [];
+            unset($_SESSION['direccion']);
+            header('Location: ' . $_SERVER['PHP_SELF']);
+            exit;
+        } else {
+            $_SESSION['mensaje'] = ['tipo' => 'error', 'texto' => 'No se pudo guardar el pedido.'];
+            header('Location: ' . $_SERVER['PHP_SELF']);
+            exit;
         }
-
-        // Confirmar éxito
-        echo "Pedido realizado exitosamente, ID de pedido: " . $pedidoId;
-
-        // Limpiar carrito y dirección
-        $_SESSION['carrito'] = [];
-        unset($_SESSION['direccion']);
     } else {
-        echo "Errores encontrados: " . implode(", ", $errores);
+        $_SESSION['mensaje'] = ['tipo' => 'error', 'texto' => implode(", ", $errores)];
+        header('Location: ' . $_SERVER['PHP_SELF']);
+        exit;
     }
 }
 ?>
-
-
 
 
 
@@ -123,10 +123,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
    
 </div>
+<!-- Script para mostrar SweetAlert -->
+
 
 
     <!-- Sección de Pago -->
     <div class="container-pago">
+    <script>
+        <?php if (isset($_SESSION['mensaje'])): ?>
+            Swal.fire({
+                icon: '<?php echo $_SESSION['mensaje']['tipo']; ?>',
+                title: '<?php echo ucfirst($_SESSION['mensaje']['tipo']); ?>',
+                text: '<?php echo $_SESSION['mensaje']['texto']; ?>',
+                showConfirmButton: true
+            });
+            <?php unset($_SESSION['mensaje']); ?>
+        <?php endif; ?>
+    </script>
+ 
     <div class="direccion">
     <button class="btn-direccion" onclick="window.location.href='mi_direccion.php'" >
        Dirección de envio<i class="fas fa-chevron-right"></i>
