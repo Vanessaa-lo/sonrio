@@ -64,7 +64,7 @@
 
                         .about-text h2 {
                         font-size: 36px;
-                        color: #a255e9;
+                        color:#c594e3;
                         margin-bottom: 20px;
                         }
 
@@ -684,7 +684,7 @@
                         .promo-item h2 {
                         font-size: 16px;
                             color: #c594e3;
-                            margin-top: 10px;
+                            margin-top: 18px;
                             text-align: center;
                             }
                           /* Ajustes responsivos */
@@ -708,6 +708,53 @@
                                   font-size: 24px;
                               }
                           }
+                          .accepted-payments {
+                            margin: 50px auto;
+                            text-align: center;
+                            padding: 20px;
+                    
+                            border-radius: 10px;
+                            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                        }
+                        
+                        .accepted-payments .titulo-pago {
+                            font-size: 24px;
+                            color: #c594e3;
+                            margin-bottom: 20px;
+                        }
+                        
+                        .payment-icons {
+                            display: flex;
+                            flex-wrap: wrap;
+                            justify-content: center;
+                            gap: 20px;
+                        }
+                        
+                        .payment-item {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            gap: 10px;
+                            max-width: 120px;
+                        }
+                        
+                        .payment-item img {
+                            width: 80px;
+                            height: auto;
+                            border-radius: 5px;
+                            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                            transition: transform 0.3s ease;
+                        }
+                        
+                        .payment-item img:hover {
+                            transform: scale(1.1);
+                        }
+                        
+                        .payment-item p {
+                            font-size: 16px;
+                            color: #6a3ea7;
+                            font-weight: bold;
+                        }
                           /* Estilos de Slider */
                           
                           .slider {
@@ -1652,7 +1699,6 @@
                               .promocion-circulos {
                                   display: flex;
                                   flex-wrap: wrap;
-                                  /* Asegura ajuste en pantallas pequeñas */
                                   justify-content: center;
                                   align-items: center;
                                   gap: 15px;
@@ -1667,7 +1713,7 @@
                                   align-items: center;
                                   justify-content: center;
                                   color: #00020888;
-                                  background-color: #ffffff;
+                               
                                   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
                                   transition: transform 0.3s ease;
                               }
@@ -1680,7 +1726,7 @@
                                   border-radius: 50%;
                               }
                               .promo-item h2 {
-                                  font-size: 16px;
+                                  font-size: 20px;
                                   color: #c594e3;
                                   margin-top: 10px;
                                   text-align: center;

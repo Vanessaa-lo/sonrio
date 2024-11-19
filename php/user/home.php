@@ -39,19 +39,7 @@
 
  	</section>
     
-     <section id="about">
-    <div class="about-container">
-        <div class="about-logo">
-        <img src="../../estilo/imagenes/logoo.png" alt="Imagen decorativa de inicio de sesión">
-        </div>
-        <div class="about-text">
-            <h2>Sobre Sonrio</h2>
-            <p>
-            En Sonrio, nos dedicamos a ofrecer una selección única y encantadora de productos inspirados en el mágico universo de Sanrio. Descubre tus personajes favoritos y lleva su ternura contigo en cada detalle
-            </p>
-        </div>
-    </div>
-</section>
+     
 <section class="promociones">
             <h2 class="ttop">¿Quién es tu favorito?</h2>
             <div class="promocion-circulos">
@@ -81,6 +69,41 @@
                 </div>
             </div>
         </section>
+        <section id="about">
+    <div class="about-container">
+        <div class="about-logo">
+        <img src="../../estilo/imagenes/logoo.png" alt="Imagen decorativa de inicio de sesión">
+        </div>
+        <div class="about-text">
+            <h2>Sobre Sonrio</h2>
+            <p>
+            En Sonrio, nos dedicamos a ofrecer una selección única y encantadora de productos inspirados en el mágico universo de Sanrio. Descubre tus personajes favoritos y lleva su ternura contigo en cada detalle
+            </p>
+        </div>
+    </div>
+</section>
+<section id="payment-methods" class="accepted-payments">
+    <h2 class="titulo-pago">Métodos de Pago Aceptados</h2>
+    <div class="payment-icons">
+        <div class="payment-item">
+            <img src="../../estilo/imagenes/visa.png" alt="Visa">
+            <p>Visa</p>
+        </div>
+        <div class="payment-item">
+            <img src="../../estilo/imagenes/mastercard.png" alt="Mastercard">
+            <p>Mastercard</p>
+        </div>
+        <div class="payment-item">
+            <img src="../../estilo/imagenes/paypal.png" alt="PayPal">
+            <p>PayPal</p>
+        </div>
+        <div class="payment-item">
+            <img src="../../estilo/imagenes/american.png" alt="American Express">
+            <p>American Express</p>
+        </div>
+    </div>
+</section>
+
 
 <footer>
             © 2024 Tienda Sonrio - Todos los derechos reservados
