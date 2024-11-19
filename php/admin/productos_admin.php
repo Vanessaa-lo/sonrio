@@ -1,12 +1,11 @@
 <?php
 session_start();
 
-// Conexión a la base de datos
 $conexion = new mysqli("localhost", "root", "usbw", "sonrio", 3306);
 if ($conexion->connect_error) {
     die("<script>Swal.fire('Error', 'Conexión fallida a la base de datos.', 'error');</script>");
 }
-$conexion->set_charset("utf8"); // Configurar UTF-8
+$conexion->set_charset("utf8");
 
 // Función para eliminar producto si se recibe el ID por GET
 if (isset($_GET['eliminar_id'])) {
@@ -33,19 +32,12 @@ if (isset($_GET['eliminar_id'])) {
         $stmt_actualizacion->bind_param("s", $descripcion_actualizacion);
         $stmt_actualizacion->execute();
 
-        // Mensaje de éxito
-        echo "<script>
-        alert('Producto eliminado correctamente. Se ha registrado en las actualizaciones.');
-        window.location.href = 'productos_admin.php';
-        </script>";
+        // Respuesta exitosa en JSON
+        echo json_encode(['success' => true, 'message' => 'Producto eliminado correctamente.']);
     } else {
-        // Manejar errores al eliminar el producto
-        echo "<script>
-        alert('Error al eliminar el producto. Intenta nuevamente.');
-        window.location.href = 'productos_admin.php';
-        </script>";
+        // Error al eliminar el producto
+        echo json_encode(['success' => false, 'message' => 'Error al eliminar el producto. Intenta nuevamente.']);
     }
-
     exit();
 }
 
@@ -75,18 +67,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['nombre']) && isset($_P
         $stmt_actualizacion->bind_param("s", $descripcion_actualizacion);
         $stmt_actualizacion->execute();
 
-        // Mensaje de éxito
-        echo "<script>
-        alert('Producto Agregado. El producto se ha agregado correctamente.');
-        window.location.href = 'productos_admin.php';
-        </script>";
+        // Respuesta exitosa en JSON
+        echo json_encode(['success' => true, 'message' => 'Producto agregado correctamente.']);
     } else {
-        // Manejar errores al agregar el producto
-        echo "<script>
-        alert('Error al agregar el producto. Intenta nuevamente.');
-        window.location.href = 'productos_admin.php';
-        </script>";
+        // Error al agregar el producto
+        echo json_encode(['success' => false, 'message' => 'Error al agregar el producto. Intenta nuevamente.']);
     }
+    exit();
 }
 ?>
 
@@ -105,21 +92,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['nombre']) && isset($_P
 <body>
 <header class="header" id="header-admin">
     <div class="top-bar">
-    <button class="btn-salir" onclick="window.location.href='admin.php'">
-       X
-        </button>
-        <button class="btn-agregar" onclick="abrirPopUp()">
-         Agregar Nuevo Producto
-        </button>
-      
+        <button class="btn-salir" onclick="window.location.href='admin.php'">X</button>
+        <button class="btn-agregar" onclick="abrirPopUp()">Agregar Nuevo Producto</button>
     </div>
 </header>
 
-
-
 <div class="container">
     <h1>Productos Disponibles</h1>
-    <table class="tabla-productos">
+    <table class="tabla-productos" id="tabla-productos">
         <thead>
             <tr>
                 <th>Nombre</th>
@@ -130,24 +110,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['nombre']) && isset($_P
             </tr>
         </thead>
         <tbody>
-        <?php
-        if ($resultado->num_rows > 0) {
-            while ($producto = $resultado->fetch_assoc()) {
-                echo '<tr>';
-                echo '<td>' . $producto['nombre'] . '</td>';
-                echo '<td>' . $producto['descripcion'] . '</td>';
-                echo '<td>' . number_format($producto['precio'], 2) . ' MXN</td>';
-                echo '<td>' . $producto['stock'] . '</td>';
-                echo '<td>
-                       
-                        <button class="btn-eliminar" onclick="eliminarProducto(' . $producto['id'] . ')">Eliminar</button>
-                      </td>';
-                echo '</tr>';
+            <?php
+            if ($resultado->num_rows > 0) {
+                while ($producto = $resultado->fetch_assoc()) {
+                    echo '<tr>';
+                    echo '<td>' . $producto['nombre'] . '</td>';
+                    echo '<td>' . $producto['descripcion'] . '</td>';
+                    echo '<td>' . number_format($producto['precio'], 2) . ' MXN</td>';
+                    echo '<td>' . $producto['stock'] . '</td>';
+                    echo '<td>
+                            <button class="btn-eliminar" onclick="eliminarProducto(' . $producto['id'] . ')">Eliminar</button>
+                          </td>';
+                    echo '</tr>';
+                }
+            } else {
+                echo '<tr><td colspan="5">No hay productos disponibles.</td></tr>';
             }
-        } else {
-            echo '<tr><td colspan="5">No hay productos disponibles.</td></tr>';
-        }
-        ?>
+            ?>
         </tbody>
     </table>
 
@@ -180,6 +159,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['nombre']) && isset($_P
             <button class="btn-cerrar" onclick="cerrarPopUp()">Cerrar</button>
         </div>
     </div>
+
+    <div id="mensaje"></div> <!-- Aquí se mostrará el mensaje de éxito/error -->
 </div>
 
 <script>
@@ -191,22 +172,26 @@ function cerrarPopUp() {
     document.getElementById('popup-agregar').style.display = 'none';
 }
 
-function modificarProducto(id) {
-    Swal.fire({
-        title: 'Modificar Producto',
-        text: 'Modificar producto ID: ' + id,
-        icon: 'info'
-    });
-}
-
 function eliminarProducto(id) {
     const confirmacion = confirm("¿Estás seguro de eliminar este producto?");
     if (confirmacion) {
-        // Redirigir para eliminar el producto si el usuario confirma
-        window.location.href = 'productos_admin.php?eliminar_id=' + id;
+        fetch('productos_admin.php?eliminar_id=' + id)
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    Swal.fire('Éxito', data.message, 'success');
+                    actualizarTabla();  // Actualiza la tabla después de eliminar
+                } else {
+                    Swal.fire('Error', data.message, 'error');
+                }
+            });
     }
 }
 
+function actualizarTabla() {
+    fetch('productos_admin.php') // Recarga los productos
+        .then(response => response.text())
+}
 
 function convertirImagenBase64() {
     const file = document.getElementById('imagen').files[0];
@@ -222,22 +207,30 @@ function convertirImagenBase64() {
     }
 }
 
-function procesarImagen(event) {
+// Proceso del formulario de agregar producto
+document.getElementById('form-agregar-producto').addEventListener('submit', function(event) {
     event.preventDefault();
-    const form = document.getElementById('form-agregar-producto');
-    if (document.getElementById('imagen_base64').value) {
-        form.action = "productos_admin.php";
-        form.method = "POST";
-        form.submit();
-    } else {
-        alert('Imagen requerida. Por favor, sube una imagen para el producto.');
-    }
-}
+    const formData = new FormData(this);
 
+    fetch('productos_admin.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            Swal.fire('Éxito', data.message, 'success');
+            cerrarPopUp();
+            actualizarTabla();
+        } else {
+            Swal.fire('Error', data.message, 'error');
+        }
+    });
+});
 </script>
-
 </body>
 </html>
+
 
 <?php
 $conexion->close();

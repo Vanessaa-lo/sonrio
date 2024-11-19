@@ -223,8 +223,14 @@ $conexion->close();
             title: '<?php echo $registroExitoso ? "Registro Exitoso" : "Error"; ?>',
             text: '<?php echo $mensaje; ?>',
             confirmButtonText: 'Aceptar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Redirigir al login después de cerrar la alerta
+                window.location.href = '<?php echo $registroExitoso ? "login.php" : "registro.php"; ?>';
+            }
         });
     </script>
-    <?php endif; ?>
+<?php endif; ?>
+
 </body>
 </html>
