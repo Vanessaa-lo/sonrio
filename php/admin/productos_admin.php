@@ -139,7 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['nombre']) && isset($_P
                 echo '<td>' . number_format($producto['precio'], 2) . ' MXN</td>';
                 echo '<td>' . $producto['stock'] . '</td>';
                 echo '<td>
-                        <button class="btn-modificar" onclick="modificarProducto(' . $producto['id'] . ')">Modificar</button>
+                       
                         <button class="btn-eliminar" onclick="eliminarProducto(' . $producto['id'] . ')">Eliminar</button>
                       </td>';
                 echo '</tr>';

@@ -17,7 +17,7 @@ $queryUsuarios = "SELECT COUNT(*) AS total FROM usuarios";
 $resultUsuarios = $conexion->query($queryUsuarios);
 $totalUsuarios = $resultUsuarios->fetch_assoc()['total'];
 
-$queryPedidos = "SELECT COUNT(*) AS total FROM pedidos WHERE estado = 'pendiente'";
+$queryPedidos = "SELECT COUNT(*) AS total FROM pedidos WHERE estado = 'pendiente de envio'";
 $resultPedidos = $conexion->query($queryPedidos);
 $totalPedidos = $resultPedidos->fetch_assoc()['total'];
 

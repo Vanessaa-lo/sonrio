@@ -89,7 +89,6 @@ if (!$resultado) {
             <tr>
                 <th>ID</th>
                 <th>ID Usuario</th>
-                <th>ID Carrito</th>
                 <th>Fecha Pedido</th>
                 <th>Total</th>
                 <th>Estado</th>
@@ -97,7 +96,8 @@ if (!$resultado) {
                 <th>Ciudad</th>
                 <th>Código Postal</th>
                 <th>Estado Dirección</th>
-                <th>Acciones</th>
+                <th>Cambios</th>
+                <th>Estado del Envio</th>
             </tr>
         </thead>
         <tbody>
@@ -107,7 +107,6 @@ if (!$resultado) {
                 echo '<tr>';
                 echo '<td>' . $pedido['id'] . '</td>';
                 echo '<td>' . $pedido['usuario_id'] . '</td>';
-                echo '<td>' . $pedido['carrito_id'] . '</td>';
                 echo '<td>' . $pedido['fecha_pedido'] . '</td>';
                 echo '<td>$' . number_format($pedido['total'], 2) . '</td>';
                 echo '<td>' . $pedido['estado'] . '</td>';
@@ -115,7 +114,8 @@ if (!$resultado) {
                 echo '<td>' . $pedido['ciudad'] . '</td>';
                 echo '<td>' . $pedido['codigo_postal'] . '</td>';
                 echo '<td>' . $pedido['estado_direccion'] . '</td>';
-                echo '<td><button onclick="eliminarPedido(' . $pedido['id'] . ')">Eliminar</button></td>';
+                echo '<td><button  class="btn-eliminar" onclick="eliminarPedido(' . $pedido['id'] . ')">Eliminar</button></td>';
+                echo '<td><button class="btn-modificar" >Modificar</button></td>';
                 echo '</tr>';
             }
         } else {
