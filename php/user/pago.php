@@ -59,9 +59,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $colonia = $direccion['colonia'];
         $ciudad = $direccion['ciudad'];
         $estadoDireccion = $direccion['estado_direccion'];
+        $calle = $direccion['calle'];
+        $numero = $direccion['numero'];
+       
 
-        $sqlPedido = "INSERT INTO pedidos (usuario_id, carrito_id, total, estado, codigo_postal, colonia, ciudad, estado_direccion) 
-                      VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $sqlPedido = "INSERT INTO pedidos (usuario_id, carrito_id, total, estado, codigo_postal, colonia, ciudad, estado_direccion, calle, numero) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
         $stmt = $conexion->prepare($sqlPedido);
 
         if (!$stmt) {
@@ -72,9 +76,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $usuarioId = null;
         $carritoId = null;
-        $estadoPedido = 'pendiente';
+        $estadoPedido = 'pendiente de envio';
 
-        $stmt->bind_param('iidsssss', $usuarioId, $carritoId, $totalCarrito, $estadoPedido, $codigoPostal, $colonia, $ciudad, $estadoDireccion);
+       
+        $stmt->bind_param(
+            'iidsssssss', 
+            $usuarioId, 
+            $carritoId, 
+            $totalCarrito, 
+            $estadoPedido, 
+            $codigoPostal, 
+            $colonia, 
+            $ciudad, 
+            $estadoDireccion, 
+            $calle, 
+            $numero
+        );
+        
+
         $stmt->execute();
         $pedidoId = $conexion->insert_id;
 
