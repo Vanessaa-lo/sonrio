@@ -4,105 +4,115 @@ session_start();
 // Conexión a la base de datos
 $conexion = new mysqli("localhost", "root", "usbw", "sonrio", 3306);
 if ($conexion->connect_error) {
-    echo "<script>
-            Swal.fire('Error', 'Conexión fallida a la base de datos.', 'error')
-            .then(() => { window.location.href = 'error.php'; });
-          </script>";
-    exit;
+    die("<script>Swal.fire('Error', 'Conexión fallida a la base de datos.', 'error');</script>");
 }
 $conexion->set_charset("utf8");
 
-// Procesar la actualización del estado del pedido
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'], $_POST['estado'])) {
-    $idPedido = intval($_POST['id']);
-    $nuevoEstado = $_POST['estado'];
+// Obtener los pedidos existentes
+$consulta = "SELECT id, usuario_id, fecha_pedido, total, estado, ciudad, colonia, codigo_postal, calle, numero FROM pedidos";
+$resultado = $conexion->query($consulta);
 
-    // Validar estado permitido
-    $estadosValidos = ['pendiente de envio', 'enviado', 'entregado'];
-    if (!in_array($nuevoEstado, $estadosValidos)) {
-        echo json_encode(['success' => false, 'error' => 'Estado inválido']);
-        exit;
-    }
+if (!$resultado) {
+    die("Error en la consulta SQL: " . $conexion->error);
+}
 
-    $query = "UPDATE pedidos SET estado = ? WHERE id = ?";
-    $stmt = $conexion->prepare($query);
+// Procesar la actualización del estado si se envía mediante POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_pedido'], $_POST['nuevo_estado'])) {
+    $idPedido = $_POST['id_pedido'];
+    $nuevoEstado = $_POST['nuevo_estado'];
 
-    if (!$stmt) {
-        echo json_encode(['success' => false, 'error' => 'Error al preparar la consulta.']);
-        exit;
-    }
-
-    $stmt->bind_param('si', $nuevoEstado, $idPedido);
+    // Actualizar el estado en la base de datos
+    $actualizarEstado = "UPDATE pedidos SET estado = ? WHERE id = ?";
+    $stmt = $conexion->prepare($actualizarEstado);
+    $stmt->bind_param("si", $nuevoEstado, $idPedido);
 
     if ($stmt->execute()) {
-        echo json_encode(['success' => true, 'message' => 'El estado del pedido se actualizó correctamente.']);
+        echo "<script>
+            Swal.fire('¡Éxito!', 'El estado del pedido se actualizó correctamente.', 'success')
+            .then(() => { window.location.href = 'pedidos_admin.php'; });
+        </script>";
     } else {
-        echo json_encode(['success' => false, 'error' => 'Error al ejecutar la consulta.']);
+        echo "<script>
+            Swal.fire('Error', 'No se pudo actualizar el estado del pedido.', 'error');
+        </script>";
     }
+    exit;
+}
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'], $_POST['nuevo_estado'])) {
+    $id = intval($_POST['id']); // Aseguramos que sea un número entero
+    $nuevoEstado = $_POST['nuevo_estado'];
 
+    // Actualizamos el estado en la base de datos
+    $actualizarEstado = "UPDATE pedidos SET estado = ? WHERE id = ?";
+    $stmt = $conexion->prepare($actualizarEstado);
+    $stmt->bind_param("si", $nuevoEstado, $id);
+
+    if ($stmt->execute()) {
+        echo json_encode(['success' => true]);
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Error al actualizar el estado en la base de datos.']);
+    }
     $stmt->close();
     exit;
 }
 
-// Eliminar pedido
+
+
+// Función para eliminar pedido si se recibe el ID por GET
 if (isset($_GET['eliminar_id'])) {
-    $idPedido = filter_var($_GET['eliminar_id'], FILTER_VALIDATE_INT);
+    $id_pedido = $_GET['eliminar_id'];
 
-    if ($idPedido) {
-        $consultaNombre = "SELECT id, usuario_id, total FROM pedidos WHERE id = ?";
-        $stmt = $conexion->prepare($consultaNombre);
-        $stmt->bind_param("i", $idPedido);
-        $stmt->execute();
-        $pedido = $stmt->get_result()->fetch_assoc();
+    // Obtener el pedido antes de eliminarlo
+    $consulta_nombre = "SELECT id, usuario_id, total FROM pedidos WHERE id = ?";
+    $stmt_nombre = $conexion->prepare($consulta_nombre);
+    $stmt_nombre->bind_param("i", $id_pedido);
+    $stmt_nombre->execute();
+    $resultado_nombre = $stmt_nombre->get_result();
+    $pedido = $resultado_nombre->fetch_assoc();
 
-        if ($pedido) {
-            $consultaEliminar = "DELETE FROM pedidos WHERE id = ?";
-            $stmtEliminar = $conexion->prepare($consultaEliminar);
-            $stmtEliminar->bind_param("i", $idPedido);
+    if ($pedido) {
+        // Eliminar el pedido
+        $consulta_eliminar = "DELETE FROM pedidos WHERE id = ?";
+        $stmt_eliminar = $conexion->prepare($consulta_eliminar);
+        $stmt_eliminar->bind_param("i", $id_pedido);
 
-            if ($stmtEliminar->execute()) {
-                $descripcion = "Se eliminó el pedido con ID: {$pedido['id']} del usuario: {$pedido['usuario_id']} por un total de: {$pedido['total']}";
-                $consultaActualizacion = "INSERT INTO actualizaciones (tipo, descripcion) VALUES ('pedido', ?)";
-                $stmtActualizacion = $conexion->prepare($consultaActualizacion);
-                $stmtActualizacion->bind_param("s", $descripcion);
-                $stmtActualizacion->execute();
-                $stmtActualizacion->close();
+        if ($stmt_eliminar->execute()) {
+            // Registrar actualización
+            $descripcion = "Se eliminó el pedido con ID: {$pedido['id']} del usuario: {$pedido['usuario_id']} por un total de: {$pedido['total']}";
+            $consulta_actualizacion = "INSERT INTO actualizaciones (tipo, descripcion) VALUES ('pedido', ?)";
+            $stmt_actualizacion = $conexion->prepare($consulta_actualizacion);
+            $stmt_actualizacion->bind_param("s", $descripcion);
+            $stmt_actualizacion->execute();
 
-                echo "<script>
-                        Swal.fire('¡Éxito!', 'El pedido ha sido eliminado correctamente.', 'success')
-                        .then(() => { window.location.href = 'pedidos_admin.php'; });
-                      </script>";
-            } else {
-                echo "<script>
-                        Swal.fire('Error', 'No se pudo eliminar el pedido.', 'error');
-                      </script>";
-            }
-            $stmtEliminar->close();
+            // Notificación de éxito
+            echo "<script>
+                    alert('El pedido ha sido eliminado correctamente.');
+                    window.location.href = 'pedidos_admin.php';
+                  </script>";
         } else {
             echo "<script>
-                    Swal.fire('Error', 'El pedido no existe.', 'error');
+                    alert('Error al eliminar el pedido.');
+                    window.location.href = 'pedidos_admin.php';
                   </script>";
         }
-        $stmt->close();
+        $stmt_eliminar->close();
+    } else {
+        echo "<script>
+                alert('El pedido no existe.');
+                window.location.href = 'pedidos_admin.php';
+              </script>";
     }
-    exit;
+    exit();
 }
 
-// Obtener pedidos existentes
-$consulta = "SELECT id, usuario_id, fecha_pedido, total, estado, ciudad, colonia, codigo_postal, calle, numero,estado_direccion FROM pedidos";
+// Obtener los pedidos existentes
+$consulta = "SELECT id, usuario_id, carrito_id, fecha_pedido, total, estado, colonia, ciudad, codigo_postal,calle,numero,estado_direccion FROM pedidos";
 $resultado = $conexion->query($consulta);
 
 if (!$resultado) {
-    echo "<script>
-            Swal.fire('Error', 'Error al obtener pedidos.', 'error');
-          </script>";
-    exit;
+    die("Error en la consulta SQL: " . $conexion->error);
 }
-
-// Cerrar conexión
-$conexion->close();
 ?>
-
 
 <!DOCTYPE html>
 <html lang="es">
@@ -112,6 +122,7 @@ $conexion->close();
     <title>Administración de Pedidos</title>
     <link rel="stylesheet" href="../../estilo/admin.css">
     <link rel="icon" href="../../estilo/imagenes/cinta.png" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 <header class="header" id="header-admin">
@@ -143,31 +154,32 @@ $conexion->close();
             </tr>
         </thead>
         <tbody>
-<?php
-if ($resultado->num_rows > 0) {
-    while ($pedido = $resultado->fetch_assoc()) {
-        echo '<tr>';
-        echo '<td>' . $pedido['id'] . '</td>';
-        echo '<td>' . $pedido['usuario_id'] . '</td>';
-        echo '<td>' . $pedido['fecha_pedido'] . '</td>';
-        echo '<td>$' . number_format($pedido['total'], 2) . '</td>';
-        echo '<td>' . $pedido['estado'] . '</td>';
-        echo '<td>' . $pedido['estado_direccion'] . '</td>';
-        echo '<td>' . $pedido['ciudad'] . '</td>';
-        echo '<td>' . $pedido['colonia'] . '</td>';
-        echo '<td>' . $pedido['codigo_postal'] . '</td>';
-        echo '<td>' . $pedido['calle'] . '</td>';
-        echo '<td>' . $pedido['numero'] . '</td>';
-        echo '<td><button  class="btn-eliminar" onclick="eliminarPedido(' . $pedido['id'] . ')">Eliminar</button></td>';
-        echo '<td><button class="btn-modificar" onclick="modificarEstado(' . $pedido['id'] . ', \'' . $pedido['estado'] . '\')">Modificar</button></td>';
-        echo '</tr>';
-    }
-} else {
-    echo '<tr><td colspan="11">No hay pedidos registrados.</td></tr>';
-}
-?>
-</tbody>
+        <?php
+        if ($resultado->num_rows > 0) {
+            while ($pedido = $resultado->fetch_assoc()) {
+                echo '<tr>';
+                echo '<td>' . $pedido['id'] . '</td>';
+                echo '<td>' . $pedido['usuario_id'] . '</td>';
+                echo '<td>' . $pedido['fecha_pedido'] . '</td>';
+                echo '<td>$' . number_format($pedido['total'], 2) . '</td>';
+                echo '<td>' . $pedido['estado'] . '</td>';
+                echo '<td>' . $pedido['estado_direccion'] . '</td>';
+                echo '<td>' . $pedido['ciudad'] . '</td>';
+                echo '<td>' . $pedido['colonia'] . '</td>';
+                echo '<td>' . $pedido['codigo_postal'] . '</td>';
+                echo '<td>' . $pedido['calle'] . '</td>';
+                echo '<td>' . $pedido['numero'] . '</td>';
+                echo '<td><button  class="btn-eliminar" onclick="eliminarPedido(' . $pedido['id'] . ')">Eliminar</button></td>';
+                echo '<td><button class="btn-modificar" onclick="abrirModificarEstado(' . $pedido['id'] . ', \'' . $pedido['estado'] . '\')">Modificar</button></td>';
 
+
+                echo '</tr>';
+            }
+        } else {
+            echo '<tr><td colspan="11">No hay pedidos registrados.</td></tr>';
+        }
+        ?>
+        </tbody>
     </table>
 </div>
 
@@ -179,49 +191,37 @@ function eliminarPedido(id) {
         window.location.href = 'pedidos_admin.php?eliminar_id=' + id;
     }
 }
-function modificarEstado(id, estadoActual) {
-    const estados = ['pendiente de envio', 'enviado', 'entregado'];
 
+function abrirModificarEstado(id, estado) {
     Swal.fire({
-        title: 'Cambiar estado del envío',
+        title: 'Modificar estado del envío',
         input: 'select',
-        inputOptions: estados.reduce((acc, estado) => {
-            acc[estado] = estado.charAt(0).toUpperCase() + estado.slice(1);
-            return acc;
-        }, {}),
-        inputValue: estadoActual,
+        inputOptions: {
+            'Pendiente de envío': 'Pendiente de envío',
+            'Enviado': 'Enviado',
+            'Entregado': 'Entregado'
+        },
+        inputValue: estado, // Usamos el parámetro estado correctamente
         showCancelButton: true,
-        confirmButtonText: 'Guardar',
+        confirmButtonText: 'Actualizar',
         cancelButtonText: 'Cancelar',
-        inputValidator: (value) => {
-            if (!value) {
-                return 'Debes seleccionar un estado';
-            }
-        }
-    }).then((result) => {
-        if (result.isConfirmed) {
-            const nuevoEstado = result.value;
-
-            // Llamar a la función PHP para actualizar el estado
-            fetch('pedidos_admin.php', {
+        preConfirm: (nuevoEstado) => {
+            return fetch('pedidos_admin.php', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: `id=${id}&estado=${nuevoEstado}`
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `id=${id}&nuevo_estado=${encodeURIComponent(nuevoEstado)}`
             })
-            .then((response) => response.json())
-            .then((data) => {
+            .then(response => response.json()) // Parseamos JSON directamente
+            .then(data => {
                 if (data.success) {
-                    Swal.fire('Actualizado', data.message, 'success');
-                    location.reload(); // Refrescar para ver cambios
+                    Swal.fire('¡Éxito!', 'El estado fue actualizado correctamente.', 'success')
+                        .then(() => location.reload()); // Recargamos la página
                 } else {
-                    Swal.fire('Error', data.error, 'error');
+                    Swal.fire('Error', data.message || 'Hubo un problema al actualizar el estado.', 'error');
                 }
             })
-            .catch((error) => {
-                console.error('Error:', error);
-                Swal.fire('Error', 'No se pudo conectar al servidor.', 'error');
+            .catch(() => {
+                Swal.fire('Error', 'No se pudo actualizar el estado. Intenta de nuevo.', 'error');
             });
         }
     });
