@@ -2,7 +2,7 @@
 // Datos de conexión
 $host = "localhost";
 $usuario = "root";
-$contraseña = "";
+$contraseña = "usbw";
 $base_datos = "sonrio";
 $puerto = 3306;
 

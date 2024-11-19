@@ -2,10 +2,11 @@
 session_start();
 
 // Conexión a la base de datos
-$conexion = new mysqli("localhost", "root", "", "sonrio");
+$conexion = new mysqli("localhost", "root", "usbw", "sonrio", 3306);
 if ($conexion->connect_error) {
-    die("Conexión fallida: " . $conexion->connect_error);
+    die("<script>Swal.fire('Error', 'Conexión fallida a la base de datos.', 'error');</script>");
 }
+$conexion->set_charset("utf8");
 
 // Inicializar el carrito en la sesión si no existe
 if (!isset($_SESSION['carrito'])) {
@@ -45,16 +46,48 @@ if (isset($_POST['producto_id']) && isset($_POST['ajax'])) {
     exit;
 }
 
-// Verificar si hay una consulta de búsqueda final
-$consulta = "SELECT id, nombre, descripcion, precio, stock, url_imagen FROM productos";
-if (isset($_GET['query'])) {
-    $query = $conexion->real_escape_string($_GET['query']);
-    $consulta .= " WHERE nombre LIKE '%$query%'";
+// Búsqueda de productos
+$query = $_POST['query'] ?? '';
+$consulta = "SELECT id, nombre, descripcion, precio, url_imagen FROM productos WHERE nombre LIKE ?";
+$stmt = $conexion->prepare($consulta);
+$searchTerm = '%' . $query . '%';
+$stmt->bind_param("s", $searchTerm);
+$stmt->execute();
+$resultado = $stmt->get_result();
+
+// Si es una solicitud AJAX, solo devolvemos los productos
+if (isset($_POST['query'])) {
+    if ($resultado->num_rows > 0) {
+        while ($producto = $resultado->fetch_assoc()) {
+            $imagen_url = !empty($producto['url_imagen']) ? 'data:image/png;base64,' . $producto['url_imagen'] : 'ruta/a/imagen/por_defecto.png';
+            $precio = !empty($producto['precio']) ? number_format($producto['precio'], 2) : 'Precio no disponible';
+            $descripcion = !empty($producto['descripcion']) ? $producto['descripcion'] : 'Descripción no disponible';
+
+            echo '<div class="product-card">';
+            echo '    <h3>' . $producto['nombre'] . '</h3>';
+            echo '    <img src="' . $imagen_url . '" alt="' . $producto['nombre'] . '">';
+            echo '    <p>$' . $precio . ' MXN</p>';
+            echo '    <p>' . $descripcion . '</p>';
+            echo '    <form onsubmit="return agregarAlCarrito(event)">';
+            echo '        <input type="hidden" name="producto_id" value="' . $producto['id'] . '">';
+            echo '        <input type="hidden" name="nombre" value="' . $producto['nombre'] . '">';
+            echo '        <input type="hidden" name="precio" value="' . $producto['precio'] . '">';
+            echo '        <input type="hidden" name="imagen" value="' . $imagen_url . '">';
+            echo '        <div class="item-quantity2">';
+            echo '            <button type="button" class="decrease" onclick="decrementarCantidad(this)">-</button>';
+            echo '            <input type="number" name="cantidad" value="1" min="1" class="quantity-input">';
+            echo '            <button type="button" class="increase" onclick="incrementarCantidad(this)">+</button>';
+            echo '        </div>';
+            echo '        <button type="submit" class="add-to-cart-btn">Agregar al carrito</button>';
+            echo '    </form>';
+            echo '</div>';
+        }
+    } else {
+        echo '<p>No hay productos que coincidan con tu búsqueda.</p>';
+    }
+    exit;
 }
-
-$resultado = $conexion->query($consulta);
 ?>
-
 
 <!DOCTYPE html>
 <html lang="es">
@@ -66,70 +99,59 @@ $resultado = $conexion->query($consulta);
     <link rel="icon" href="../../estilo/imagenes/cinta.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 </head>
-
 <body>
-     <!-- Navbar -->
-     <div class="navbar" id="navbar-productos">
+    <!-- Navbar -->
+    <div class="navbar" id="navbar-productos">
         <div class="logosonrio">
-            <img src="../../estilo/imagenes/logg.png" class="logosonrio" id="logo-productos"></div>
+            <img src="../../estilo/imagenes/logg.png" class="logosonrio" id="logo-productos">
+        </div>
         <div class="cont-a">
-            <div class="cont-a">
-                <a href="home.php"><i class="fas fa-home"></i> Inicio</a>
-                <a href="productos.php"><i class="fas fa-box"></i> Productos</a>
-                <a href="carrito.php"><i class="fas fa-shopping-cart"></i> Carrito</a>
-            </div>
+            <a href="home.php"><i class="fas fa-home"></i> Inicio</a>
+            <a href="productos.php"><i class="fas fa-box"></i> Productos</a>
+            <a href="carrito.php"><i class="fas fa-shopping-cart"></i> Carrito</a>
         </div>
         <!-- Buscador -->
         <div class="search-bar">
             <i class="fas fa-search"></i>
-            <input type="text" id="buscarProducto" placeholder="¿Qué estás buscando?" oninput="buscarProductos()" onkeypress="finalizarBusqueda(event)">
-  
+            <input type="text" id="buscarProducto" placeholder="¿Qué estás buscando?" oninput="buscarProductos()">
         </div>
     </div>
 
+    <!-- Contenedor de productos -->
     <div class="container" id="productos">
-    <div class="cards">
-    <?php
-    if ($resultado->num_rows > 0) {
-        while ($producto = $resultado->fetch_assoc()) {
-            // Verificar si la imagen es nula y asignar una imagen predeterminada si es necesario
-            $imagen_url = !empty($producto['url_imagen']) ? 'data:image/png;base64,' . $producto['url_imagen'] : 'ruta/a/imagen/por_defecto.png';
-            
-            // Verificar si el precio es nulo y asignar un precio por defecto si es necesario
-            $precio = !empty($producto['precio']) ? number_format($producto['precio'], 2) : 'Precio no disponible';
-            
-            // Verificar si la descripción es nula y asignar una descripción por defecto si es necesario
-            $descripcion = !empty($producto['descripcion']) ? $producto['descripcion'] : 'Descripción no disponible';
-            
-            echo '<div class="product-card">';
-        
-            echo '    <h3>' . $producto['nombre'] . '</h3>';
-            echo '    <img src="' . $imagen_url . '" alt="' . $producto['nombre'] . '">';
-            echo '    <p>$' . $precio . ' MXN</p>';
-       
-            echo '    <form onsubmit="return agregarAlCarrito(event)">';
-            echo '        <input type="hidden" name="producto_id" value="' . $producto['id'] . '">';
-            echo '        <input type="hidden" name="nombre" value="' . $producto['nombre'] . '">';
-            echo '        <input type="hidden" name="precio" value="' . $producto['precio'] . '">';
-            echo '        <input type="hidden" name="imagen" value="' . $imagen_url . '">'; // Agregar el campo de imagen
-            echo '        <div class="item-quantity2">';
-            echo '            <button type="button" class="decrease" onclick="decrementarCantidad(this)">-</button>';
-            echo '            <input type="number" name="cantidad" value="1" min="1" class="quantity-input">';
-            echo '            <button type="button" class="increase" onclick="incrementarCantidad(this)">+</button>';
-            echo '        </div>';
-            echo '        <button type="submit" class="add-to-cart-btn">Agregar al carrito</button>';
-            echo '    </form>';
-            
-            echo '</div>';
-        }
-    } else {
-        echo '<p>No hay productos disponibles.</p>';
-    }
-    ?>
-</div>
+        <div class="cards">
+            <?php
+            if ($resultado->num_rows > 0) {
+                while ($producto = $resultado->fetch_assoc()) {
+                    $imagen_url = !empty($producto['url_imagen']) ? 'data:image/png;base64,' . $producto['url_imagen'] : 'ruta/a/imagen/por_defecto.png';
+                    $precio = !empty($producto['precio']) ? number_format($producto['precio'], 2) : 'Precio no disponible';
+                    $descripcion = !empty($producto['descripcion']) ? $producto['descripcion'] : 'Descripción no disponible';
 
+                    echo '<div class="product-card">';
+                    echo '    <h3>' . $producto['nombre'] . '</h3>';
+                    echo '    <img src="' . $imagen_url . '" alt="' . $producto['nombre'] . '">';
+                    echo '    <p>$' . $precio . ' MXN</p>';
+                    echo '    <p>' . $descripcion . '</p>';
+                    echo '    <form onsubmit="return agregarAlCarrito(event)">';
+                    echo '        <input type="hidden" name="producto_id" value="' . $producto['id'] . '">';
+                    echo '        <input type="hidden" name="nombre" value="' . $producto['nombre'] . '">';
+                    echo '        <input type="hidden" name="precio" value="' . $producto['precio'] . '">';
+                    echo '        <input type="hidden" name="imagen" value="' . $imagen_url . '">';
+                    echo '        <div class="item-quantity2">';
+                    echo '            <button type="button" class="decrease" onclick="decrementarCantidad(this)">-</button>';
+                    echo '            <input type="number" name="cantidad" value="1" min="1" class="quantity-input">';
+                    echo '            <button type="button" class="increase" onclick="incrementarCantidad(this)">+</button>';
+                    echo '        </div>';
+                    echo '        <button type="submit" class="add-to-cart-btn">Agregar al carrito</button>';
+                    echo '    </form>';
+                    echo '</div>';
+                }
+            } else {
+                echo '<p>No hay productos disponibles.</p>';
+            }
+            ?>
+        </div>
     </div>
 
     <footer>
@@ -159,43 +181,37 @@ $resultado = $conexion->query($consulta);
                 method: "POST",
                 body: formData
             })
-            
             .then(response => response.json())
-.then(data => {
-    if (data.status === "success") {
-        Swal.fire({
-            icon: "success",
-            title: "¡Producto agregado!",
-            text: "El producto se ha agregado correctamente al carrito.",
-            timer: 2000,
-            showConfirmButton: false
-        });
-    }
-})
-
-            .catch(error => {
-                console.error("Error:", error);
-            });
+            .then(data => {
+                if (data.status === "success") {
+                    Swal.fire({
+                        icon: "success",
+                        title: "¡Producto agregado!",
+                        text: "El producto se ha agregado correctamente al carrito.",
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
+                }
+            })
+            .catch(error => console.error("Error:", error));
         }
 
         function buscarProductos() {
-    const query = document.getElementById("buscarProducto").value;
+            const query = document.getElementById("buscarProducto").value;
 
-    fetch("buscar_productos.php", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: "query=" + encodeURIComponent(query)
-    })
-    .then(response => response.text())
-    .then(html => {
-        // Reemplazar el contenido de la sección de productos con los resultados de la búsqueda
-        document.getElementById("productos").innerHTML = html;
-    })
-    .catch(error => console.error("Error en la búsqueda:", error));
-}
-
+            fetch("productos.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: "query=" + encodeURIComponent(query)
+            })
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById("productos").innerHTML = html;
+            })
+            .catch(error => console.error("Error en la búsqueda:", error));
+        }
     </script>
 </body>
 </html>

@@ -5,11 +5,11 @@ $conexion = new mysqli("localhost", "root", "usbw", "sonrio", 3306);
 if ($conexion->connect_error) {
     die("<script>Swal.fire('Error', 'Conexión fallida a la base de datos.', 'error');</script>");
 }
-$conexion->set_charset("utf8"); 
+$conexion->set_charset("utf8");
 
-// Función para eliminar usuario si se recibe el ID por GET
-if (isset($_GET['eliminar_id'])) {
-    $id_usuario = $_GET['eliminar_id'];
+// Función para eliminar usuario si se recibe el ID por POST
+if (isset($_POST['eliminar_id'])) {
+    $id_usuario = $_POST['eliminar_id'];
 
     // Obtener el nombre del usuario antes de eliminarlo
     $consulta_nombre = "SELECT nombre FROM usuarios WHERE id = ?";
@@ -17,63 +17,29 @@ if (isset($_GET['eliminar_id'])) {
     $stmt_nombre->bind_param("i", $id_usuario);
     $stmt_nombre->execute();
     $resultado_nombre = $stmt_nombre->get_result();
-    $nombreUsuario = $resultado_nombre->fetch_assoc()['nombre'];
 
-    // Eliminar usuario
-    $consulta_eliminar = "DELETE FROM usuarios WHERE id = ?";
-    $stmt_eliminar = $conexion->prepare($consulta_eliminar);
-    $stmt_eliminar->bind_param("i", $id_usuario);
-    if ($stmt_eliminar->execute()) {
-        // Registrar actualización
-        $descripcion = "Se eliminó el usuario: $nombreUsuario";
-        $consulta_actualizacion = "INSERT INTO actualizaciones (tipo, descripcion) VALUES ('usuario', ?)";
-        $stmt_actualizacion = $conexion->prepare($consulta_actualizacion);
-        $stmt_actualizacion->bind_param("s", $descripcion);
-        $stmt_actualizacion->execute();
+    if ($resultado_nombre->num_rows > 0) {
+        $nombreUsuario = $resultado_nombre->fetch_assoc()['nombre'];
 
-        // Notificación de éxito
-        echo "<script>
-                alert('El usuario ha sido eliminado correctamente.');
-                window.location.href = 'usuarios_admin.php';
-              </script>";
+        // Eliminar usuario
+        $consulta_eliminar = "DELETE FROM usuarios WHERE id = ?";
+        $stmt_eliminar = $conexion->prepare($consulta_eliminar);
+        $stmt_eliminar->bind_param("i", $id_usuario);
+
+        if ($stmt_eliminar->execute()) {
+            // Registrar actualización
+            $descripcion = "Se eliminó el usuario: $nombreUsuario";
+            $consulta_actualizacion = "INSERT INTO actualizaciones (tipo, descripcion) VALUES ('usuario', ?)";
+            $stmt_actualizacion = $conexion->prepare($consulta_actualizacion);
+            $stmt_actualizacion->bind_param("s", $descripcion);
+            $stmt_actualizacion->execute();
+
+            echo json_encode(["success" => true, "message" => "Usuario eliminado correctamente."]);
+        } else {
+            echo json_encode(["success" => false, "message" => "Error al eliminar el usuario."]);
+        }
     } else {
-        echo "<script>
-                alert('Error al eliminar el usuario.');
-                window.location.href = 'usuarios_admin.php';
-              </script>";
-    }
-    exit();
-}
-
-// Función para agregar usuario si se recibe el formulario
-if (isset($_POST['agregar_usuario'])) {
-    $nombreUsuario = $_POST['nombre'];
-    $email = $_POST['email'];
-    $telefono = $_POST['telefono'];
-
-    // Insertar usuario
-    $queryUsuario = "INSERT INTO usuarios (nombre, email, telefono) VALUES (?, ?, ?)";
-    $stmt_usuario = $conexion->prepare($queryUsuario);
-    $stmt_usuario->bind_param("sss", $nombreUsuario, $email, $telefono);
-
-    if ($stmt_usuario->execute()) {
-        // Registrar actualización
-        $descripcion = "Se agregó un nuevo usuario: $nombreUsuario";
-        $consulta_actualizacion = "INSERT INTO actualizaciones (tipo, descripcion) VALUES ('usuario', ?)";
-        $stmt_actualizacion = $conexion->prepare($consulta_actualizacion);
-        $stmt_actualizacion->bind_param("s", $descripcion);
-        $stmt_actualizacion->execute();
-
-        // Notificación de éxito
-        echo "<script>
-                alert('Usuario agregado correctamente.');
-                window.location.href = 'usuarios_admin.php';
-              </script>";
-    } else {
-        echo "<script>
-                alert('Error al agregar el usuario.');
-                window.location.href = 'usuarios_admin.php';
-              </script>";
+        echo json_encode(["success" => false, "message" => "Usuario no encontrado."]);
     }
     exit();
 }
@@ -91,13 +57,14 @@ $resultado = $conexion->query($consulta);
     <title>Administración de Usuarios</title>
     <link rel="stylesheet" href="../../estilo/admin.css">
     <link rel="icon" href="../../estilo/imagenes/cinta.png" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 <header class="header" id="header-admin">
     <h1 class="h1-usuario">Usuarios Registrados</h1>
     <div class="top-bar">
         <button class="btn-salir" onclick="window.location.href='admin.php'">
-           X
+            X
         </button>
     </div>
 </header>
@@ -119,7 +86,7 @@ $resultado = $conexion->query($consulta);
         <?php
         if ($resultado->num_rows > 0) {
             while ($usuario = $resultado->fetch_assoc()) {
-                echo '<tr>';
+                echo '<tr id="usuario-' . $usuario['id'] . '">';
                 echo '<td>' . $usuario['id'] . '</td>';
                 echo '<td>' . $usuario['nombre'] . '</td>';
                 echo '<td>' . $usuario['email'] . '</td>';
@@ -138,12 +105,46 @@ $resultado = $conexion->query($consulta);
 </div>
 
 <script>
-// Función para confirmar y eliminar usuario
 function eliminarUsuario(id) {
-    const confirmacion = confirm("¿Estás seguro de eliminar este usuario?");
-    if (confirmacion) {
-        window.location.href = 'usuarios_admin.php?eliminar_id=' + id;
-    }
+    Swal.fire({
+        title: '¿Estás seguro de que quieres eliminar este usuario? 😰',
+        text: "Esta acción no se puede deshacer.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Realizamos la solicitud AJAX
+            fetch('usuarios_admin.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `eliminar_id=${id}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    Swal.fire(
+                        'Eliminado',
+                        data.message,
+                        'success'
+                    ).then(() => {
+                        // Removemos la fila de la tabla sin recargar la página
+                        document.getElementById(`usuario-${id}`).remove();
+                    });
+                } else {
+                    Swal.fire('Error', data.message || 'No se pudo eliminar el usuario.', 'error');
+                }
+            })
+            .catch(() => {
+                Swal.fire('Error', 'Hubo un problema al eliminar el usuario.', 'error');
+            });
+        }
+    });
 }
 </script>
 </body>

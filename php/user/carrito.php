@@ -1,35 +1,59 @@
-    <?php
-    session_start();
+<?php
+session_start();
 
-    // Verifica que haya productos en el carrito
-    $carrito = isset($_SESSION['carrito']) ? $_SESSION['carrito'] : [];
-    ?>
+// Inicializa el carrito si no existe
+if (!isset($_SESSION['carrito'])) {
+    $_SESSION['carrito'] = [];
+}
 
-    <!DOCTYPE html>
-    <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Carrito de Compras | Tienda Sonrio</title>
-        <link href="../../estilo/estilos.css" rel="stylesheet"> <!-- Ajuste en la ruta de CSS -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    </head>
-    <body>
+$carrito = $_SESSION['carrito'];
 
-        <!-- Navbar -->
-        <div class="navbar">
-            <div class="logosonrio">
-                <img src="../../estilo/imagenes/logg.png" class="logosonrio" alt="Logo Tienda Kawaii"> <!-- Ajuste en la ruta de la imagen -->
-            </div>
-            <div class="cont-a">
-                <a href="home.php"><i class="fas fa-home"></i> Inicio</a>
-                <a href="productos.php"><i class="fas fa-box"></i> Productos</a>
-                <a href="carrito.php"><i class="fas fa-shopping-cart"></i> Carrito</a>
-            </div>
-        </div>
+// Maneja la eliminación de un producto
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $input = json_decode(file_get_contents('php://input'), true);
+    if (isset($input['action'])) {
+        if ($input['action'] === 'eliminar' && isset($input['id'])) {
+            $idProducto = $input['id'];
+            $_SESSION['carrito'] = array_filter($carrito, function ($producto) use ($idProducto) {
+                return $producto['id'] !== $idProducto;
+            });
+            echo json_encode(['status' => 'success']);
+            exit;
+        } elseif ($input['action'] === 'vaciar') {
+            $_SESSION['carrito'] = [];
+            echo json_encode(['status' => 'success']);
+            exit;
+        }
+    }
+    echo json_encode(['status' => 'error']);
+    exit;
+}
+?>
 
-        <!-- Contenedor principal del carrito -->
-        <div class="cart-container">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras | Tienda Sonrio</title>
+    <link href="../../estilo/estilos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <div class="logosonrio">
+        <img src="../../estilo/imagenes/logg.png" class="logosonrio" alt="Logo Tienda Kawaii">
+    </div>
+    <div class="cont-a">
+        <a href="home.php"><i class="fas fa-home"></i> Inicio</a>
+        <a href="productos.php"><i class="fas fa-box"></i> Productos</a>
+        <a href="carrito.php"><i class="fas fa-shopping-cart"></i> Carrito</a>
+    </div>
+</div>
+<!-- Contenedor principal del carrito -->
+<div class="cart-container">
             <h1>Carrito de Compras</h1>
 
             <?php if (empty($carrito)) : ?>
@@ -66,87 +90,59 @@
                     <?php endforeach; ?>
                 </div>
 
-                <div class="cart-summary">
-                    <p><strong>Subtotal:</strong> $<span id="subtotal"><?php echo number_format($totalCarrito, 2); ?></span> MXN</p>
-                    <p><strong>Envío:</strong> $5.00 MXN</p>
-                    <p><strong>Total:</strong> $<span id="total"><?php echo number_format($totalCarrito + 5, 2); ?></span> MXN</p>
-                    <button class="checkout-btn" onclick="window.location.href='../user/pago.php'">Comprar</button> <!-- Ajuste en la ruta de pago.html -->
-                    <button class="remove-item" onclick="vaciarCarrito()" >Vaciar Carrito</button>
-                </div>
-            <?php endif; ?>
-
+        <div class="cart-summary">
+            <p><strong>Subtotal:</strong> $<span id="subtotal"><?php echo number_format($totalCarrito, 2); ?></span> MXN</p>
+            <p><strong>Envío:</strong> $5.00 MXN</p>
+            <p><strong>Total:</strong> $<span id="total"><?php echo number_format($totalCarrito + 5, 2); ?></span> MXN</p>
+            <button class="checkout-btn" onclick="window.location.href='../user/pago.php'">Comprar</button>
+            <button class="remove-item" onclick="vaciarCarrito()">Vaciar Carrito</button>
         </div>
+    <?php endif; ?>
 
-        <footer>
-            © 2024 Tienda Sonrio - Todos los derechos reservados
-        </footer>
+</div>
 
-        <script>
-            document.querySelectorAll('.increase').forEach(button => {
-                button.addEventListener('click', function() {
-                    let input = this.previousElementSibling;
-                    input.value = parseInt(input.value) + 1;
-                    updateTotals();
-                });
-            });
+<footer>
+    © 2024 Tienda Sonrio - Todos los derechos reservados
+</footer>
 
-            document.querySelectorAll('.decrease').forEach(button => {
-                button.addEventListener('click', function() {
-                    let input = this.nextElementSibling;
-                    if (input.value > 1) {
-                        input.value = parseInt(input.value) - 1;
-                        updateTotals();
-                    }
-                });
-            });
-
-            function updateTotals() {
-                let subtotal = 0;
-                document.querySelectorAll('.cart-item').forEach(item => {
-                    let price = parseFloat(item.querySelector('.item-price').textContent.replace('$', '').replace('MXN', ''));
-                    let quantity = parseInt(item.querySelector('.quantity-input').value);
-                    let itemTotal = price * quantity;
-
-                    item.querySelector('.item-total').textContent = '$' + itemTotal.toFixed(2) + ' MXN';
-                    subtotal += itemTotal;
-                });
-
-                document.getElementById('subtotal').textContent = subtotal.toFixed(2);
-                document.getElementById('total').textContent = (subtotal + 5).toFixed(2);  // Asume un costo de envío de $5
+<script>
+    function eliminarProducto(idProducto) {
+        fetch("", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ action: "eliminar", id: idProducto })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                location.reload();
+            } else {
+                alert("Error al eliminar el producto.");
             }
+        });
+    }
 
-            function vaciarCarrito() {
-                if (confirm("¿Estás seguro de que deseas vaciar el carrito?")) {
-                    fetch("vaciar_carrito.php", {
-                        method: "POST"
-                    }).then(() => {
-                        location.reload();
-                    });
+    function vaciarCarrito() {
+        if (confirm("¿Estás seguro de que deseas vaciar el carrito?")) {
+            fetch("", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ action: "vaciar" })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    location.reload();
+                } else {
+                    alert("Error al vaciar el carrito.");
                 }
-            }
-
-            function eliminarProducto(idProducto) {
-                fetch("eliminar_producto.php", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({ id: idProducto })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.status === 'success') {
-                        location.reload(); // Refresca la página si se eliminó correctamente
-                    } else {
-                        console.error("Error al eliminar el producto:", data);
-                        alert("No se pudo eliminar el producto del carrito.");
-                    }
-                })
-                .catch(error => {
-                    console.error("Error de red:", error);
-                    alert("Error al conectar con el servidor.");
-                });
-            }
-        </script>
-    </body>
-    </html>
+            });
+        }
+    }
+</script>
+</body>
+</html>

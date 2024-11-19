@@ -58,9 +58,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'], $_POST['nuevo_e
 
 
 
-// Función para eliminar pedido si se recibe el ID por GET
-if (isset($_GET['eliminar_id'])) {
-    $id_pedido = $_GET['eliminar_id'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['eliminar_id'])) {
+    $id_pedido = intval($_POST['eliminar_id']);
 
     // Obtener el pedido antes de eliminarlo
     $consulta_nombre = "SELECT id, usuario_id, total FROM pedidos WHERE id = ?";
@@ -77,33 +76,20 @@ if (isset($_GET['eliminar_id'])) {
         $stmt_eliminar->bind_param("i", $id_pedido);
 
         if ($stmt_eliminar->execute()) {
-            // Registrar actualización
-            $descripcion = "Se eliminó el pedido con ID: {$pedido['id']} del usuario: {$pedido['usuario_id']} por un total de: {$pedido['total']}";
-            $consulta_actualizacion = "INSERT INTO actualizaciones (tipo, descripcion) VALUES ('pedido', ?)";
-            $stmt_actualizacion = $conexion->prepare($consulta_actualizacion);
-            $stmt_actualizacion->bind_param("s", $descripcion);
-            $stmt_actualizacion->execute();
-
-            // Notificación de éxito
-            echo "<script>
-                    alert('El pedido ha sido eliminado correctamente.');
-                    window.location.href = 'pedidos_admin.php';
-                  </script>";
+            // Respuesta JSON de éxito
+            echo json_encode(['success' => true]);
         } else {
-            echo "<script>
-                    alert('Error al eliminar el pedido.');
-                    window.location.href = 'pedidos_admin.php';
-                  </script>";
+            // Respuesta JSON de error
+            echo json_encode(['success' => false, 'message' => 'No se pudo eliminar el pedido de la base de datos.']);
         }
         $stmt_eliminar->close();
     } else {
-        echo "<script>
-                alert('El pedido no existe.');
-                window.location.href = 'pedidos_admin.php';
-              </script>";
+        // Respuesta JSON si no se encuentra el pedido
+        echo json_encode(['success' => false, 'message' => 'El pedido no existe.']);
     }
     exit();
 }
+
 
 // Obtener los pedidos existentes
 $consulta = "SELECT id, usuario_id, carrito_id, fecha_pedido, total, estado, colonia, ciudad, codigo_postal,calle,numero,estado_direccion FROM pedidos";
@@ -157,7 +143,7 @@ if (!$resultado) {
         <?php
         if ($resultado->num_rows > 0) {
             while ($pedido = $resultado->fetch_assoc()) {
-                echo '<tr>';
+                echo '<tr id="pedido-' . $pedido['id'] . '">';
                 echo '<td>' . $pedido['id'] . '</td>';
                 echo '<td>' . $pedido['usuario_id'] . '</td>';
                 echo '<td>' . $pedido['fecha_pedido'] . '</td>';
@@ -169,7 +155,7 @@ if (!$resultado) {
                 echo '<td>' . $pedido['codigo_postal'] . '</td>';
                 echo '<td>' . $pedido['calle'] . '</td>';
                 echo '<td>' . $pedido['numero'] . '</td>';
-                echo '<td><button  class="btn-eliminar" onclick="eliminarPedido(' . $pedido['id'] . ')">Eliminar</button></td>';
+                echo '<td><button class="btn-eliminar" onclick="eliminarPedido(' . $pedido['id'] . ')">Eliminar</button></td>';
                 echo '<td><button class="btn-modificar" onclick="abrirModificarEstado(' . $pedido['id'] . ', \'' . $pedido['estado'] . '\')">Modificar</button></td>';
 
 
@@ -184,13 +170,49 @@ if (!$resultado) {
 </div>
 
 <script>
-// Función para confirmar y eliminar pedido
 function eliminarPedido(id) {
-    const confirmacion = confirm("¿Estás seguro de eliminar este pedido?");
-    if (confirmacion) {
-        window.location.href = 'pedidos_admin.php?eliminar_id=' + id;
-    }
+    Swal.fire({
+        title: '¿Estás seguro de que quieres eliminar este pedido? 😰',
+        text: "Esta acción no se puede deshacer.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Realizamos la solicitud AJAX
+            fetch('pedidos_admin.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `eliminar_id=${id}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    Swal.fire(
+                        'Eliminado',
+                        'El pedido ha sido eliminado correctamente.',
+                        'success'
+                    ).then(() => {
+                        // Removemos la fila de la tabla sin recargar la página
+                        document.getElementById(`pedido-${id}`).remove();
+                    });
+                } else {
+                    Swal.fire('Error', data.message || 'No se pudo eliminar el pedido.', 'error');
+                }
+            })
+            .catch(() => {
+                Swal.fire('Error', 'Hubo un problema al eliminar el pedido.', 'error');
+            });
+        }
+    });
 }
+
+
 
 function abrirModificarEstado(id, estado) {
     Swal.fire({

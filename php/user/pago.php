@@ -2,11 +2,7 @@
 session_start();
 
 // Conexión a la base de datos
-<<<<<<< Updated upstream
 $conexion = new mysqli("localhost", "root", "usbw", "sonrio", 3306);
-=======
-$conexion = new mysqli("localhost", "root", "", "sonrio");
->>>>>>> Stashed changes
 if ($conexion->connect_error) {
     die("<script>Swal.fire('Error', 'Conexión fallida a la base de datos.', 'error');</script>");
 }
